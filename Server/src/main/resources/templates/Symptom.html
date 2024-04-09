@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>폼태그 연습</title>
+    <meta name ="폼태그" content ="폼태그 연습"/>
+    <meta property = "og:type" content = "article">
+    <link rel = "stylesheet" type="text/css"  href="/templates/main.css">
+</head>
+<body>
+<h1 th:text ="${data}"></h1>
+<form action ="http://localhost:8080/" method ="get">
+    <fieldset>
+        <legend>현재 증상들을 선택하시오</legend>
+        <input type ="checkbox" name ="Symptom" id ="cough" value = "cough">
+        <label for ="cough">기침</label>
+        <input type ="checkbox" name ="Symptom" id ="headache" value = "headache">
+        <label for ="headache">두통</label>
+        <input type ="checkbox" name ="Symptom" id ="stomachache" value ="stomachache">
+        <label for ="stomachache">복통</label>
+        <input type ="checkbox" name ="Symptom" id ="dizziness" value ="dizziness">
+        <label for ="dizziness">어지럼즘</label>
+        <input type ="checkbox" name ="Symptom" id ="inflammation" value ="inflammation">
+        <label for ="inflammation">염증</label>
+        <button type="submit">제출</button>
+    </fieldset>
+</form>
+
+</body>
+</html>
