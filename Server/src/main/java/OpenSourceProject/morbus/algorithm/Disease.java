@@ -3,16 +3,15 @@ package OpenSourceProject.morbus.algorithm;
 public class Disease {
 
         //info, prevent, solution
-        private String diseaseName= "";
-        private String briefInfo ="";
-        private String toPrevent= "";
-        private String solution = "";
-        boolean isEmergence = false;
+    private String name;
 
-        public Disease(String name)
-        {
-                diseaseName=name;
-        }
+    public Disease(String inDis)
+    {
+        name=inDis;
+    }
 
-
+    public String get()
+    {
+        return name;
+    }
 }
