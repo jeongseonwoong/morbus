@@ -18,6 +18,7 @@
             <button type ="submit" style="float :right">입력</button>
             <input type ="text" id ="search" style ="float : right" placeholder="증상 입력">
         </form>
+
         <form action ="http://localhost:8080/ReDis" method ="post">
         <div th:each ="SymLists : ${SymList}">
             <input type ="checkbox" name ="Symptom" th:id ="${SymLists.get()}" th:value ="${SymLists.get()}">
