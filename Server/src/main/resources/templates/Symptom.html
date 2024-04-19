@@ -10,22 +10,39 @@
 <h1 th:text ="${data}"></h1>
 
 
-
-
     <fieldset>
         <legend>현재 증상들을 선택하시오</legend>
-        <form action = "#" method ="get">
-            <button type ="submit" style="float :right">입력</button>
-            <input type ="text" id ="search" style ="float : right" placeholder="증상 입력">
-        </form>
+        <script>
+            function searchVal() {
+                var searching = document.getElementById("search").value; // 사용자 입력을 대문자로 변환
+                var symList = document.getElementsByName("Symptom"); // 증상들의 체크박스들을 가져옴
 
-        <form action ="http://localhost:8080/ReDis" method ="post">
-        <div th:each ="SymLists : ${SymList}">
-            <input type ="checkbox" name ="Symptom" th:id ="${SymLists.get()}" th:value ="${SymLists.get()}">
-            <label th:for ="${SymLists.get()}" th:text ="${SymLists.get()}"></label>
+                // 모든 증상들을 돌면서 검색어와 일치하는 항목을 찾음
+                for (var i = 0; i < symList.length; i++) {
+                    if (symList[i].value === searching) { // 검색어와 일치하는 증상을 찾으면
+                        var label = document.querySelector("label[for='" + symList[i].id + "']"); // 해당 증상의 라벨을 가져옴
+                        label.style.fontWeight = "bold"; // 해당 증상의 글자를 굵게 만듦
+                    }
+                }
+            }
+        </script>
+        <div>
+            <form onsubmit="searchVal" method ="post" name="searching">
+                <button type ="submit" style="float :right">입력</button>
+                <input type ="text" id ="search" style ="float : right" placeholder="증상 입력">
+            </form>
         </div>
-            <button type="submit">제출</button>
-        </form>
+
+        <div>
+            <form action ="http://localhost:8080/ReDis" method ="post" name ="symList">
+                <div th:each ="SymLists : ${SymList}">
+                    <input type ="checkbox" name ="Symptom" th:id ="${SymLists.get()}" th:value ="${SymLists.get()}">
+                    <label th:for ="${SymLists.get()}" th:text ="${SymLists.get()}"></label>
+                </div>
+                <button type="submit">제출</button>
+            </form>
+        </div>
+
     </fieldset>
 
 </body>

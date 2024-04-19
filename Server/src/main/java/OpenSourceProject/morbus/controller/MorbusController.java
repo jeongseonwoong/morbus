@@ -47,12 +47,7 @@ public class MorbusController {
         return "ReDis";
     }
 
-    @GetMapping("#")
-    public String searchSym(@RequestParam(value="findingSym") String findingSym,Model model)
-    {
-        model.addAttribute("findingSym",findingSym);
-        return "Symptom";
-    }
+    
 
 
 
