@@ -10,16 +10,22 @@
 <h1 th:text ="${data}"></h1>
 
 
-<form action ="http://localhost:8080/ReDis" method ="post">
+
+
     <fieldset>
         <legend>현재 증상들을 선택하시오</legend>
-<div th:each ="SymLists : ${SymList}">
-    <input type ="checkbox" name ="Symptom" th:id ="${SymLists.get()}" th:value ="${SymLists.get()}">
-    <label th:for ="${SymLists.get()}" th:text ="${SymLists.get()}"></label>
-</div>
-        <button type="submit">제출</button>
+        <form action = "#" method ="get">
+            <button type ="submit" style="float :right">입력</button>
+            <input type ="text" id ="search" style ="float : right" placeholder="증상 입력">
+        </form>
+        <form action ="http://localhost:8080/ReDis" method ="post">
+        <div th:each ="SymLists : ${SymList}">
+            <input type ="checkbox" name ="Symptom" th:id ="${SymLists.get()}" th:value ="${SymLists.get()}">
+            <label th:for ="${SymLists.get()}" th:text ="${SymLists.get()}"></label>
+        </div>
+            <button type="submit">제출</button>
+        </form>
     </fieldset>
-</form>
 
 </body>
 </html>
