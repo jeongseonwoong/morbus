@@ -1,4 +1,4 @@
-package OpenSourceProject.morbus.algorithm;
+package OpenSourceProject.VOclass;
 
 public class Disease {
 
