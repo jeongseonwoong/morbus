@@ -1,12 +1,11 @@
 package OpenSourceProject.morbus.algorithm;
+import OpenSourceProject.VOclass.Symptom;
 import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.util.logging.*;
 
 import java.io.*;
 import java.util.*;
@@ -16,9 +15,7 @@ public class SymptomSetting {
     private Object JsonSetting()throws IOException, ParseException
     {
         JSONParser parser = new JSONParser();
-        Reader reader = new FileReader("C:\\Users\\user\\github\\morbus\\Server\\src\\main\\java\\OpenSourceProject\\morbus\\algorithm\\DiseaseList.json");
-        ConsoleHandler consoleHandler=new ConsoleHandler();
-        consoleHandler.flush();
+        Reader reader = new FileReader("src/main/resources/DiseaseList.json");
         return parser.parse(reader);
     }
 
@@ -49,11 +46,6 @@ public class SymptomSetting {
             ArrayList<String> list = toArr(objDis);
             symptom.set(strSym, list);
             symptomArrayList.add(symptom);
-        }
-
-        for (Symptom symptom : symptomArrayList) {
-            System.out.println(symptom.get());
-            symptom.printRelated();
         }
 
         return symptomArrayList;

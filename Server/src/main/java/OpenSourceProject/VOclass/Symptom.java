@@ -1,11 +1,8 @@
-package OpenSourceProject.morbus.algorithm;
+package OpenSourceProject.VOclass;
 
-import OpenSourceProject.morbus.algorithm.Disease;
+import OpenSourceProject.VOclass.Disease;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Symptom {
 

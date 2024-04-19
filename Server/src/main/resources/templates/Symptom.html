@@ -10,7 +10,7 @@
 <h1 th:text ="${data}"></h1>
 
 
-<form action ="http://localhost:8080/" method ="get">
+<form action ="http://localhost:8080/ReDis" method ="post">
     <fieldset>
         <legend>현재 증상들을 선택하시오</legend>
 <div th:each ="SymLists : ${SymList}">
@@ -19,8 +19,6 @@
 </div>
         <button type="submit">제출</button>
     </fieldset>
-
-
 </form>
 
 </body>
