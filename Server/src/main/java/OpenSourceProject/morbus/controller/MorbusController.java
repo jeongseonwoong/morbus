@@ -34,6 +34,13 @@ public class MorbusController {
         return "Symptom";
     }
 
+    @GetMapping("Symptom_record")
+    public String Symptom_record(Model model,Model model2) throws JSONException, IOException, ParseException {
+        //data processing
+
+        return "Symptom_record";
+    }
+
     @PostMapping("ReDis")
     public String submit(@RequestParam(value = "Symptom") String[] symName, Model model)
     {
