@@ -20,16 +20,15 @@
                 // 모든 증상들을 돌면서 검색어와 일치하는 항목을 찾음
                 for (var i = 0; i < symList.length; i++) {
                     if (symList[i].value === searching) { // 검색어와 일치하는 증상을 찾으면
-                        var label = document.querySelector("label[for='" + symList[i].id + "']"); // 해당 증상의 라벨을 가져옴
-                        label.style.fontWeight = "bold"; // 해당 증상의 글자를 굵게 만듦
+                        document.querySelector("label[for='" + symList[i].id + "']").style.fontweight ="bold"; // 해당 증상의 라벨을 가져옴
                     }
                 }
             }
         </script>
         <div>
-            <form onsubmit="searchVal" method ="post" name="searching">
+            <form onsubmit="searchVal" method ="get" name="searching">
                 <button type ="submit" style="float :right">입력</button>
-                <input type ="text" id ="search" style ="float : right" placeholder="증상 입력">
+                <input type ="text" id ="search" name ="searchText" style ="float : right" placeholder="증상 입력">
             </form>
         </div>
 
