@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>RelatedDisease</title>
+    <style>
+        #square {
+            background-color: #ffffff;
+            width: 1000px;
+            height: fit-content;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        img {
+            width: 300px;
+            height: 70px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .text{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body style="background-color: #e4e4e4">
+<a href="/morbus.html"><img src="사진/MORBUS.png"></a>
+    <div th:each ="ReDiseases : ${ReDisease}" id="square">
+        <h4 th:text="${ReDiseases.first()}"></h4>
+        <ul th:each="ReDiseasesList : ${ReDiseases.second()}">
+            <li th:text ="${ReDiseasesList.get()}"></li>
+        </ul>
+        <br>
+    </div>
+
+
+</body>
+</html>
