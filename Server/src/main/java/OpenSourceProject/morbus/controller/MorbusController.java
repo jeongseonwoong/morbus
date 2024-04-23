@@ -1,10 +1,8 @@
 package OpenSourceProject.morbus.controller;
 
-import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
 import OpenSourceProject.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
-import ch.qos.logback.core.joran.sanity.Pair;
 import org.json.JSONException;
 import org.json.simple.parser.ParseException;
 import org.springframework.core.io.UrlResource;
@@ -17,7 +15,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class MorbusController {
@@ -41,7 +38,7 @@ public class MorbusController {
             findSym.put(symptom.get(),symptom);
         }
         model2.addAttribute("SymList",symptomArrayList);
-        return "Symptom";
+        return "Symptom.html";
     }
 
     @GetMapping("Symptom_record")
@@ -71,7 +68,7 @@ public class MorbusController {
     public String searchSym(@RequestParam(value="searchText") String searchText, Model model)
     {
         model.addAttribute("searchText",searchText);
-        return "Symptom";
+        return "Symptom.html";
     }
 
     @ResponseBody
