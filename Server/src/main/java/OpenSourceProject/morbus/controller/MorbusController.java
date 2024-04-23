@@ -3,13 +3,18 @@ package OpenSourceProject.morbus.controller;
 import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
+import jakarta.annotation.Resource;
 import org.json.JSONException;
 import org.json.simple.parser.ParseException;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -61,7 +66,12 @@ public class MorbusController {
         return "Symptom";
     }
 
-
+    @ResponseBody
+    @GetMapping("symptom_record_logo")
+    public UrlResource showLogo(@PathVariable String filename) throws MalformedURLException {
+        File file = new File(filename);
+        return new UrlResource(file.getAbsolutePath());
+    }
 
 
 
