@@ -39,7 +39,7 @@ public class Symptom {
   {
     for(Disease disease:ReDisease)
     {
-      System.out.print(" " + disease.get() + "\n");
+      System.out.print(" " + disease.getName() + "\n");
     }
   }
 
