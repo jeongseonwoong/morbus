@@ -26,6 +26,11 @@ public class MorbusController {
     private ArrayList<Symptom>symptomArrayList;
     HashMap<String,Symptom> findSym = new HashMap<>();
 
+    @GetMapping("Morbus")
+    public String toMainPage()
+    {
+        return "Morbus";
+    }
     @GetMapping("Symptom")
     public String Symptom(Model model,Model model2) throws JSONException, IOException, ParseException {
         model.addAttribute("data", "안녕하세요 Morbus입니다.");
