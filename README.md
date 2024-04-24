@@ -58,7 +58,7 @@ SOFTWARE.
   <li>정선웅</li>
   <p> @jeongseonwoong <br>01027993550 </p>
   <li>조진우</li>
-  <p> @JJW1223 <br> </p>
+  <p> @JJW1223 <br>01087713302 </p>
   <li>양희창</li>
   <p>@YangHeeChang</p>
 </ul>
