@@ -1,36 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <title>Symptom Record</title>
-        <style>
-            img {
-                width: 300px;
-                height: 70px;
-                display: block;
-                margin: 0 auto;
-            }
-            #square {
-                background-color: #ffffff;
-                width: 1000px;
-                height: 600px;
-                display: block;
-                margin: 0 auto;
-                border-radius: 10px;
-            }
-            .chat-input {
-                width: 950px;
-                height: 30px;
-                padding: 5px;
-                border: 1px solid #000000;
-                border-radius: 5px;
-                margin-top: 550px;
-                margin-left: 20px;
-            }
-            .chat-input:focus {
-                outline: none;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/recordPageStyle.css}"/>
     </head>
     <body style="background-color: #e4e4e4">
 
