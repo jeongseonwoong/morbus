@@ -14,4 +14,6 @@ public class Disease {
     {
         return name;
     }
+
+
 }

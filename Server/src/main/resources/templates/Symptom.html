@@ -5,13 +5,33 @@
     <title>증상 선택 페이지</title>
     <meta name ="질병 찾기" content ="증상 선택"/>
     <meta property = "og:type" content = "article">
+    <style>
+        #square {
+            background-color: #ffffff;
+            width: 1000px;
+            height: fit-content;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        img {
+            width: 300px;
+            height: 70px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .text{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 </head>
-<body>
-<h1 th:text ="${data}"></h1>
-
-
-    <fieldset>
-        <legend>현재 증상들을 선택하시오</legend>
+<body style ="background-color: #e4e4e4">
+<h1><a href ="/morbus.html"><img src="사진/MORBUS.png"></a></h1>
+<div>
+    <fieldset id="square" style ="float : left">
+        <legend><b>현재 증상들을 선택하시오</b></legend>
         <script>
             function searchVal() {
                 var searching = document.getElementById("search").value; // 사용자 입력을 대문자로 변환
@@ -36,13 +56,14 @@
             <form action ="http://localhost:8080/ReDis" method ="post" name ="symList">
                 <div th:each ="SymLists : ${SymList}">
                     <input type ="checkbox" name ="Symptom" th:id ="${SymLists.get()}" th:value ="${SymLists.get()}">
-                    <label th:for ="${SymLists.get()}" th:text ="${SymLists.get()}"></label>
+                    <label th:for ="${SymLists.get()}" th:text ="${SymLists.get()}" class ="text"></label>
                 </div>
                 <button type="submit">제출</button>
             </form>
         </div>
 
     </fieldset>
+</div>
 
 </body>
 </html>
