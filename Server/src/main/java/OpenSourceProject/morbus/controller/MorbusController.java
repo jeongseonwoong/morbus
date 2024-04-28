@@ -89,6 +89,7 @@ public class MorbusController {
                 }
             }
         }
+        model.addAttribute("searchText",null);
         return "selectSymptom";
     }
 
