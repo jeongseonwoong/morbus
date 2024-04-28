@@ -32,19 +32,18 @@ public class SymptomSetting {
 
 
     public @ResponseBody ArrayList<Symptom> setSymptom() throws IOException, ParseException, JSONException {
-
         Object obj = JsonSetting();
         JSONArray dateArray = (JSONArray) obj ;
-
         ArrayList<Symptom> symptomArrayList = new ArrayList<>();
         for (Object o : dateArray) {
             Symptom symptom = new Symptom();
             JSONObject ele = (JSONObject) o;
             String strSym = (String) ele.get("name");
             JSONArray objDis = (JSONArray) ele.get("related_conditions");
-
+            JSONArray keyWords =(JSONArray) ele.get("keyword");
+            ArrayList<String> keyWordsArr = toArr(keyWords);
             ArrayList<String> list = toArr(objDis);
-            symptom.set(strSym, list);
+            symptom.set(strSym, list,keyWordsArr);
             symptomArrayList.add(symptom);
         }
 

@@ -1,13 +1,14 @@
 package OpenSourceProject.VOclass;
 
-import OpenSourceProject.VOclass.Disease;
-
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Symptom {
 
   private String name;
   private ArrayList<Disease> ReDisease = new ArrayList<Disease>();
+  public Set<String>keywords = new HashSet<String>();
 
   private void setName(String inSym)
   {
@@ -24,23 +25,21 @@ public class Symptom {
 
   }
 
-  public void set(String inSym, ArrayList<String> array)
+  private void setKeywords(ArrayList<String> array)
+  {
+      keywords.addAll(array);
+  }
+
+  public void set(String inSym, ArrayList<String> array, ArrayList<String> keyword)
   {
     setName(inSym);
     setReDisease(array);
+    setKeywords(keyword);
   }
 
-  public String get()
+  public String getName()
   {
     return name;
-  }
-
-  public void printRelated()
-  {
-    for(Disease disease:ReDisease)
-    {
-      System.out.print(" " + disease.getName() + "\n");
-    }
   }
 
   public ArrayList<Disease> getReDisease() {
