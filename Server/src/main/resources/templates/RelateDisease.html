@@ -13,7 +13,7 @@
     <div th:each ="ReDiseases : ${ReDisease}" id="square">
         <h4 th:text="${ReDiseases.first()}"></h4>
         <ul th:each="ReDiseasesList : ${ReDiseases.second()}">
-            <button type="submit" name="diseaseName" th:value="${ReDiseasesList.getName()}">
+            <button class="button" type="submit" name="diseaseName" th:value="${ReDiseasesList.getName()}">
                 <li th:text ="${ReDiseasesList.getName()}"></li>
             </button>
         </ul>

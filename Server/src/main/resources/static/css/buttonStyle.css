@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+.button {
+
+    color: black;
+    background-color: #e4e4e4;
+    border-radius: 16px;
+    font-size: large;
+    font-style: oblique;
+    font-weight: 400;
+    text-decoration: aqua;
+    border:none;
+    padding: 15px;
+    box-shadow: 1px 1px 1px 1px rgb(10,10,10);
+}
+.button:hover {
+    background-color:#002ead;
+    transition: 0.7s;
+}
