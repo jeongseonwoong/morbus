@@ -53,10 +53,10 @@ public class MorbusController {
     }
 
 
-    @PostMapping("RelateDisease")//관련된 질병표시 페이지로 넘어가는 컨트롤러
+    @PostMapping("RelateDisease")//관련된 질병들을 표시해주는 페이지로 넘어가는 컨트롤러
     public String relateDisease(@RequestParam(value = "Symptom") String[] symName, Model model)
     {
-        //선택한 증상들고 관련된 질병을 찾는 알고리즘
+        //선택한 증상들과 관련된 질병을 찾는 알고리즘
         ArrayList<SymptomDiseasePair> diseaseList = new ArrayList<SymptomDiseasePair>();
         for(String str : symName)
         {
@@ -93,6 +93,12 @@ public class MorbusController {
         return "selectSymptom";
     }
 
+    @GetMapping("diseaseInfo")
+    public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model)
+    {
+        model.addAttribute("diseaseName",diseaseName);
+        return "diseaseInfo";
+    }
 
 
 
