@@ -93,7 +93,7 @@ public class MorbusController {
         return "selectSymptom";
     }
 
-    @GetMapping("diseaseInfo")
+    @GetMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
     public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model)
     {
         model.addAttribute("diseaseName",diseaseName);
