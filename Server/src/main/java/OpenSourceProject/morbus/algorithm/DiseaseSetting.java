@@ -58,6 +58,24 @@ public class DiseaseSetting implements Setting {
         return diseaseArrayList;
     }
 
+    public ArrayList<Disease> setDisease() throws IOException, ParseException {
+        ArrayList<Disease> diseaseArrayList = new ArrayList<>();
+        Object obj = JsonSetting();
+        JSONArray dateArray = (JSONArray) obj ;
+        for (Object o : dateArray) {
+            JSONObject ele = (JSONObject) o;
+
+            //제이슨 파일로부터 값 가져오기
+            String DiseaseName= (String) ele.get("name");
+            String briefInfo= (String) ele.get("brief-explanation");
+            String detailInfo= (String) ele.get("detail-explanation");
+            Disease disease =new Disease(DiseaseName,briefInfo,detailInfo);
+            diseaseArrayList.add(disease);
+
+        }
+
+        return diseaseArrayList;
+    }
 
 
 

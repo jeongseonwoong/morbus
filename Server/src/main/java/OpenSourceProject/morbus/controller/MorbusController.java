@@ -1,7 +1,9 @@
 package OpenSourceProject.morbus.controller;
 
+import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
 import OpenSourceProject.VOclass.SymptomDiseasePair;
+import OpenSourceProject.morbus.algorithm.DiseaseSetting;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
 import org.json.simple.parser.ParseException;
 import org.springframework.core.io.UrlResource;
@@ -19,8 +21,9 @@ import java.util.HashMap;
 public class MorbusController {
 
     private final ArrayList<Symptom>symptomArrayList;//증상 배열
-    private final HashMap<String,Symptom> findSym = new HashMap<>();//증상 Hash Map(검색 시 사용)
-
+    private final HashMap<String, Symptom> findSym = new HashMap<>();//증상 Hash Map(검색 시 사용)
+    private final ArrayList<Disease>diseaseArrayList;
+    private final HashMap<String, Disease> findDise = new HashMap<>();
 
     //생성자 내에서 증상 배열 초기화
     MorbusController() throws Exception {
@@ -29,6 +32,13 @@ public class MorbusController {
         for(Symptom symptom:symptomArrayList)
         {
             findSym.put(symptom.getName(),symptom);
+        }
+
+        DiseaseSetting diseaseSetting= new DiseaseSetting();
+        diseaseArrayList=diseaseSetting.setDisease();
+        for(Disease disease: diseaseArrayList)
+        {
+            findDise.put(disease.getName(),disease);
         }
     }
 
@@ -93,9 +103,15 @@ public class MorbusController {
     }
 
     @GetMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
-    public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model)
+    public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
     {
         model.addAttribute("diseaseName",diseaseName);
+        if(findDise.containsKey(diseaseName))
+        {
+            Disease disease = findDise.get(diseaseName);
+            model2.addAttribute("detailInfo",disease.getDescription());
+        }
+        System.out.println(diseaseName);
         return "diseaseInfo";
     }
 
