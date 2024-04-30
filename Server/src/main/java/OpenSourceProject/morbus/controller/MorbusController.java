@@ -3,7 +3,6 @@ package OpenSourceProject.morbus.controller;
 import OpenSourceProject.VOclass.Symptom;
 import OpenSourceProject.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
-import org.json.JSONException;
 import org.json.simple.parser.ParseException;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,7 @@ public class MorbusController {
 
 
     //생성자 내에서 증상 배열 초기화
-    MorbusController() throws JSONException, IOException, ParseException {
+    MorbusController() throws Exception {
         SymptomSetting symptomSetting = new SymptomSetting();
         symptomArrayList = symptomSetting.setSymptom();
         for(Symptom symptom:symptomArrayList)
@@ -46,7 +45,7 @@ public class MorbusController {
     }
 
     @GetMapping("Symptom_record")//메인 홈페이지에서 증상 기록지 페이지로 넘어가는 컨트롤러
-    public String symptom_record(Model model,Model model2) throws JSONException, IOException, ParseException {
+    public String symptom_record(Model model,Model model2) throws IOException, ParseException {
         //data processing
 
         return "Symptom_record";
