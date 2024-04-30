@@ -3,7 +3,11 @@
 <p><br></p>
 
 # 설치 방법
-<b>Download Zip</b> 클릭하고 코드를 실행시킨다
+<ol>
+  <li><b>Download Zip</b> 클릭</li>
+  <li>폴더로 프로젝트 열기 선택</li>
+  <li>Server폴더를 최상위 폴더로 프로젝트 Open(External library가 이래야 포함이 됨)</li>
+</ol>
 <p><br></p>
 
 # 의존성
@@ -24,7 +28,7 @@ windows
 
 # 실행 방법
 <ol>
-  <li>코드를 다운로드 하고 실행</li>
+  <li>코드를 실행(실행 버튼이 클릭이 안될 MorbusApplication java파일로 이동하여 실행버튼이 클릭되는지 확인)</li>
   <li>localhost:8080/morbus.html로 접속하여 사용</li>
 </ol>
 <p><br></p>
