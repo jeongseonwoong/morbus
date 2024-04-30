@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <title>RelatedDisease</title>
     <link rel="stylesheet" th:href="@{/css/relateDiseasePageStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/buttonStyle.css}">
 </head>
 <body style="background-color: #e4e4e4">
 <a href="/morbus.html"><img src="사진/MORBUS.png"></a>
+
 <form action ="http://localhost:8080/diseaseInfo" name="diseaseInfo" method="get">
     <div th:each ="ReDiseases : ${ReDisease}" id="square">
-        <h4 th:text="${ReDiseases.first()}"></h4>
+        <!--증상출력-->
+        <h3 style="font-weight: bolder" th:text="${ReDiseases.first()}"></h3>
+        <!--증상과 관련된 질병들 출력-->
         <ul th:each="ReDiseasesList : ${ReDiseases.second()}">
-            <li th:text ="${ReDiseasesList.getName()}"></li>
+            <button class="button" type="submit" name="diseaseName" th:value="${ReDiseasesList.getName()}">
+                <li style="font-weight: bold" th:text ="${ReDiseasesList.getName()}"></li>
+            </button>
+            <p th:text ="${ReDiseasesList.getBriefInfo()}"></p><hr>
         </ul>
+        <!--증상과 관련된 질병들 출력-->
     </div>
 </form>
 
