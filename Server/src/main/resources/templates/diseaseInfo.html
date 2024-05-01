@@ -18,11 +18,6 @@
             display: block;
             margin: 0 auto;
         }
-        .text{
-            width: 100px;
-            height: 100px;
-        }
-
         #detailInfo{
             float:left;
             border: solid black;
@@ -32,7 +27,7 @@
             border-radius: 10px;
         }
 
-        #contain{
+        .contain{
             float: right;
             border: solid black;
             background-color: white;
@@ -40,18 +35,19 @@
             height:fit-content;
             border-radius: 10px;
         }
-
         #map{
              width: 480px;
              height:410px;
             border-radius: 10px;
 
         }
+
+
     </style>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=44eebf3750c6d8a33935af51087d1056"></script>
 </head>
 <body style="background-color: #e4e4e4">
-<div th:id="square">
+<div id="square">
     <h1 th:text="${diseaseName}"></h1>
     <hr>
     <div id="detailInfo">
@@ -60,7 +56,7 @@
         <p th:text="${detailInfo}"></p>
     </div>
 
-    <div id="contain">
+    <div class="contain">
         <h3>주변 병원 찾기</h3>
         <div id="map"></div>
         <script>
@@ -69,9 +65,16 @@
                 center : new kakao.maps.LatLng(36.626691962959356, 127.45835603735114),
                 level : 3
             };
-
             var map = new kakao.maps.Map(container,options);
         </script>
+    </div>
+
+    <div name="drug" class="contain">
+        <h1>약</h1>
+    </div>
+
+    <div name="first-aid" class="contain">
+        <h1>응급처치</h1>
     </div>
 
 </div>
