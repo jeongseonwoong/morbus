@@ -1,6 +1,5 @@
 package OpenSourceProject.morbus.algorithm;
 import OpenSourceProject.VOclass.Symptom;
-import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,7 +18,7 @@ public class SymptomSetting {
         return parser.parse(reader);
     }
 
-    private ArrayList<String> toArr(JSONArray jsonArray) throws JSONException {
+    private ArrayList<String> toArr(JSONArray jsonArray) {
         ArrayList<String> list= new ArrayList<>();
         if(jsonArray!=null)
         {
@@ -31,7 +30,7 @@ public class SymptomSetting {
     }
 
 
-    public @ResponseBody ArrayList<Symptom> setSymptom() throws IOException, ParseException, JSONException {
+    public @ResponseBody ArrayList<Symptom> setSymptom() throws IOException, ParseException {
         Object obj = JsonSetting();
         JSONArray dateArray = (JSONArray) obj ;
         ArrayList<Symptom> symptomArrayList = new ArrayList<>();
