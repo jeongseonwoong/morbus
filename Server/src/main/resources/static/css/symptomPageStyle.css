@@ -23,3 +23,9 @@ img {
     height: 150px;
     text-emphasis-color: crimson;
 }
+
+#search{
+    font-size: medium;
+    font-weight: bold;
+    text-emphasis-color: crimson;
+}

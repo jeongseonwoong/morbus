@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>DiseaseInformation</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/relateDiseasePageStyle.css}">
 </head>
-<body>
-<p th:text="${diseaseName}"></p>
-<p th:text="${detailInfo}"></p>
+<body style="background-color: #e4e4e4">
+<div th:id="square">
+    <h1 th:text="${diseaseName}"></h1>
+    <hr>
+
+    <p th:text="${detailInfo}"></p>
+</div>
+
 </body>
 </html>
