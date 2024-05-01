@@ -111,7 +111,6 @@ public class MorbusController {
             Disease disease = findDise.get(diseaseName);
             model2.addAttribute("detailInfo",disease.getDescription());
         }
-        System.out.println(diseaseName);
         return "diseaseInfo";
     }
 
