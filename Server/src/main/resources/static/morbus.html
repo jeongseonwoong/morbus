@@ -12,6 +12,9 @@
               }
               html, body {margin: 0; padding: 0; height: 100%; }
               body {background: darkgray;}
+              pre {
+                  font-family: "Noto Sans KR", sans-serif;
+              }
               header {
                   width: 100%; 
                   height: 20%; 
@@ -44,15 +47,14 @@
               }
               section {
                   width: 100%; 
-                  height: 40%; 
+                  height: 40%;
                   background: lightslategrey;
                   font-family: "Noto Sans KR", sans-serif;
                   font-weight: 400;
-                
               }
               section #Smain {
                   width: 70%; 
-                  height: 60%; 
+                  height: 60%;
                   float: left; 
                   background: lightslategrey;
               }
@@ -79,12 +81,32 @@
                 float: left;
                 background: #e4e4e4;
               }
-              .footer {
+              section .HFCon {
+                  width: 100%;
+                  height: 20%;
+                  float: left;
+                  background: #e4e4e4;
+              }
+              connec {
+                  width: 100%;
+                  height: 22.5%;
+                  float: left;
+                  background: #e4e4e4;
+              }
+              footer {
                   width: 100%; 
-                  height: 30%; 
+                  height: 20%;
                   clear: both; 
                   background: #e4e4e4;
               }
+              footer .FCon {
+                  width: 100%;
+                  height: 100%;
+                  text-align: left;
+                  background: #2E2E2E;
+                  color: #ffffff;
+              }
+
               
           </style>
       </head>
@@ -92,7 +114,7 @@
           <header>
             <div class="HTCon"></div>
             <div class="HCon"></div>
-            <div id="Hmain"><img src="C:\Users\PC\Desktop\2-1\오픈소스기초프로젝트\Morbus\사진\MORBUS.png"></div>
+            <div id="Hmain"><img src="사진\MORBUS.png"></div>
             <div class="HCon"></div>
         </header>
           <section>
@@ -101,7 +123,11 @@
               <div class="Sline"></div>
               <div class="SMCon">증상 기록지</div>
               <div class="SCon"></div>
+              <div class="HFCon"></div>
           </section>
-          <footer class="footer"></footer>
+          <connec></connec>
+          <footer>
+              <div class="FCon"><pre>정선웅<br>@jeongseonwoong<br>조진우<br>@JJW1223<br>양희창<br>@YangHeeChang<br><a href="http://localhost:8080/morbus.html">MORBUS</a></pre></div>
+          </footer>
       </body>
   </html>
