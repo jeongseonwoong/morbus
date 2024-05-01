@@ -3,14 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>DiseaseInformation</title>
-    <link rel="stylesheet" type="text/css" th:href="@{css/relateDiseasePageStyle.css}">
+    <style>
+        #square {
+            background-color: #ffffff;
+            width: 1000px;
+            height: fit-content;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        img {
+            width: 300px;
+            height: 70px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .text{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=44eebf3750c6d8a33935af51087d1056"></script>
 </head>
 <body style="background-color: #e4e4e4">
 <div th:id="square">
     <h1 th:text="${diseaseName}"></h1>
     <hr>
-
     <p th:text="${detailInfo}"></p>
+
+    <div id="map" style="width: 400px;height:300px"></div>
+    <script>
+        var container = document.getElementById('map');
+        var options ={
+            center : new kakao.maps.LatLng(33.450701, 126.570667),
+            level : 4
+        };
+
+        var map = new kakao.maps.Map(container,options);
+    </script>
 </div>
 
 </body>
