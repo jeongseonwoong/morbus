@@ -64,5 +64,5 @@ SOFTWARE.
   <li>조진우</li>
   <p> @JJW1223 <br>01087713302 </p>
   <li>양희창</li>
-  <p>@YangHeeChang</p>
+  <p>@YangHeeChang <br>01024733055 </p>
 </ul>
