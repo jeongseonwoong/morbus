@@ -110,7 +110,56 @@
                   background: #2E2E2E;
                   color: #ffffff;
               }
-
+/*menu bar*/
+              .side-bar{
+                  background-color: lightgray;
+                  position: fixed;
+                  top:0;
+                  left: -260px;
+                  width: 300px;
+                  height: 100%;
+                  transition: left 1s, background-color 2s;
+              }
+              .side-bar:hover{
+                  left:0%;
+                  background-color:black;
+                  transition: left 2s, background-color 2s;
+              }
+              .side-bar>.icon>div{
+                  text-align:right;
+                  padding: 10px;
+                  color: black;
+              }
+              .side-bar:hover>.icon>div:last-child{
+                  display:block;
+                  color: white;
+              }
+              .side-bar:hover>.icon>div:first-child{
+                  display:none;
+              }
+              .side-bar>.icon>div:last-child{
+                  display:none;
+              }
+              .side-bar>.menu ul>li{
+                  position:relative;
+                  color: white;
+              }
+              .side-bar>.menu ul>li>a{
+                  display:block;
+                  font-weight:bold;
+                  padding:10px;
+                  white-space:nowrap;
+                  text-decoration: none;
+                  color: inherit;
+              }
+              .side-bar>.menu ul>li:hover>a{
+                  background-color:white;
+                  color:black;
+                  text-decoration: none;
+              }
+              .side-bar>.menu ul>li:hover>ul{
+                  display:block;
+              }
               
           </style>
       </head>
@@ -120,7 +169,20 @@
             <div class="HCon"></div>
             <div id="Hmain"><img src="사진\MORBUS.png"></div>
             <div class="HCon"></div>
-        </header>
+          </header>
+          <div class="side-bar">
+              <div class="icon">
+                  <div>▼</div>
+                  <div>▶</div>
+              </div>
+              <nav class="menu">
+                  <ul>
+                      <li><a href="#">질병 자가 진단</a></li>
+                      <li><a href="#">질병 기록지</a></li>
+                      <li><a href="#">약 찾기</a></li>
+                  </ul>
+              </nav>
+          </div>
           <section>
               <div class="SCon"></div>
               <div class="SMCon"><a href="/Symptom">질병 맞추기</a></div>
