@@ -23,9 +23,8 @@
         <form action ="http://localhost:8080/RelateDisease"  method ="post" name ="symList">
             <div th:each ="SymLists : ${SymList}">
                 <input type ="checkbox" name ="Symptom" th:id ="${SymLists.getName()}" th:value ="${SymLists.getName()} ">
-                <label th:for ="${SymLists.getName()}" th:if="${SymLists.getName()}==${searchText}" style="color: crimson" >**</label>
-                <label th:for ="${SymLists.getName()}" th:text ="${SymLists.getName()}" class ="text"></label>
-                <label th:for ="${SymLists.getName()}" th:if="${SymLists.getName()}==${searchText}" style="color: crimson">**</label>
+                <label th:for ="${SymLists.getName()}" th:if="${SymLists.getName()}==${searchText}" th:text ="${SymLists.getName()}" style="color: crimson" class="highLight" ></label>
+                <label th:for ="${SymLists.getName()}" th:if="${SymLists.getName()}!=${searchText}" th:text ="${SymLists.getName()}" class ="text"></label>
                 <br><br>
             </div>
             <button type="submit">제출</button>

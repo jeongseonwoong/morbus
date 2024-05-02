@@ -39,9 +39,7 @@
              width: 480px;
              height:410px;
             border-radius: 10px;
-
         }
-
 
     </style>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=44eebf3750c6d8a33935af51087d1056"></script>
@@ -51,7 +49,7 @@
     <h1 th:text="${diseaseName}"></h1>
     <hr>
     <div id="detailInfo">
-        <h3 th:text="${diseaseName}"></h3>
+        <h3 th:text="${diseaseName}" style="text-indent: 10px"></h3>
         <hr>
         <p th:text="${detailInfo}"></p>
     </div>
