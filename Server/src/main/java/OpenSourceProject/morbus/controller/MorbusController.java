@@ -1,7 +1,9 @@
 package OpenSourceProject.morbus.controller;
 
+import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
 import OpenSourceProject.VOclass.SymptomDiseasePair;
+import OpenSourceProject.morbus.algorithm.DiseaseSetting;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
 import org.json.simple.parser.ParseException;
 import org.springframework.core.io.UrlResource;
@@ -19,16 +21,24 @@ import java.util.HashMap;
 public class MorbusController {
 
     private final ArrayList<Symptom>symptomArrayList;//증상 배열
-    private final HashMap<String,Symptom> findSym = new HashMap<>();//증상 Hash Map(검색 시 사용)
-
+    private final HashMap<String, Symptom> findSym = new HashMap<>();//증상 Hash Map(검색 시 사용)
+    private final ArrayList<Disease>diseaseArrayList;
+    private final HashMap<String, Disease> findDise = new HashMap<>();
 
     //생성자 내에서 증상 배열 초기화
-    MorbusController() throws  IOException, ParseException {
+    MorbusController() throws Exception {
         SymptomSetting symptomSetting = new SymptomSetting();
         symptomArrayList = symptomSetting.setSymptom();
         for(Symptom symptom:symptomArrayList)
         {
             findSym.put(symptom.getName(),symptom);
+        }
+
+        DiseaseSetting diseaseSetting= new DiseaseSetting();
+        diseaseArrayList=diseaseSetting.setDisease();
+        for(Disease disease: diseaseArrayList)
+        {
+            findDise.put(disease.getName(),disease);
         }
     }
 
@@ -52,10 +62,10 @@ public class MorbusController {
     }
 
 
-    @PostMapping("RelateDisease")//관련된 질병표시 페이지로 넘어가는 컨트롤러
+    @PostMapping("RelateDisease")//관련된 질병들을 표시해주는 페이지로 넘어가는 컨트롤러
     public String relateDisease(@RequestParam(value = "Symptom") String[] symName, Model model)
     {
-        //선택한 증상들고 관련된 질병을 찾는 알고리즘
+        //선택한 증상들과 관련된 질병을 찾는 알고리즘
         ArrayList<SymptomDiseasePair> diseaseList = new ArrayList<SymptomDiseasePair>();
         for(String str : symName)
         {
@@ -92,6 +102,17 @@ public class MorbusController {
         return "selectSymptom";
     }
 
+    @GetMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
+    public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
+    {
+        model.addAttribute("diseaseName",diseaseName);
+        if(findDise.containsKey(diseaseName))
+        {
+            Disease disease = findDise.get(diseaseName);
+            model2.addAttribute("detailInfo",disease.getDescription());
+        }
+        return "diseaseInfo";
+    }
 
 
 
