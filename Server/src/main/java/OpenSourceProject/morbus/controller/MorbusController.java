@@ -103,7 +103,7 @@ public class MorbusController {
     }
 
     @GetMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
-    public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
+    public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2, Model model3)
     {
         model.addAttribute("diseaseName",diseaseName);
         if(findDise.containsKey(diseaseName))
@@ -111,9 +111,8 @@ public class MorbusController {
             Disease disease = findDise.get(diseaseName);
             model2.addAttribute("detailInfo",disease.getDescription());
         }
+        model3.addAttribute("searchValue",diseaseName+" 병원");
         return "diseaseInfo";
     }
-
-
 
 }
