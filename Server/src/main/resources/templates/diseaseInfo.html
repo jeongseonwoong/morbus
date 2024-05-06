@@ -121,11 +121,15 @@
             var markers = [];
 
             var container = document.getElementById('map');
-            var options ={
-                center : new kakao.maps.LatLng(36.626691962959356, 127.45835603735114),
-                level : 3
-            };
-            var map = new kakao.maps.Map(container,options);
+            navigator.geolocation.getCurrentPosition(function(position){
+                var lat = position.coords.latitude, // 위도
+                    lon = position.coords.longitude; // 경도
+                var options ={
+                    center : new kakao.maps.LatLng(lat, lon),
+                    level : 3
+                };
+                var map = new kakao.maps.Map(container,options);
+            })
 
             // 장소 검색 객체를 생성합니다
             var ps = new kakao.maps.services.Places();
