@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Symptom Record</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/recordPageStyle.css?after}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/recordPageStyle.css}"/>
         <style>
             .square {
                 background-color: #ffffff;
@@ -42,5 +42,22 @@
             <div class="square2" id="square2"></div>
             <input type="text" class="chat-input" id="user-input" placeholder="증상을 입력하세요...">
         </div>
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("user-input");
+            var message = userInput.value;
+
+            if (message.trim() !== "") {
+                var chatMessages = document.getElementById("square2");
+                var chatMessage = document.createElement("div");
+
+                chatMessage.textContent = message;
+
+                chatMessages.appendChild(chatMessage);
+
+                userInput.value = "";
+            }
+        }
+    </script>
     </body>
 </html>
