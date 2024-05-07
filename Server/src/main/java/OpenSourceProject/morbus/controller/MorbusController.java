@@ -4,6 +4,8 @@ import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
 import OpenSourceProject.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.DiseaseSetting;
+import OpenSourceProject.morbus.algorithm.IntersectionDisease;
+import OpenSourceProject.morbus.algorithm.IntersectionDiseaseRepository;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
 import org.json.simple.parser.ParseException;
 import org.springframework.core.io.UrlResource;
@@ -67,6 +69,10 @@ public class MorbusController {
     {
         //선택한 증상들과 관련된 질병을 찾는 알고리즘
         ArrayList<SymptomDiseasePair> diseaseList = new ArrayList<SymptomDiseasePair>();
+
+        //중복된 질병을 저장하는 저장소
+        IntersectionDiseaseRepository intersectionDisease = new IntersectionDiseaseRepository();
+
         for(String str : symName)
         {
             Symptom foundSymptom = findSym.get(str);
