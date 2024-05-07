@@ -3,7 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <title>Symptom Record</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/recordPageStyle.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/recordPageStyle.css?after}"/>
+        <style>
+            .square {
+                background-color: #ffffff;
+                width: 1000px;
+                height: 600px;
+                display: block;
+                margin: 0 auto;
+                border-radius: 10px;
+            }
+            .chat-input {
+                width: 950px;
+                height: 30px;
+                padding: 5px;
+                border: 1px solid #000000;
+                border-radius: 5px;
+                margin-left: 20px;
+            }
+            .chat-input:focus {
+                outline: none;
+            }
+            .square2 {
+                width: 950px;
+                height: 550px;
+                display: block;
+                margin: 0 auto;
+            }
+        </style>
     </head>
     <body style="background-color: #e4e4e4">
 
