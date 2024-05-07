@@ -23,3 +23,10 @@ img {
 .chat-input:focus {
     outline: none;
 }
+.square2 {
+    width: 950px;
+    height: 550px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
