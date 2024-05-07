@@ -3,21 +3,30 @@ package OpenSourceProject.morbus.algorithm;
 import OpenSourceProject.VOclass.Disease;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @Repository
 public class IntersectionDiseaseRepository {
+    private final Map<Disease,Integer> diseaseCount = new HashMap<Disease,Integer>();
     private final Map<Disease,Integer> intersectionDisease = new HashMap<Disease,Integer>();
+
 
     public void addDisease(Disease disease)
     {
-        intersectionDisease.put(disease,intersectionDisease.get(disease)+1);
+        diseaseCount.put(disease,diseaseCount.get(disease)+1);
     }
 
-    public Map<Disease,Integer> getDuplicatedDisease()
+    public List<Map.Entry<Disease,Integer>> getDuplicatedDisease()
     {
-        return intersectionDisease;
+        for (Disease key : diseaseCount.keySet()) {
+            Integer value = diseaseCount.get(key);
+            if (value >= 2) {
+                intersectionDisease.put(key, value);
+            }
+        }
+        List<Map.Entry<Disease,Integer>>duplicateDisease= new LinkedList<>(intersectionDisease.entrySet());
+        duplicateDisease.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+        return duplicateDisease;
     }
 }

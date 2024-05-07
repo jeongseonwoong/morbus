@@ -4,7 +4,6 @@ import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
 import OpenSourceProject.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.DiseaseSetting;
-import OpenSourceProject.morbus.algorithm.IntersectionDisease;
 import OpenSourceProject.morbus.algorithm.IntersectionDiseaseRepository;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
 import org.json.simple.parser.ParseException;
@@ -18,6 +17,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static jdk.internal.org.jline.reader.impl.LineReaderImpl.CompletionType.List;
 
 @Controller
 public class MorbusController {
@@ -65,7 +68,7 @@ public class MorbusController {
 
 
     @PostMapping("RelateDisease")//관련된 질병들을 표시해주는 페이지로 넘어가는 컨트롤러
-    public String relateDisease(@RequestParam(value = "Symptom") String[] symName, Model model)
+    public String relateDisease(@RequestParam(value = "Symptom") String[] symName, Model model, Model model2)
     {
         //선택한 증상들과 관련된 질병을 찾는 알고리즘
         ArrayList<SymptomDiseasePair> diseaseList = new ArrayList<SymptomDiseasePair>();
@@ -75,11 +78,28 @@ public class MorbusController {
 
         for(String str : symName)
         {
+            //증상
             Symptom foundSymptom = findSym.get(str);
-            SymptomDiseasePair symptomDiseasePair= new SymptomDiseasePair(str,foundSymptom.getReDisease());
+            //증상과 관련된 질병 리스트를 가져온다.
+            ArrayList<Disease> relateDisease= foundSymptom.getReDisease();
+
+            //중복되는 질병들을 알기 위해서 중복 저장소에 넣어준다.
+            for(Disease disease: relateDisease)
+            {
+                intersectionDisease.addDisease(disease);
+            }
+
+            //증상의 이름과 증상과 관련된 질병 리스트를 묶어준다.
+            SymptomDiseasePair symptomDiseasePair= new SymptomDiseasePair(str,relateDisease);
+
+            //묶음들의 리스트를 만든다.
             diseaseList.add(symptomDiseasePair);
         }
+
+        //중복된 질병리스트
+        List<Map.Entry<Disease,Integer>>duplicatedDisease = intersectionDisease.getDuplicatedDisease();
         model.addAttribute("ReDisease",diseaseList);
+        model2.addAttribute("DuplicateDisease",duplicatedDisease);
         return "RelateDisease";
     }
 
