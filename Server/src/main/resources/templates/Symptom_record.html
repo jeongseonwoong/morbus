@@ -29,6 +29,8 @@
                 height: 550px;
                 display: block;
                 margin: 0 auto;
+                word-break:break-all;
+                overflow-y: auto;
             }
         </style>
     </head>
@@ -62,6 +64,8 @@
                 chatMessages.appendChild(chatMessage);
 
                 userInput.value = "";
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
         }
         document.getElementById("user-input").addEventListener("keypress", function(event) {
