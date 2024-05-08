@@ -4,6 +4,35 @@
         <meta charset="UTF-8">
         <title>Symptom Record</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/recordPageStyle.css}"/>
+        <style>
+            .square {
+                background-color: #ffffff;
+                width: 1000px;
+                height: 600px;
+                display: block;
+                margin: 0 auto;
+                border-radius: 10px;
+            }
+            .chat-input {
+                width: 950px;
+                height: 30px;
+                padding: 5px;
+                border: 1px solid #000000;
+                border-radius: 5px;
+                margin-left: 20px;
+            }
+            .chat-input:focus {
+                outline: none;
+            }
+            .square2 {
+                width: 950px;
+                height: 550px;
+                display: block;
+                margin: 0 auto;
+                word-break:break-all;
+                overflow-y: auto;
+            }
+        </style>
     </head>
     <body style="background-color: #e4e4e4">
 
@@ -11,8 +40,39 @@
         <div><a href ="/morbus.html"><img src="사진\MORBUS.png"></a></div>
     </form>
 
-        <div id="square">
-            <input type="text" class="chat-input" placeholder="증상을 입력하세요...">
+        <div class="square">
+            <div class="square2" id="square2"></div>
+            <input type="text" class="chat-input" id="user-input" placeholder="증상을 입력하세요...">
         </div>
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("user-input");
+            var message = userInput.value;
+
+            if (message.trim() !== "") {
+                var chatMessages = document.getElementById("square2");
+                var chatMessage = document.createElement("div");
+
+                var timeStamp = new Date().toLocaleTimeString('en-US',{
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+
+                chatMessage.textContent = '[' + timeStamp + ']' + message;
+
+                chatMessages.appendChild(chatMessage);
+
+                userInput.value = "";
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+        document.getElementById("user-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
     </body>
 </html>
