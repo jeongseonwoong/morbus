@@ -60,7 +60,8 @@ SOFTWARE.
 # 멤버
 <ul>
   <li>정선웅</li>
-  <p> @jeongseonwoong <br>01027993550 </p>
+  <a href="https://github.com/jeongseonwoong">GitHub 주소</a>
+  <br>01027993550
   <li>조진우</li>
   <p> @JJW1223 <br>01087713302 </p>
   <li>양희창</li>
