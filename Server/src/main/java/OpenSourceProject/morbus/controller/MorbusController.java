@@ -15,12 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static jdk.internal.org.jline.reader.impl.LineReaderImpl.CompletionType.List;
 
 @Controller
 public class MorbusController {
@@ -97,9 +93,15 @@ public class MorbusController {
         }
 
         //중복된 질병리스트
-        List<Map.Entry<Disease,Integer>>duplicatedDisease = intersectionDisease.getDuplicatedDisease();
+        List<Map.Entry<String,Integer>>duplicatedDisease = intersectionDisease.getDuplicatedDisease();
+        Map<Disease, Integer> duplicatedDisease2= new HashMap<>();
+        for(Map.Entry<String, Integer> map: duplicatedDisease)
+        {
+            Disease disease = findDise.get(map.getKey());
+            duplicatedDisease2.put(disease,map.getValue());
+        }
         model.addAttribute("ReDisease",diseaseList);
-        model2.addAttribute("DuplicateDisease",duplicatedDisease);
+        model2.addAttribute("DuplicateDisease",duplicatedDisease2);
         return "RelateDisease";
     }
 
