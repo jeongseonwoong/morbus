@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicine</title>
+</head>
+<body>
+  <h1>Medicine</h1>
+  <script>
+    var xhr = new XMLHttpRequest();
+    var url = 'http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01'; /*URL*/
+    var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + 'It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D'; /*Service Key*/
+    queryParams += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('타이레놀'); /**/
+    queryParams += '&' + encodeURIComponent('img_regist_ts') + '=' + encodeURIComponent(''); /**/
+    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('3'); /**/
+    queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
+    xhr.open('GET', url + queryParams);
+    xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        parseJSON(this.responseText);
+        console.log(/*'Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+*/this.responseText);
+    }
+    };
+    xhr.send('');
+    function parseJSON(jsonText){
+        var i;
+        var table="<tr><th>NAME</th><th>Class_NAME</th><th>Image</th>";
+        var row=jsonText.getElementsByTagName("row");
+        for(i=0;i<row.length;i++){
+            table+="<tr>";
+            table+="<td>"+row[i].getElementsByTagName("ITEM_NAME")[0].childNodes[0].nodevalue+"</td>";
+            table+="<td>"+row[i].getElementsByTagName("CLASS_NAME")[0].childNodes[0].nodevalue+"</td>";
+            table+="<td>"+row[i].getElementsByTagName("ITEM_IMAGE")[0].childNodes[0].nodevalue+"</td>";
+            table+="</tr>";
+        }
+        document.getElementById("demoJSON").innerHTML=table;
+    }
+  </script>
+</body>
+</html>
