@@ -10,6 +10,19 @@
 <a href="/morbus.html"><img src="사진/MORBUS.png"></a>
 
 <form action ="http://localhost:8080/diseaseInfo" name="diseaseInfo" method="get">
+
+    <!--가능성 높은 질병들 먼저 출력-->
+    <div id="duplicateDisease">
+        <h3 style="color: red">유력한 원인</h3>
+        <ul th:each="DuplicatedDisease  : ${DuplicateDisease}">
+            <button class="button" type="submit" name="diseaseName" th:value="${DuplicatedDisease.getKey().getName()}">
+                <li style="font-weight: bold" th:text="${DuplicatedDisease.getKey().getName()}">중복되는 질병 없음</li>
+            </button>
+            <p th:text="${DuplicatedDisease.getKey().getBriefInfo()}"></p><hr>
+        </ul>
+    </div>
+
+
     <div th:each ="ReDiseases : ${ReDisease}" id="square">
         <!--증상출력-->
         <h3 style="font-weight: bolder" th:text="${ReDiseases.first()}"></h3>

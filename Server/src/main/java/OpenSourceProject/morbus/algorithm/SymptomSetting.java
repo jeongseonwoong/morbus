@@ -55,7 +55,6 @@ public class SymptomSetting {
             symptom.set(strSym, list,keyWordsArr);
             symptomArrayList.add(symptom);
         }
-
         return symptomArrayList;
     }
 

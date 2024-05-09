@@ -30,9 +30,8 @@ input[type="checkbox"]{
     display: none;
 }
 
-
 input[type="checkbox"]+label{
-    display: inline-block;
+    display: block;
     width: 150px;
     height:40px;
     border:2px solid black;
@@ -51,5 +50,6 @@ input[type="checkbox"]:checked +label::after{
     border-radius:15px;
     left: 0;
     top:0;
-    border-color: blue;
+    display: inline-block;
+    background-color: rgba(255,0,0,0.2);
 }
