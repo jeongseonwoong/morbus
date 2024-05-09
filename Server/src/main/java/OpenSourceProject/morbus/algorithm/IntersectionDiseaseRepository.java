@@ -32,7 +32,7 @@ public class IntersectionDiseaseRepository {
         }
 
         List<Map.Entry<String,Integer>>duplicateDisease= new LinkedList<>(intersectionDisease.entrySet());
-        duplicateDisease.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+        duplicateDisease.sort(Map.Entry.comparingByValue(Comparator.naturalOrder()));
         return duplicateDisease;
     }
 }

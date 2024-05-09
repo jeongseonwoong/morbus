@@ -14,11 +14,12 @@
     <!--가능성 높은 질병들 먼저 출력-->
     <div id="duplicateDisease">
         <h3 style="color: red">유력한 원인</h3>
-        <div th:each="DuplicatedDisease  : ${DuplicateDisease}">
-            <div style="font-weight: bold" th:text="${DuplicatedDisease.getKey().getName()}"></div>
-            <div th:text="${DuplicatedDisease.getKey().getBriefInfo()}"></div>
-
-        </div>
+        <ul th:each="DuplicatedDisease  : ${DuplicateDisease}">
+            <button class="button" type="submit" name="diseaseName" th:value="${DuplicatedDisease.getKey().getName()}">
+                <li style="font-weight: bold" th:text="${DuplicatedDisease.getKey().getName()}"></li>
+            </button>
+            <p th:text="${DuplicatedDisease.getKey().getBriefInfo()}"></p><hr>
+        </ul>
     </div>
 
 
