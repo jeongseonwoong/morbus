@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class SymptomDiseasePair {
     private String symName;
-    private ArrayList<Disease> arrayList;
+    private ArrayList<String> arrayList;
 
-    public SymptomDiseasePair(String sym, ArrayList<Disease> arr)
+    public SymptomDiseasePair(String sym, ArrayList<String> arr)
     {
         symName=sym;
         arrayList=arr;
@@ -17,7 +17,7 @@ public class SymptomDiseasePair {
         return symName;
     }
 
-    public ArrayList<Disease> second()
+    public ArrayList<String> second()
     {
         return arrayList;
     }

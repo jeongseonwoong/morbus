@@ -1,5 +1,4 @@
 package OpenSourceProject.morbus.algorithm;
-import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.*;
 import java.util.*;
 
-public class SymptomSetting implements Setting {
+public class SymptomSetting {
 
     public Object JsonSetting() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
@@ -29,7 +28,7 @@ public class SymptomSetting implements Setting {
         return parser.parse(sb.toString());
     }
 
-    public ArrayList<String> toArr(JSONArray jsonArray) {
+    private ArrayList<String> toArr(JSONArray jsonArray) {
         ArrayList<String> list= new ArrayList<>();
         if(jsonArray!=null)
         {
@@ -41,32 +40,19 @@ public class SymptomSetting implements Setting {
     }
 
 
-    public @ResponseBody ArrayList<Symptom> setSymptom() throws Exception {
+    public @ResponseBody ArrayList<Symptom> setSymptom() throws IOException, ParseException {
         Object obj = JsonSetting();
         JSONArray dateArray = (JSONArray) obj ;
         ArrayList<Symptom> symptomArrayList = new ArrayList<>();
         for (Object o : dateArray) {
-            JSONObject ele = (JSONObject) o;
-
-            //제이슨 파일로부터 증상 값 가져오기
-            String strSym = (String) ele.get("name");
-            JSONArray relatedConditions = (JSONArray) ele.get("related_conditions");
-            JSONArray keyWords =(JSONArray) ele.get("keyword");
-
-            //가져온 값을 코드에 맞게 변환
-            ArrayList<String> keyWordsArr = toArr(keyWords);
-            ArrayList<String> list = toArr(relatedConditions);
-
-            //제이슨 파일로부터 질병 값 가져오기
-            DiseaseSetting diseaseSetting =new DiseaseSetting();
-            ArrayList<Disease> diseaseArrayList = diseaseSetting.strToDisease(list);
-
-            //가져온 값을 코드에 맞게 변환
-
-
-            //증상에 값 추가하고 배열에 증상 추가
             Symptom symptom = new Symptom();
-            symptom.set(strSym,diseaseArrayList,keyWordsArr);
+            JSONObject ele = (JSONObject) o;
+            String strSym = (String) ele.get("name");
+            JSONArray objDis = (JSONArray) ele.get("related_conditions");
+            JSONArray keyWords =(JSONArray) ele.get("keyword");
+            ArrayList<String> keyWordsArr = toArr(keyWords);
+            ArrayList<String> list = toArr(objDis);
+            symptom.set(strSym, list,keyWordsArr);
             symptomArrayList.add(symptom);
         }
         return symptomArrayList;
