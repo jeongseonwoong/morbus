@@ -7,7 +7,7 @@ import java.util.Set;
 public class Symptom {
 
   private String name;
-  private final ArrayList<String> ReDisease = new ArrayList<String>();
+  private final ArrayList<Disease> ReDisease = new ArrayList<Disease>();
   public Set<String>keywords = new HashSet<String>();
 
   private void setName(String inSym)
@@ -15,7 +15,7 @@ public class Symptom {
     name=inSym;
   }
 
-  private void setReDisease(ArrayList<String> reDisease)
+  private void setReDisease(ArrayList<Disease> reDisease)
   {
       ReDisease.addAll(reDisease);
   }
@@ -25,7 +25,7 @@ public class Symptom {
       keywords.addAll(array);
   }
 
-  public void set(String inSym, ArrayList<String> relateDisease, ArrayList<String> keyword)
+  public void set(String inSym, ArrayList<Disease> relateDisease, ArrayList<String> keyword)
   {
     setName(inSym);
     setReDisease(relateDisease);
@@ -37,7 +37,7 @@ public class Symptom {
     return name;
   }
 
-  public ArrayList<String> getReDisease() {
+  public ArrayList<Disease> getReDisease() {
     return ReDisease;
   }
 }
