@@ -69,7 +69,6 @@ public class SymptomSetting implements Setting {
             symptom.set(strSym,diseaseArrayList,keyWordsArr);
             symptomArrayList.add(symptom);
         }
-
         return symptomArrayList;
     }
 

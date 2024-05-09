@@ -24,11 +24,17 @@ public class IntersectionDiseaseRepository {
 
     public List<Map.Entry<String,Integer>> getDuplicatedDisease()
     {
+        int max=0;
         for (String key : diseaseCount.keySet()) {
             Integer value = diseaseCount.get(key);
-            if (value >= 2) {
-                intersectionDisease.put(key, value);
+            if(value>max)
+            {
+                max=value;
+                intersectionDisease.clear();
             }
+            if(value==max)
+                intersectionDisease.put(key, value);
+            
         }
 
         List<Map.Entry<String,Integer>>duplicateDisease= new LinkedList<>(intersectionDisease.entrySet());
