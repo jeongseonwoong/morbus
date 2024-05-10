@@ -139,9 +139,9 @@ public class MorbusController {
             Disease disease = findDise.get(diseaseName);
             model2.addAttribute("disease",disease);
         }
-
         return "diseaseInfo";
     }
+
 
 }
 

@@ -111,7 +111,7 @@
             <div id="menu_wrap" class="bg_white">
                 <div class="option">
                     <div>
-                        <form onsubmit="searchPlaces(event); return false;" id="searchHospital">
+                        <form onsubmit="searchPlaces(event); return false;" id="searchHospital" action="/v1/directions">
                             <b>검색 </b><input type="text" th:value="${disease.getHospital}" id="keyword" size="15" placeholder="검색">
                             <button type="submit">검색</button>
                         </form>
@@ -127,6 +127,7 @@
             var markers = [];
             var map;
             var locPosition;
+            let presentPosition;
             const getCurrentCoordinate= async ()=> {
                 return new Promise((res, rej) => {
                     navigator.geolocation.getCurrentPosition(function (position) {
@@ -134,7 +135,9 @@
                         var lat = position.coords.latitude, // 위도
                             lon = position.coords.longitude; // 경도
 
-                        locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                        locPosition = new kakao.maps.LatLng(lat, lon);
+                        presentPosition=locPosition;
+                        // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
                         var container = document.getElementById('map');
                         var options = {
                             center: new kakao.maps.LatLng(lat, lon),
@@ -248,6 +251,47 @@
                         };
                     })(marker, places[i].place_name);
 
+
+                    (function(marker, title) {
+                        kakao.maps.event.addListener(marker, 'mouseover', function() {
+                            displayInfowindow(marker, title);
+                        });
+
+                        kakao.maps.event.addListener(marker, 'mouseout', function() {
+                            infowindow.close();
+                        });
+
+                        itemEl.onmouseover =  function () {
+                            displayInfowindow(marker, title);
+                        };
+
+                        itemEl.onmouseout =  function () {
+                            infowindow.close();
+                        };
+                    })(marker, places[i].place_name);
+
+                    // 마커와 검색 결과를 클릭했을때 좌표를 가져온다
+                    (function(marker, title) {
+                        kakao.maps.event.addListener(marker, 'click', function() {
+                            searchDetailAddrFromCoords(presentPosition, function(result, status) {
+                                if (status === kakao.maps.services.Status.OK) {
+                                    detailAddr = !!result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
+                                    location.href = "https://map.kakao.com/?sName="+detailAddr+"&eName="+title
+                                }
+                            });
+                        })
+
+                        itemEl.onclick =  function () {
+                            searchDetailAddrFromCoords(presentPosition, function(result, status) {
+                                if (status === kakao.maps.services.Status.OK) {
+                                    detailAddr = !!result[0].road_address ? result[0].road_address.address_name : result[0].address.address_name;
+                                    location.href = "https://map.kakao.com/?sName="+detailAddr+"&eName="+title
+                                }
+                            });
+                        };
+                    })(marker, places[i].place_name);
+
+
                     fragment.appendChild(itemEl);
                 }
 
@@ -357,6 +401,11 @@
                 while (el.hasChildNodes()) {
                     el.removeChild (el.lastChild);
                 }
+            }
+
+            var geocoder = new kakao.maps.services.Geocoder();
+            function searchDetailAddrFromCoords(coords, callback) {
+                geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
             }
 
         </script>
