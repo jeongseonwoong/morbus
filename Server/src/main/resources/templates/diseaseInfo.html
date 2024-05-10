@@ -101,7 +101,7 @@
     <div id="detailInfo">
         <h3 th:text="${diseaseName}" style="text-indent: 10px"></h3>
         <hr>
-        <p th:text="${detailInfo}"></p>
+        <p th:text="${disease.getDescription()}"></p>
     </div>
 
     <div class="mapContain">
@@ -112,7 +112,7 @@
                 <div class="option">
                     <div>
                         <form onsubmit="searchPlaces(event); return false;" id="searchHospital">
-                            <b>검색 </b><input type="text" th:value="${diseaseName}" id="keyword" size="15" placeholder="검색">
+                            <b>검색 </b><input type="text" th:value="${disease.getHospital}" id="keyword" size="15" placeholder="검색">
                             <button type="submit">검색</button>
                         </form>
                     </div>
