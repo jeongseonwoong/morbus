@@ -1,41 +1,51 @@
+<!--https://www.data.go.kr/data/15075057/openapi.do-->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Medicine</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
-  <h1>Medicine</h1>
-  <script>
-    var xhr = new XMLHttpRequest();
-    var url = 'http://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01'; /*URL*/
-    var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + 'It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D'; /*Service Key*/
-    queryParams += '&' + encodeURIComponent('item_name') + '=' + encodeURIComponent('타이레놀'); /**/
-    queryParams += '&' + encodeURIComponent('img_regist_ts') + '=' + encodeURIComponent(''); /**/
-    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('3'); /**/
-    queryParams += '&' + encodeURIComponent('type') + '=' + encodeURIComponent('xml'); /**/
-    xhr.open('GET', url + queryParams);
-    xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-        parseJSON(this.responseText);
-        console.log(/*'Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+*/this.responseText);
+<h2>HTML 폼</h2>
+
+<form action="">
+    이름: <input type="text" id="efcyQesitm" value="">
+    <input type="button" onclick="myFunction()" value="제출">
+</form>
+
+<p id="demo"></p>
+<script>
+    //https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D&pageNo=1&numOfRows=3&efcyQesitm=%EB%B6%88%EB%A9%B4%EC%A6%9D&type=xml
+    function myFunction(){
+        var url = 'https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=';
+        var encode = 'It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D';
+        var efcyQesitm = document.getElementById("efcyQesitm").value;
+        var pageNo = "1", numOfRows = "3", type = 'xml';
+        url = url + encode + "&pageNo=" + pageNo + "&numOfRows=" + numOfRows + "&efcyQesitm=" + efcyQesitm + "&type=" + type;
+
+        // parsing
+        fetch(url).then(response => {
+            return response.text();
+        }).then(xmlString => {
+            const xmlDocument = new DOMParser().parseFromString(xmlString, "text/xml");
+            const items = xmlDocument.querySelectorAll("item");
+
+            for (const item of items) {
+                const entp_name = item.querySelector("entpName").textContent;
+                const name = item.querySelector("itemName").textContent;
+                const efcy = item.querySelector("efcyQesitm").textContent;
+                const image = item.querySelector("itemImage").textContent;
+
+                document.getElementById("demo").innerHTML += '기업 이름: ' + entp_name + '<br>이름: ' + name + '<br>효능: ' + efcy + '<br><br>';
+            }
+        });
     }
-    };
-    xhr.send('');
-    function parseJSON(jsonText){
-        var i;
-        var table="<tr><th>NAME</th><th>Class_NAME</th><th>Image</th>";
-        var row=jsonText.getElementsByTagName("row");
-        for(i=0;i<row.length;i++){
-            table+="<tr>";
-            table+="<td>"+row[i].getElementsByTagName("ITEM_NAME")[0].childNodes[0].nodevalue+"</td>";
-            table+="<td>"+row[i].getElementsByTagName("CLASS_NAME")[0].childNodes[0].nodevalue+"</td>";
-            table+="<td>"+row[i].getElementsByTagName("ITEM_IMAGE")[0].childNodes[0].nodevalue+"</td>";
-            table+="</tr>";
-        }
-        document.getElementById("demoJSON").innerHTML=table;
-    }
-  </script>
+
+
+    //https://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01?serviceKey=
+    //It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D
+    //&item_name=타이레놀&pageNo=1&numOfRows=3&type=xml
+
+</script>
 </body>
 </html>
