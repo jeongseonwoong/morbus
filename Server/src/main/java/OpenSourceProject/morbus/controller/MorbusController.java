@@ -7,6 +7,7 @@ import OpenSourceProject.morbus.algorithm.DiseaseSetting;
 import OpenSourceProject.morbus.algorithm.IntersectionDiseaseRepository;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,20 +23,22 @@ import java.util.*;
 public class MorbusController {
 
     private final ArrayList<Symptom>symptomArrayList;//증상 배열
-    private final HashMap<String, Symptom> findSym = new HashMap<>();//증상 Hash Map(검색 시 사용)
+    private final HashMap<String, Symptom> findSym;//증상 Hash Map(검색 시 사용)
     private final ArrayList<Disease>diseaseArrayList;
-    private final HashMap<String, Disease> findDise = new HashMap<>();
+    private final HashMap<String, Disease> findDise;
 
     //생성자 내에서 증상 배열 초기화
-    MorbusController() throws Exception {
-        SymptomSetting symptomSetting = new SymptomSetting();
+    @Autowired
+    MorbusController(SymptomSetting symptomSetting,DiseaseSetting diseaseSetting) throws Exception {
+
+        findSym = new HashMap<>();
+        findDise=new HashMap<>();
         symptomArrayList = symptomSetting.setSymptom();
         for(Symptom symptom:symptomArrayList)
         {
             findSym.put(symptom.getName(),symptom);
         }
 
-        DiseaseSetting diseaseSetting= new DiseaseSetting();
         diseaseArrayList=diseaseSetting.setDisease();
         for(Disease disease: diseaseArrayList)
         {

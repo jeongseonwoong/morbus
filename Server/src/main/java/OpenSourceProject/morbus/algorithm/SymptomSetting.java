@@ -8,11 +8,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.*;
 import java.util.*;
 
+@Service
 public class SymptomSetting implements Setting {
 
     public Object JsonSetting() throws IOException, ParseException {
