@@ -54,9 +54,10 @@ public class DiseaseSetting implements Setting {
                 if(DiseaseName.equals(str))
                 {
                     String hospital= (String) ele.get("hospital");
+                    String selfTreatment= (String) ele.get("self_treatment");
                     String briefInfo= (String) ele.get("brief-explanation");
                     String detailInfo= (String) ele.get("detail-explanation");
-                    Disease disease = new Disease(DiseaseName,hospital,briefInfo,detailInfo);
+                    Disease disease = new Disease(DiseaseName,hospital,selfTreatment,briefInfo,detailInfo);
                     diseaseArrayList.add(disease);
                 }
             });
@@ -74,9 +75,10 @@ public class DiseaseSetting implements Setting {
             //제이슨 파일로부터 값 가져오기
             String DiseaseName= (String) ele.get("name");
             String hospital=(String) ele.get("hospital");
+            String selfTreatment=(String) ele.get("self_treatment");
             String briefInfo= (String) ele.get("brief-explanation");
             String detailInfo= (String) ele.get("detail-explanation");
-            Disease disease =new Disease(DiseaseName,hospital,briefInfo,detailInfo);
+            Disease disease =new Disease(DiseaseName,hospital,selfTreatment,briefInfo,detailInfo);
             diseaseArrayList.add(disease);
         });
         return diseaseArrayList;
