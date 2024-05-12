@@ -108,7 +108,7 @@ public class MorbusController {
         return "RelateDisease";
     }
 
-    @GetMapping("selectSymptom")//찾고자 하는 증상을 입력받는 컨트롤러
+    @PostMapping("selectSymptom")//찾고자 하는 증상을 입력받는 컨트롤러
     public String searchSym(@RequestParam(value="searchText") String searchText, Model model, Model model2)
     {
         //증상 Hash_Map 에서 입력받은 증상과 연관이 있는 질병 찾는 알고리즘
@@ -133,7 +133,7 @@ public class MorbusController {
         return "selectSymptom";
     }
 
-    @GetMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
+    @PostMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
     public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
     {
         model.addAttribute("diseaseName",diseaseName);

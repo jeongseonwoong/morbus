@@ -15,7 +15,7 @@
     <fieldset th:id="square" style="width: 850px">
         <legend><b>현재 증상들을 선택하시오</b></legend>
 
-        <form action="http://localhost:8080/selectSymptom" method ="get" name="searching" onsubmit="searchVal()">
+        <form action="http://localhost:8080/selectSymptom" method ="post" name="searching" onsubmit="searchVal()">
             <button type ="submit" style="float :right">입력</button>
             <input type ="text" id ="search" name ="searchText" style ="float : right" placeholder="증상 입력">
         </form>
