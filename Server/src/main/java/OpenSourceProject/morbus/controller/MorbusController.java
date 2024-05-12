@@ -6,11 +6,15 @@ import OpenSourceProject.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.DiseaseSetting;
 import OpenSourceProject.morbus.algorithm.IntersectionDiseaseRepository;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
+import OpenSourceProject.morbus.algorithm.SymptomRecord;
+import OpenSourceProject.morbus.algorithm.SymptomRecordService;
+import OpenSourceProject.morbus.algorithm.SymptomRecordRepository;
 import org.json.simple.parser.ParseException;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.IOException;
@@ -140,6 +144,16 @@ public class MorbusController {
             model2.addAttribute("detailInfo",disease.getDescription());
         }
         return "diseaseInfo";
+    }
+    @Autowired
+    private SymptomRecordService symptomRecordService;
+
+    @PostMapping("/Symptom_record")
+    public String recordSymptom(@RequestParam("message") String message) {
+        if (!message.trim().isEmpty()) {
+            symptomRecordService.saveSymptom(message.trim());
+        }
+        return "Symptom_record"; // 채팅 기록 후 페이지 리다이렉션
     }
 
 }
