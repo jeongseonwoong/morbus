@@ -16,7 +16,7 @@ class IntersectionDiseaseRepositoryTest {
     void addDisease() {
         //given
 
-        Disease disease=new Disease("name","info1","info2");
+        Disease disease=new Disease("name","hospital","info1","info2");
         //when
         if(diseaseCount.isEmpty() || !diseaseCount.containsKey(disease.getName()))
         {
@@ -27,7 +27,7 @@ class IntersectionDiseaseRepositoryTest {
             diseaseCount.replace(disease.getName(),diseaseCount.get(disease.getName())+1);
         }
 
-        Disease disease2=new Disease("name","info1","info2");
+        Disease disease2=new Disease("name","hospital","info1","info2");
 
         if(diseaseCount.isEmpty() || !diseaseCount.containsKey(disease.getName()))
         {

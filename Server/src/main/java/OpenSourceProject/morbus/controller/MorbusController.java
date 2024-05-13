@@ -137,10 +137,11 @@ public class MorbusController {
         if(findDise.containsKey(diseaseName))
         {
             Disease disease = findDise.get(diseaseName);
-            model2.addAttribute("detailInfo",disease.getDescription());
+            model2.addAttribute("disease",disease);
         }
         return "diseaseInfo";
     }
+
 
 }
 

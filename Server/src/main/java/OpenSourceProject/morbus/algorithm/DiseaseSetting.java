@@ -35,9 +35,7 @@ public class DiseaseSetting implements Setting {
         ArrayList<String> list= new ArrayList<>();
         if(jsonArray!=null)
         {
-            for (Object o : jsonArray) {
-                list.add((String) o);
-            }
+            jsonArray.stream().forEach(o -> list.add((String) o));
         }
         return list;
     }
@@ -45,24 +43,25 @@ public class DiseaseSetting implements Setting {
     public @ResponseBody ArrayList<Disease> strToDisease(ArrayList<String> relatedCondition ) throws Exception {
         ArrayList<Disease> diseaseArrayList = new ArrayList<>();
         Object obj = JsonSetting();
-        JSONArray dateArray = (JSONArray) obj ;
-        for (Object o : dateArray) {
-            JSONObject ele = (JSONObject) o;
+
+        JSONArray dateArray = (JSONArray) obj;
+        dateArray.stream().forEach(a -> {
+            JSONObject ele = (JSONObject) a;
 
             //제이슨 파일로부터 값 가져오기
             String DiseaseName= (String) ele.get("name");
-            for(String str: relatedCondition)
-            {
+            relatedCondition.forEach(str->{
                 if(DiseaseName.equals(str))
                 {
+                    String hospital= (String) ele.get("hospital");
+                    String selfTreatment= (String) ele.get("self_treatment");
                     String briefInfo= (String) ele.get("brief-explanation");
                     String detailInfo= (String) ele.get("detail-explanation");
-                    Disease disease =new Disease(DiseaseName,briefInfo,detailInfo);
+                    Disease disease = new Disease(DiseaseName,hospital,selfTreatment,briefInfo,detailInfo);
                     diseaseArrayList.add(disease);
                 }
-            }
-
-        }
+            });
+        });
         return diseaseArrayList;
     }
 
@@ -70,18 +69,18 @@ public class DiseaseSetting implements Setting {
         ArrayList<Disease> diseaseArrayList = new ArrayList<>();
         Object obj = JsonSetting();
         JSONArray dateArray = (JSONArray) obj ;
-        for (Object o : dateArray) {
+        dateArray.stream().forEach(o -> {
             JSONObject ele = (JSONObject) o;
 
             //제이슨 파일로부터 값 가져오기
             String DiseaseName= (String) ele.get("name");
+            String hospital=(String) ele.get("hospital");
+            String selfTreatment=(String) ele.get("self_treatment");
             String briefInfo= (String) ele.get("brief-explanation");
             String detailInfo= (String) ele.get("detail-explanation");
-            Disease disease =new Disease(DiseaseName,briefInfo,detailInfo);
+            Disease disease =new Disease(DiseaseName,hospital,selfTreatment,briefInfo,detailInfo);
             diseaseArrayList.add(disease);
-
-        }
-
+        });
         return diseaseArrayList;
     }
 
