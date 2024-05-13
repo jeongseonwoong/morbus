@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--약 이름을 입력한다 -> 출력해서 효능, 사용법, 알아야할 내용, 주의점, 보관법 // tmi part: 주의해야할 약, 음식, 이상반응 -->
+<head>
+    <meta charset="UTF-8">
+    <title>MedicineInfo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        html, body {margin: 0; padding: 0; height: 100%; }
+        body {background-color: #e4e4e4;}
+        pre {
+            font-family: "Noto Sans KR", sans-serif;
+        }
+        div > a{
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            width: 300px;
+            height: 70px;
+            display: block;
+            margin: 0 auto;
+        }
+        header {
+             width: 100%;
+             height: 10%;
+             background: #e4e4e4;
+         }
+        header .HTCon {
+            width: 100%;
+            height: 50%;
+            float: left;
+            background: #e4e4e4;
+        }
+        header #Hmain {
+            width: 70%;
+            height: 100%;
+            float: left;
+            background: #e4e4e4;
+            font-size: 25px;
+            text-align: center    ;
+        }
+        header .HCon {
+            width: 15%;
+            height: 100%;
+            float: left;
+            background: #e4e4e4;
+        }
+        .square {
+            background-color: #ffffff;
+            width: 1000px;
+            height: 700px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        input {
+            width: 200px;
+            height: 30px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        button {
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="HTCon"></div>
+    <div class="HCon"></div>
+    <div id="Hmain"><a href="/morbus.html"><img src="사진\MORBUS.png"></a></div>
+    <div class="HCon"></div>
+</header>
+<div class="square">
+    <input type="text" class="chat-input" id="keyword" placeholder="약 이름 또는 성분을 검색하세요.">
+    <button type="submit">검색</button>
+</div>
+</body>
+</html>
