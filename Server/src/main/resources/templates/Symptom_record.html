@@ -11,13 +11,10 @@
         <div><a href ="/morbus.html"><img src="사진\MORBUS.png"></a></div>
     </form>
 
-    <form action="/Symptom_record" method="post">
         <div class="square">
             <div class="square2" id="square2"></div>
-            <input type="text" class="chat-input" id="user-input" name="message" placeholder="증상을 입력하세요...">
-            <button type="submit">전송</button>
+            <input type="text" class="chat-input" id="user-input" placeholder="증상을 입력하세요...">
         </div>
-    </form>
     <script>
         function sendMessage() {
             var userInput = document.getElementById("user-input");
@@ -27,7 +24,11 @@
                 var chatMessages = document.getElementById("square2");
                 var chatMessage = document.createElement("div");
 
-                var timeStamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+                var timeStamp = new Date().toLocaleTimeString('en-US',{
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
 
                 chatMessage.textContent = '[' + timeStamp + ']' + message;
 
