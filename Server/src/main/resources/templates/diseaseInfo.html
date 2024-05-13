@@ -359,41 +359,10 @@
                 }
             }
 
-            // 질병 이름에 따른 약 추천 xml parsing function
-            function display_medicine(event){
-                event.preventDefault();
-                const data2 = document.getElementById("diseaseName");
-                var url = 'https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=';
-                var encode = 'It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D';
-                var efcyQesitm = data2.value;
-                console.log(efcyQesitm);
-                var pageNo = "1", numOfRows = "3", type = 'xml';
-                url = url + encode + "&pageNo=" + pageNo + "&numOfRows=" + numOfRows + "&efcyQesitm=" + efcyQesitm + "&type=" + type;
-
-                // parsing
-                fetch(url).then(response => {
-                    return response.text();
-                }).then(xmlString => {
-                    const xmlDocument = new DOMParser().parseFromString(xmlString, "text/xml");
-                    const items = xmlDocument.querySelectorAll("item");
-                    for (const item of items) {
-                        const entp_name = item.querySelector("entpName").textContent;
-                        const name = item.querySelector("itemName").textContent;
-                        const efcy = item.querySelector("efcyQesitm").textContent;
-
-                        document.getElementById("medi").innerHTML += '기업 이름: ' + entp_name + '<br>이름: ' + name + '<br>효능: ' + efcy + '<br><br>';
-                    }
-                });
-            }
-            window.onload = display_medicine;
         </script>
 
-    <div class="contain">
-        <h1>약 정보</h1>
-        <form onsubmit="display_medicine(event)">
-            <input type="hidden" id="diseaseName" th:value="${diseaseName}">
-        </form>
-        <div id="medi"></div>
+    <div name="drug" class="contain">
+        <h1>약</h1>
     </div>
 
     <div name="first-aid" class="contain">
