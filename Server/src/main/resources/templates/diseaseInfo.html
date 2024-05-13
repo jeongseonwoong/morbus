@@ -101,7 +101,7 @@
     <div id="detailInfo">
         <h3 th:text="${diseaseName}" style="text-indent: 10px"></h3>
         <hr>
-        <p th:text="${detailInfo.getDescription()}"></p>
+        <p th:text="${disease.getDescription()}"></p>
     </div>
 
     <div class="mapContain">
@@ -111,8 +111,8 @@
             <div id="menu_wrap" class="bg_white">
                 <div class="option">
                     <div>
-                        <form onsubmit="searchPlaces(event); return false;" id="searchHospital">
-                            <b>검색 </b><input type="text" th:value="${diseaseName}" id="keyword" size="15" placeholder="검색">
+                        <form onsubmit="searchPlaces(event); return false;" id="searchHospital" action="/v1/directions">
+                            <b>검색 </b><input type="text" th:value="${disease.getHospital}" id="keyword" size="15" placeholder="검색">
                             <button type="submit">검색</button>
                         </form>
                     </div>
@@ -396,8 +396,19 @@
                 infowindow.open(map, marker);
             }
 
+            // 검색결과 목록의 자식 Element를 제거하는 함수입니다
+            function removeAllChildNods(el) {
+                while (el.hasChildNodes()) {
+                    el.removeChild (el.lastChild);
+                }
+            }
+
+            var geocoder = new kakao.maps.services.Geocoder();
+            function searchDetailAddrFromCoords(coords, callback) {
+                geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+            }
             // 질병 이름에 따른 약 추천 xml parsing function
-            function display_medicine(event){
+            function display_medicine(event) {
                 event.preventDefault();
                 const data2 = document.getElementById("diseaseName");
                 var url = 'https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=';
@@ -417,7 +428,6 @@
                         const entp_name = item.querySelector("entpName").textContent;
                         const name = item.querySelector("itemName").textContent;
                         const efcy = item.querySelector("efcyQesitm").textContent;
-
                         document.getElementById("medi").innerHTML += '기업 이름: ' + entp_name + '<br>이름: ' + name + '<br>효능: ' + efcy + '<br><br>';
                     }
                 });
@@ -433,8 +443,10 @@
         <div id="medi"></div>
     </div>
 
-    <div name="first-aid" class="contain">
-        <h1>응급처치</h1>
+    <div name="first-aid" class="contain" style="float: left">
+        <h3>응급처치 & 자가 치료</h3>
+        <hr>
+        <p th:text="${disease.getSelfTreatment()}"></p>
     </div>
 
 </div>
