@@ -132,8 +132,10 @@
                 const name = item.querySelector("itemName").textContent;
                 const efcy = item.querySelector("efcyQesitm").textContent;
                 const useMethod = item.querySelector("useMethodQesitm").textContent;
-                const warn = item.querySelector("atpnQesitm").textContent;
+                var warn = item.querySelector("atpnQesitm").textContent;
                 const storage = item.querySelector("depositMethodQesitm").textContent;
+
+                warn = list_up(warn);
 
                 document.getElementById("print_entp").innerHTML += "<BText>회사명</BText><br>" + entp_name;
                 document.getElementById("print_FName").innerHTML += "<BText>약명</BText><br>" + name;
@@ -143,6 +145,15 @@
                 document.getElementById("print_storage").innerHTML += "<BText>보관법</BText><br>" + storage;
             }
         });
+    }
+    function list_up(text){
+        text = "· " + text;
+        newtext = text.replace(/\./g, ".<br> ·");
+        // 마지막이 "·"으로 끝나면 "·" 부분 인덱스 삭제
+        if(newtext.endsWith("·")){
+            newtext = newtext.substring(0, newtext.length - 1);
+        }
+        return newtext;
     }
 </script>
 </body>
