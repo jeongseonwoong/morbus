@@ -51,7 +51,7 @@
         .square {
             background-color: #ffffff;
             width: 1300px;
-            height: 1000px;
+            height: 800px;
             display: block;
             margin: 0 auto;
             border-radius: 10px;
@@ -72,6 +72,9 @@
             margin-bottom: 0px;
             height: 1px;
             background-color: black;
+        }
+        BText {
+            font-weight: bold;
         }
         .square .SQCon {
             margin-left: 20px;
@@ -95,12 +98,12 @@
     <hr>
     <div class="SQCon">
         <h2 id="print_Name"></h2>
-        <h3 id="print_entp"></h3>
-        <h3 id="print_FName"></h3>
-        <h3 id="print_effect"></h3>
-        <h3 id="print_use"></h3>
-        <h3 id="print_warn"></h3>
-        <h3 id="print_storage"></h3>
+        <div id="print_entp"></div>
+        <div id="print_FName"></div>
+        <div id="print_effect"></div>
+        <div id="print_use"></div>
+        <div id="print_warn"></div>
+        <div id="print_storage"></div>
     </div>
 
 </div>
@@ -132,19 +135,12 @@
                 const warn = item.querySelector("atpnQesitm").textContent;
                 const storage = item.querySelector("depositMethodQesitm").textContent;
 
-                console.log(entp_name);
-                console.log(name);
-                console.log(efcy);
-                console.log(useMethod);
-                console.log(warn);
-                console.log(storage);
-
-                document.getElementById("print_entp").innerHTML += "회사명<br>" + entp_name;
-                document.getElementById("print_FName").innerHTML += "약명<br>" + name;
-                document.getElementById("print_effect").innerHTML += "효능<br>" + efcy;
-                document.getElementById("print_use").innerHTML += "사용법<br>" + useMethod;
-                document.getElementById("print_warn").innerHTML += "필수 내용<br>" + warn;
-                document.getElementById("print_storage").innerHTML += "보관법<br>" + storage;
+                document.getElementById("print_entp").innerHTML += "<BText>회사명</BText><br>" + entp_name;
+                document.getElementById("print_FName").innerHTML += "<BText>약명</BText><br>" + name;
+                document.getElementById("print_effect").innerHTML += "<BText>효능</BText><br>" + efcy;
+                document.getElementById("print_use").innerHTML += "<BText>사용법</BText><br>" + useMethod;
+                document.getElementById("print_warn").innerHTML += "<BText>필수 내용</BText><br>" + warn;
+                document.getElementById("print_storage").innerHTML += "<BText>보관법</BText><br>" + storage;
             }
         });
     }
