@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--약 이름을 입력한다 -> 출력해서 효능, 사용법, 알아야할 내용, 주의점, 보관법 // tmi part: 주의해야할 약, 음식, 이상반응 -->
+<head>
+    <meta charset="UTF-8">
+    <title>MedicineInfo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        html, body {margin: 0; padding: 0; height: 100%; }
+        body {background-color: #e4e4e4;}
+        pre {
+            font-family: "Noto Sans KR", sans-serif;
+        }
+        div > a{
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            width: 300px;
+            height: 70px;
+            display: block;
+            margin: 0 auto;
+        }
+        header {
+             width: 100%;
+             height: 10%;
+             background: #e4e4e4;
+         }
+        header .HTCon {
+            width: 100%;
+            height: 50%;
+            float: left;
+            background: #e4e4e4;
+        }
+        header #Hmain {
+            width: 70%;
+            height: 100%;
+            float: left;
+            background: #e4e4e4;
+            font-size: 25px;
+            text-align: center    ;
+        }
+        header .HCon {
+            width: 15%;
+            height: 100%;
+            float: left;
+            background: #e4e4e4;
+        }
+        .square {
+            background-color: #ffffff;
+            width: 1300px;
+            height: 800px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        input {
+            width: 200px;
+            height: 30px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        button {
+            height: 30px;
+        }
+        /*나중에 더 꾸미기 https://amango.tistory.com/110*/
+        hr {
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 0px;
+            height: 1px;
+            background-color: black;
+        }
+        BText {
+            font-weight: bold;
+        }
+        .square .SQCon {
+            margin-left: 20px;
+            display: block;
+            position: relative;
+            height: auto;
+            background-color: white;
+        }
+        .side-bar{
+            background-color: #e4e4e4;
+            position: absolute;
+            top:0;
+            left: -260px;
+            width: 300px;
+            height: 100.5%;
+            transition: left 1s, background-color 2s;
+        }
+        .side-bar:hover{
+            left: 0;
+            background-color:#2E2E2E;
+            transition: left 2s, background-color 2s;
+        }
+        .side-bar>.icon>div{
+            text-align:right;
+            padding: 10px;
+            color: black;
+        }
+        .side-bar:hover>.icon>div:last-child{
+            display:block;
+            color: white;
+        }
+        .side-bar:hover>.icon>div:first-child{
+            display:none;
+        }
+        .side-bar>.icon>div:last-child{
+            display:none;
+        }
+        .side-bar>.menu ul>li{
+            position:relative;
+            color: white;
+        }
+        .side-bar>.menu ul>li>a{
+            display:block;
+            font-weight:bold;
+            padding:10px;
+            white-space:nowrap;
+            text-decoration: none;
+            color: inherit;
+        }
+        .side-bar>.menu ul>li:hover>a{
+            background-color:white;
+            color:black;
+            text-decoration: none;
+        }
+        .side-bar>.menu ul>li:hover>ul{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="HTCon"></div>
+    <div class="HCon"></div>
+    <div id="Hmain"><a href="/morbus.html"><img src="사진\MORBUS.png"></a></div>
+    <div class="HCon"></div>
+</header>
+<div class="side-bar">
+    <div class="icon">
+        <div>▼</div>
+        <div>▶</div>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="/Symptom">질병 자가 진단</a></li>
+            <li><a href="/Symptom_record">질병 기록지</a></li>
+            <li><a href="/MedicineInfo">약 정보 찾기</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="square">
+    <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
+    <button type="submit" value="Send" onclick="getValueText()">검색</button>
+    <hr>
+    <div class="SQCon">
+        <h2 id="print_Name"></h2>
+        <div id="print_entp"></div>
+        <div id="print_FName"></div>
+        <div id="print_effect"></div>
+        <div id="print_use"></div>
+        <div id="print_warn"></div>
+        <div id="print_storage"></div>
+    </div>
+
+</div>
+<script>
+    function getValueText(){
+        var inputData = document.getElementById("MedicineName").value;
+        document.getElementById("print_Name").innerHTML = inputData;
+        display_medicine(inputData);
+    }
+    function display_medicine(inputData) {
+        // 이전 출력 비우기
+        document.getElementById("print_entp").innerHTML = "";
+        document.getElementById("print_FName").innerHTML = "";
+        document.getElementById("print_effect").innerHTML = "";
+        document.getElementById("print_use").innerHTML = "";
+        document.getElementById("print_warn").innerHTML = "";
+        document.getElementById("print_storage").innerHTML = "";
+
+        var url = 'https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=';
+        var encode = 'It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D';
+        var itemName = inputData;
+        console.log(inputData);
+        var pageNo = "1", numOfRows = "1", type = 'xml';
+        url = url + encode + "&pageNo=" + pageNo + "&numOfRows=" + numOfRows + "&itemName=" + itemName + "&type=" + type;
+
+        // parsing
+        fetch(url).then(response => {
+            return response.text();
+        }).then(xmlString => {
+            const xmlDocument = new DOMParser().parseFromString(xmlString, "text/xml");
+            const items = xmlDocument.querySelectorAll("item");
+            for (const item of items) {
+                const entp_name = item.querySelector("entpName").textContent;
+                const name = item.querySelector("itemName").textContent;
+                const efcy = item.querySelector("efcyQesitm").textContent;
+                const useMethod = item.querySelector("useMethodQesitm").textContent;
+                var warn = item.querySelector("atpnQesitm").textContent;
+                const storage = item.querySelector("depositMethodQesitm").textContent;
+
+                warn = list_up(warn);
+
+                document.getElementById("print_entp").innerHTML += "<BText>회사명</BText><br>· " + entp_name;
+                document.getElementById("print_FName").innerHTML += "<BText>약명</BText><br>· " + name;
+                document.getElementById("print_effect").innerHTML += "<BText>효능</BText><br>· " + efcy;
+                document.getElementById("print_use").innerHTML += "<BText>사용법</BText><br>· " + useMethod;
+                document.getElementById("print_warn").innerHTML += "<BText>필수 내용</BText><br>" + warn;
+                document.getElementById("print_storage").innerHTML += "<BText>보관법</BText><br>· " + storage;
+            }
+        });
+    }
+    function list_up(text){
+        text = "· " + text;
+        newtext = text.replace(/\./g, ".<br> · ");
+        // 마지막이 "·"으로 끝나면 "·" 부분 인덱스 삭제
+        newtext = newtext.substring(0, newtext.length - 4);
+        return newtext;
+    }
+</script>
+</body>
+</html>
