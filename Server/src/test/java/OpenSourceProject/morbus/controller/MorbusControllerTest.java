@@ -2,16 +2,10 @@ package OpenSourceProject.morbus.controller;
 
 import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
-import OpenSourceProject.VOclass.SymptomDiseasePair;
-import OpenSourceProject.morbus.algorithm.IntersectionDiseaseRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MorbusControllerTest {
 

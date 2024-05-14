@@ -17,6 +17,7 @@ import java.util.*;
 @Service
 public class SymptomSetting implements Setting {
 
+    @Override
     public Object JsonSetting() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         ClassPathResource resource = new ClassPathResource("static/data/SymptomList.json");
@@ -31,6 +32,7 @@ public class SymptomSetting implements Setting {
         return parser.parse(sb.toString());
     }
 
+    @Override
     public ArrayList<String> toArr(JSONArray jsonArray) {
         ArrayList<String> list= new ArrayList<>();
         if(jsonArray!=null)

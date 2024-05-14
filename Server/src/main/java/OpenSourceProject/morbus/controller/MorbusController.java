@@ -4,18 +4,15 @@ import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
 import OpenSourceProject.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.DiseaseSetting;
-import OpenSourceProject.morbus.algorithm.IntersectionDiseaseRepository;
+import OpenSourceProject.morbus.repository.IntersectionDiseaseRepository;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.*;
 
 

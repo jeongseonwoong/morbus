@@ -1,4 +1,4 @@
-package OpenSourceProject.morbus.algorithm;
+package OpenSourceProject.morbus.repository;
 
 import OpenSourceProject.VOclass.Disease;
 
