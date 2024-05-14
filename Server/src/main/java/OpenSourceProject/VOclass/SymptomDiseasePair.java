@@ -10,6 +10,7 @@ public class SymptomDiseasePair {
     {
         symName=sym;
         arrayList=arr;
+
     }
 
     public String first()
