@@ -114,6 +114,14 @@
         display_medicine(inputData);
     }
     function display_medicine(inputData) {
+        // 이전 출력 비우기
+        document.getElementById("print_entp").innerHTML = "";
+        document.getElementById("print_FName").innerHTML = "";
+        document.getElementById("print_effect").innerHTML = "";
+        document.getElementById("print_use").innerHTML = "";
+        document.getElementById("print_warn").innerHTML = "";
+        document.getElementById("print_storage").innerHTML = "";
+
         var url = 'https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=';
         var encode = 'It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D';
         var itemName = inputData;
@@ -148,11 +156,9 @@
     }
     function list_up(text){
         text = "· " + text;
-        newtext = text.replace(/\./g, ".<br> ·");
+        newtext = text.replace(/\./g, ".<br> · ");
         // 마지막이 "·"으로 끝나면 "·" 부분 인덱스 삭제
-        if(newtext.endsWith("·")){
-            newtext = newtext.substring(0, newtext.length - 1);
-        }
+        newtext = newtext.substring(0, newtext.length - 4);
         return newtext;
     }
 </script>
