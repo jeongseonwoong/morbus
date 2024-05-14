@@ -55,6 +55,11 @@ public class MorbusController {
         return "selectSymptom";
     }
 
+    @GetMapping("MedicineInfo")
+    public String MedicineInfo(){
+        return "MedicineInfo";
+    }
+
     @GetMapping("Symptom_record")//메인 홈페이지에서 증상 기록지 페이지로 넘어가는 컨트롤러
     public String symptom_record(Model model,Model model2) throws IOException, ParseException {
         //data processing
