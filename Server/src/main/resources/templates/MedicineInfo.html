@@ -83,6 +83,55 @@
             height: auto;
             background-color: white;
         }
+        .side-bar{
+            background-color: #e4e4e4;
+            position: absolute;
+            top:0;
+            left: -260px;
+            width: 300px;
+            height: 100.5%;
+            transition: left 1s, background-color 2s;
+        }
+        .side-bar:hover{
+            left: 0;
+            background-color:#2E2E2E;
+            transition: left 2s, background-color 2s;
+        }
+        .side-bar>.icon>div{
+            text-align:right;
+            padding: 10px;
+            color: black;
+        }
+        .side-bar:hover>.icon>div:last-child{
+            display:block;
+            color: white;
+        }
+        .side-bar:hover>.icon>div:first-child{
+            display:none;
+        }
+        .side-bar>.icon>div:last-child{
+            display:none;
+        }
+        .side-bar>.menu ul>li{
+            position:relative;
+            color: white;
+        }
+        .side-bar>.menu ul>li>a{
+            display:block;
+            font-weight:bold;
+            padding:10px;
+            white-space:nowrap;
+            text-decoration: none;
+            color: inherit;
+        }
+        .side-bar>.menu ul>li:hover>a{
+            background-color:white;
+            color:black;
+            text-decoration: none;
+        }
+        .side-bar>.menu ul>li:hover>ul{
+            display:block;
+        }
     </style>
 </head>
 <body>
@@ -92,6 +141,19 @@
     <div id="Hmain"><a href="/morbus.html"><img src="사진\MORBUS.png"></a></div>
     <div class="HCon"></div>
 </header>
+<div class="side-bar">
+    <div class="icon">
+        <div>▼</div>
+        <div>▶</div>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="/Symptom">질병 자가 진단</a></li>
+            <li><a href="/Symptom_record">질병 기록지</a></li>
+            <li><a href="/MedicineInfo">약 정보 찾기</a></li>
+        </ul>
+    </nav>
+</div>
 <div class="square">
     <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
     <button type="submit" value="Send" onclick="getValueText()">검색</button>
@@ -145,12 +207,12 @@
 
                 warn = list_up(warn);
 
-                document.getElementById("print_entp").innerHTML += "<BText>회사명</BText><br>" + entp_name;
-                document.getElementById("print_FName").innerHTML += "<BText>약명</BText><br>" + name;
-                document.getElementById("print_effect").innerHTML += "<BText>효능</BText><br>" + efcy;
-                document.getElementById("print_use").innerHTML += "<BText>사용법</BText><br>" + useMethod;
+                document.getElementById("print_entp").innerHTML += "<BText>회사명</BText><br>· " + entp_name;
+                document.getElementById("print_FName").innerHTML += "<BText>약명</BText><br>· " + name;
+                document.getElementById("print_effect").innerHTML += "<BText>효능</BText><br>· " + efcy;
+                document.getElementById("print_use").innerHTML += "<BText>사용법</BText><br>· " + useMethod;
                 document.getElementById("print_warn").innerHTML += "<BText>필수 내용</BText><br>" + warn;
-                document.getElementById("print_storage").innerHTML += "<BText>보관법</BText><br>" + storage;
+                document.getElementById("print_storage").innerHTML += "<BText>보관법</BText><br>· " + storage;
             }
         });
     }
