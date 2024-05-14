@@ -65,6 +65,16 @@
         button {
             height: 30px;
         }
+        /*나중에 더 꾸미기 https://amango.tistory.com/110*/
+        hr {
+            margin-left: 20px;
+            margin-right: 20px;
+            height: 1px;
+            background-color: black;
+        }
+        .square .SQCon {
+
+        }
     </style>
 </head>
 <body>
@@ -75,8 +85,20 @@
     <div class="HCon"></div>
 </header>
 <div class="square">
-    <input type="text" class="chat-input" id="keyword" placeholder="약 이름 또는 성분을 검색하세요.">
-    <button type="submit">검색</button>
+    <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
+    <button type="submit" value="Send" onclick="getValueText();">검색</button>
+    <hr>
+    <div class="SQCon">
+        <h1 id="print_Name"></h1>
+
+    </div>
+
 </div>
+<script>
+    function getValueText(){
+        var inputData = document.getElementById("MedicineName").value;
+        document.getElementById("print_Name").innerHTML = inputData;
+    }
+</script>
 </body>
 </html>
