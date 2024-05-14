@@ -50,8 +50,8 @@
         }
         .square {
             background-color: #ffffff;
-            width: 1000px;
-            height: 700px;
+            width: 1300px;
+            height: 1000px;
             display: block;
             margin: 0 auto;
             border-radius: 10px;
@@ -76,10 +76,9 @@
         .square .SQCon {
             margin-left: 20px;
             display: block;
-            position: absolute;
+            position: relative;
             height: auto;
             background-color: white;
-
         }
     </style>
 </head>
@@ -92,11 +91,16 @@
 </header>
 <div class="square">
     <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
-    <button type="submit" value="Send" onclick="getValueText();">검색</button>
+    <button type="submit" value="Send" onclick="getValueText()">검색</button>
     <hr>
     <div class="SQCon">
         <h2 id="print_Name"></h2>
-
+        <h3 id="print_entp"></h3>
+        <h3 id="print_FName"></h3>
+        <h3 id="print_effect"></h3>
+        <h3 id="print_use"></h3>
+        <h3 id="print_warn"></h3>
+        <h3 id="print_storage"></h3>
     </div>
 
 </div>
@@ -104,6 +108,45 @@
     function getValueText(){
         var inputData = document.getElementById("MedicineName").value;
         document.getElementById("print_Name").innerHTML = inputData;
+        display_medicine(inputData);
+    }
+    function display_medicine(inputData) {
+        var url = 'https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=';
+        var encode = 'It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D';
+        var itemName = inputData;
+        console.log(inputData);
+        var pageNo = "1", numOfRows = "1", type = 'xml';
+        url = url + encode + "&pageNo=" + pageNo + "&numOfRows=" + numOfRows + "&itemName=" + itemName + "&type=" + type;
+
+        // parsing
+        fetch(url).then(response => {
+            return response.text();
+        }).then(xmlString => {
+            const xmlDocument = new DOMParser().parseFromString(xmlString, "text/xml");
+            const items = xmlDocument.querySelectorAll("item");
+            for (const item of items) {
+                const entp_name = item.querySelector("entpName").textContent;
+                const name = item.querySelector("itemName").textContent;
+                const efcy = item.querySelector("efcyQesitm").textContent;
+                const useMethod = item.querySelector("useMethodQesitm").textContent;
+                const warn = item.querySelector("atpnQesitm").textContent;
+                const storage = item.querySelector("depositMethodQesitm").textContent;
+
+                console.log(entp_name);
+                console.log(name);
+                console.log(efcy);
+                console.log(useMethod);
+                console.log(warn);
+                console.log(storage);
+
+                document.getElementById("print_entp").innerHTML += "회사명<br>" + entp_name;
+                document.getElementById("print_FName").innerHTML += "약명<br>" + name;
+                document.getElementById("print_effect").innerHTML += "효능<br>" + efcy;
+                document.getElementById("print_use").innerHTML += "사용법<br>" + useMethod;
+                document.getElementById("print_warn").innerHTML += "필수 내용<br>" + warn;
+                document.getElementById("print_storage").innerHTML += "보관법<br>" + storage;
+            }
+        });
     }
 </script>
 </body>
