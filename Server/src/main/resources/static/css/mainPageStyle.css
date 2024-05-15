@@ -32,6 +32,11 @@ header .HTCon {
     font-size: 15px;
 }
 
+.loginButton a:hover{
+    text-decoration: underline;
+    color: #05558d;
+}
+
 .loginButton div{
     display: inline-block;
 }
