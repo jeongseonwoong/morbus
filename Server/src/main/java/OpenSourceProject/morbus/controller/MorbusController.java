@@ -43,6 +43,11 @@ public class MorbusController {
         }
     }
 
+    @GetMapping("/")
+    public String mainPage(Model model) {
+        return "../static/morbus";
+    }
+
     @GetMapping("morbus") //홈페이지 로고 클릭시 메인 홈페이지로 이동하는 컨트롤러
     public String toMainPage()
     {
