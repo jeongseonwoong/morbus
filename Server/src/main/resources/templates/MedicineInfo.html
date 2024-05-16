@@ -136,6 +136,7 @@
         /*Additional Infomation*/
         details {
             margin-bottom: 1rem;
+            margin-top: 10px;
         }
 
         details > summary {
@@ -229,6 +230,9 @@
         document.getElementById("print_use").innerHTML = "";
         document.getElementById("print_warn").innerHTML = "";
         document.getElementById("print_storage").innerHTML = "";
+        document.getElementById("print_atpn").innerHTML = "";
+        document.getElementById("print_intrc").innerHTML = "";
+        document.getElementById("print_se").innerHTML = "";
 
         var url = 'https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?serviceKey=';
         var encode = 'It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D';
@@ -250,6 +254,9 @@
                 const useMethod = item.querySelector("useMethodQesitm").textContent;
                 var warn = item.querySelector("atpnQesitm").textContent;
                 const storage = item.querySelector("depositMethodQesitm").textContent;
+                const atpnWarn = item.querySelector("atpnWarnQesitm").textContent;
+                const intrcQesitm = item.querySelector("intrcQesitm").textContent;
+                const seQesitm = item.querySelector("seQesitm").textContent;
 
                 warn = list_up(warn);
 
@@ -259,6 +266,10 @@
                 document.getElementById("print_use").innerHTML += "<BText>사용법</BText><br>· " + useMethod;
                 document.getElementById("print_warn").innerHTML += "<BText>필수 내용</BText><br>" + warn;
                 document.getElementById("print_storage").innerHTML += "<BText>보관법</BText><br>· " + storage;
+            // detail 부분에 atpnWarnQesitm, intrcQesitm, seQesitm 추가
+                document.getElementById("print_atpn").innerText += "<BText>복용 주의 사항</BText><br>· " + atpnWarn;
+                document.getElementById("print_intrc").innerText += "<BText>복용 간 금지 복용 물품</BText><br>· " + intrcQesitm;
+                document.getElementById("print_se").innerText += "<BText>복용 부작용</BText><br>· " + seQesitm;
             }
         });
     }
@@ -297,6 +308,8 @@
 
         // div 태그에 details 태그를 추가합니다.
         squareDiv.appendChild(details);
+
+
     }
 </script>
 </body>
