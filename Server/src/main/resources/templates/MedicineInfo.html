@@ -139,7 +139,7 @@
         }
 
         details > summary {
-            background: rgba(150, 255, 150);
+            background: lightgray;
             padding: 1rem;
             outline: 0;
             border-radius: 5px;
@@ -149,7 +149,7 @@
 
         details > summary::-webkit-details-marker {
             background: url(https://marshall-storage.tistory.com/attachment/cfile29.uf@993E16335F785C0037CB43.svg) no-repeat center;
-            background-size: contain;
+            background-size: 100px;
             color: transparent;
             transform: rotate3d(0, 0, 1, 90deg);
             transition: transform 0.25s;
@@ -160,7 +160,7 @@
         }
 
         details[open] > summary {
-            background: rgba(100, 255, 100);
+            background: #e4e4e4;
         }
 
         details[open] > summary ~ * {
@@ -202,7 +202,7 @@
 </div>
 <div class="square">
     <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
-    <button type="submit" value="Send" onclick="getValueText(); openDetails();">검색</button>
+    <button type="submit" value="Send" onclick="getValueText(); setTimeout(openDetails,600);">검색</button>
     <hr>
     <div class="SQCon">
         <h2 id="print_Name"></h2>
@@ -212,12 +212,7 @@
         <div id="print_use"></div>
         <div id="print_warn"></div>
         <div id="print_storage"></div>
-        <details id="openDetails">
-            <summary>Click me</summary>
-            <div>
-                hello
-            </div>
-        </details>
+
     </div>
 </div>
 <script>
@@ -267,6 +262,7 @@
             }
         });
     }
+
     function list_up(text){
         text = "· " + text;
         newtext = text.replace(/\./g, ".<br> · ");
@@ -275,6 +271,33 @@
         return newtext;
     }
 
+    function openDetails() {
+        var details = document.getElementById("myDetails");
+        if (details) {
+            details.remove(); // details 태그를 제거합니다.
+        }
+
+        details = document.createElement("details");
+        details.id = "myDetails";
+
+        // summary 태그를 생성합니다.
+        var summary = document.createElement("summary");
+        summary.textContent = "TMI";
+
+        // details 태그의 기존 내용을 제거합니다.
+        while (details.firstChild) {
+            details.removeChild(details.firstChild);
+        }
+
+        // 새로운 summary 태그를 추가합니다.
+        details.appendChild(summary);
+
+        // 'square' 클래스를 가진 div 태그를 찾습니다.
+        var squareDiv = document.querySelector(".square");
+
+        // div 태그에 details 태그를 추가합니다.
+        squareDiv.appendChild(details);
+    }
 </script>
 </body>
 </html>
