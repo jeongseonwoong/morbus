@@ -10,6 +10,13 @@ public class SymptomRecordService {
     @Autowired
     private SymptomRecordRepository symptomRecordRepository;
 
+    public void saveSymptom(String symptom) {
+        SymptomRecord record = new SymptomRecord();
+        record.setSymptom(symptom);
+        record.setTimestamp(LocalDateTime.now());
+        symptomRecordRepository.save(record);
+    }
+
     public List<SymptomRecord> getAllRecords() {
         return symptomRecordRepository.findAll();
     }
