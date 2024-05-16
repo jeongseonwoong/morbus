@@ -17,4 +17,10 @@ public class SymptomRecord {
     public void setId(Long id) {
         this.id = id;
     }
+    public String getSymptom() {
+        return symptom;
+    }
+    public void setSymptom(String symptom) {
+        this.symptom = symptom;
+    }
 }
