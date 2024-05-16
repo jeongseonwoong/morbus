@@ -56,6 +56,7 @@
             display: block;
             margin: 0 auto;
             border-radius: 10px;
+            overflow: auto;
         }
         input {
             width: 200px;
@@ -79,6 +80,7 @@
         }
         .square .SQCon {
             margin-left: 20px;
+            margin-right: 20px;
             display: block;
             position: relative;
             height: auto;
@@ -203,7 +205,7 @@
 </div>
 <div class="square">
     <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
-    <button type="submit" value="Send" onclick="getValueText(); setTimeout(openDetails,600);">검색</button>
+    <button type="submit" value="Send" onclick="getValueText(); /*setTimeout(openDetails,600);*/">검색</button>
     <hr>
     <div class="SQCon">
         <h2 id="print_Name"></h2>
@@ -213,7 +215,13 @@
         <div id="print_use"></div>
         <div id="print_warn"></div>
         <div id="print_storage"></div>
-
+<!--detail click하면 id 호출-->
+        <details>
+            <summary>TMI</summary>
+            <div id="print_atpn"></div>
+            <div id="print_intrc"></div>
+            <div id="print_se"></div>
+        </details>
     </div>
 </div>
 <script>
@@ -254,11 +262,14 @@
                 const useMethod = item.querySelector("useMethodQesitm").textContent;
                 var warn = item.querySelector("atpnQesitm").textContent;
                 const storage = item.querySelector("depositMethodQesitm").textContent;
-                const atpnWarn = item.querySelector("atpnWarnQesitm").textContent;
-                const intrcQesitm = item.querySelector("intrcQesitm").textContent;
-                const seQesitm = item.querySelector("seQesitm").textContent;
+                var atpnWarn = item.querySelector("atpnWarnQesitm").textContent;
+                var intrcQesitm = item.querySelector("intrcQesitm").textContent;
+                var seQesitm = item.querySelector("seQesitm").textContent;
 
                 warn = list_up(warn);
+                atpnWarn = list_up(atpnWarn);
+                intrcQesitm = list_up(intrcQesitm);
+                seQesitm = list_up(seQesitm);
 
                 document.getElementById("print_entp").innerHTML += "<BText>회사명</BText><br>· " + entp_name;
                 document.getElementById("print_FName").innerHTML += "<BText>약명</BText><br>· " + name;
@@ -266,10 +277,11 @@
                 document.getElementById("print_use").innerHTML += "<BText>사용법</BText><br>· " + useMethod;
                 document.getElementById("print_warn").innerHTML += "<BText>필수 내용</BText><br>" + warn;
                 document.getElementById("print_storage").innerHTML += "<BText>보관법</BText><br>· " + storage;
-            // detail 부분에 atpnWarnQesitm, intrcQesitm, seQesitm 추가
-                document.getElementById("print_atpn").innerText += "<BText>복용 주의 사항</BText><br>· " + atpnWarn;
-                document.getElementById("print_intrc").innerText += "<BText>복용 간 금지 복용 물품</BText><br>· " + intrcQesitm;
-                document.getElementById("print_se").innerText += "<BText>복용 부작용</BText><br>· " + seQesitm;
+
+                document.getElementById("print_atpn").innerHTML += "<BText>복용 주의 사항</BText><br>" + atpnWarn;
+                document.getElementById("print_intrc").innerHTML += "<BText>복용 간 금지 복용 물품</BText><br>" + intrcQesitm;
+                document.getElementById("print_se").innerHTML += "<BText>복용 부작용</BText><br>" + seQesitm;
+                // 만약 내용이 없다면 없다고 알리는 함수 추가해야 할 듯
             }
         });
     }
@@ -282,35 +294,6 @@
         return newtext;
     }
 
-    function openDetails() {
-        var details = document.getElementById("myDetails");
-        if (details) {
-            details.remove(); // details 태그를 제거합니다.
-        }
-
-        details = document.createElement("details");
-        details.id = "myDetails";
-
-        // summary 태그를 생성합니다.
-        var summary = document.createElement("summary");
-        summary.textContent = "TMI";
-
-        // details 태그의 기존 내용을 제거합니다.
-        while (details.firstChild) {
-            details.removeChild(details.firstChild);
-        }
-
-        // 새로운 summary 태그를 추가합니다.
-        details.appendChild(summary);
-
-        // 'square' 클래스를 가진 div 태그를 찾습니다.
-        var squareDiv = document.querySelector(".square");
-
-        // div 태그에 details 태그를 추가합니다.
-        squareDiv.appendChild(details);
-
-
-    }
 </script>
 </body>
 </html>
