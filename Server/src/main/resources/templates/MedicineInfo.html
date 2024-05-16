@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--약 이름을 입력한다 -> 출력해서 효능, 사용법, 알아야할 내용, 주의점, 보관법 // tmi part: 주의해야할 약, 음식, 이상반응 -->
+<!--이미지 추가 좀 더 확인이 쉽게 https://www.data.go.kr/tcs/puc/selectPublicUseCaseView.do?prcuseCaseSn=1038781-->
 <head>
     <meta charset="UTF-8">
     <title>MedicineInfo</title>
@@ -132,6 +133,51 @@
         .side-bar>.menu ul>li:hover>ul{
             display:block;
         }
+        /*Additional Infomation*/
+        details {
+            margin-bottom: 1rem;
+        }
+
+        details > summary {
+            background: rgba(150, 255, 150);
+            padding: 1rem;
+            outline: 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.5s;
+        }
+
+        details > summary::-webkit-details-marker {
+            background: url(https://marshall-storage.tistory.com/attachment/cfile29.uf@993E16335F785C0037CB43.svg) no-repeat center;
+            background-size: contain;
+            color: transparent;
+            transform: rotate3d(0, 0, 1, 90deg);
+            transition: transform 0.25s;
+        }
+
+        details[open] > summary::-webkit-details-marker {
+            transform: rotate3d(0, 0, 1, 180deg);
+        }
+
+        details[open] > summary {
+            background: rgba(100, 255, 100);
+        }
+
+        details[open] > summary ~ * {
+            animation: reveal 0.5s;
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -10px, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -156,7 +202,7 @@
 </div>
 <div class="square">
     <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
-    <button type="submit" value="Send" onclick="getValueText()">검색</button>
+    <button type="submit" value="Send" onclick="getValueText(); openDetails();">검색</button>
     <hr>
     <div class="SQCon">
         <h2 id="print_Name"></h2>
@@ -166,8 +212,13 @@
         <div id="print_use"></div>
         <div id="print_warn"></div>
         <div id="print_storage"></div>
+        <details id="openDetails">
+            <summary>Click me</summary>
+            <div>
+                hello
+            </div>
+        </details>
     </div>
-
 </div>
 <script>
     function getValueText(){
@@ -223,6 +274,7 @@
         newtext = newtext.substring(0, newtext.length - 4);
         return newtext;
     }
+
 </script>
 </body>
 </html>
