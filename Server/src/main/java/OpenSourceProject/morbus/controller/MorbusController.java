@@ -4,17 +4,15 @@ import OpenSourceProject.VOclass.Disease;
 import OpenSourceProject.VOclass.Symptom;
 import OpenSourceProject.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.DiseaseSetting;
-import OpenSourceProject.morbus.algorithm.IntersectionDiseaseRepository;
+import OpenSourceProject.morbus.repository.IntersectionDiseaseRepository;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
 import org.json.simple.parser.ParseException;
-import org.springframework.core.io.UrlResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.*;
 
 
@@ -22,25 +20,32 @@ import java.util.*;
 public class MorbusController {
 
     private final ArrayList<Symptom>symptomArrayList;//증상 배열
-    private final HashMap<String, Symptom> findSym = new HashMap<>();//증상 Hash Map(검색 시 사용)
+    private final HashMap<String, Symptom> findSym;//증상 Hash Map(검색 시 사용)
     private final ArrayList<Disease>diseaseArrayList;
-    private final HashMap<String, Disease> findDise = new HashMap<>();
+    private final HashMap<String, Disease> findDise;
 
     //생성자 내에서 증상 배열 초기화
-    MorbusController() throws Exception {
-        SymptomSetting symptomSetting = new SymptomSetting();
+    @Autowired
+    MorbusController(SymptomSetting symptomSetting,DiseaseSetting diseaseSetting) throws Exception {
+
+        findSym = new HashMap<>();
+        findDise=new HashMap<>();
         symptomArrayList = symptomSetting.setSymptom();
         for(Symptom symptom:symptomArrayList)
         {
             findSym.put(symptom.getName(),symptom);
         }
 
-        DiseaseSetting diseaseSetting= new DiseaseSetting();
         diseaseArrayList=diseaseSetting.setDisease();
         for(Disease disease: diseaseArrayList)
         {
             findDise.put(disease.getName(),disease);
         }
+    }
+
+    @GetMapping("/")
+    public String mainPage(Model model) {
+        return "../static/morbus";
     }
 
     @GetMapping("morbus") //홈페이지 로고 클릭시 메인 홈페이지로 이동하는 컨트롤러
@@ -53,6 +58,11 @@ public class MorbusController {
     public String Symptom(Model model2){
         model2.addAttribute("SymList",symptomArrayList);
         return "selectSymptom";
+    }
+
+    @GetMapping("MedicineInfo")
+    public String MedicineInfo(){
+        return "MedicineInfo";
     }
 
     @GetMapping("Symptom_record")//메인 홈페이지에서 증상 기록지 페이지로 넘어가는 컨트롤러
@@ -105,7 +115,7 @@ public class MorbusController {
         return "RelateDisease";
     }
 
-    @GetMapping("selectSymptom")//찾고자 하는 증상을 입력받는 컨트롤러
+    @PostMapping("selectSymptom")//찾고자 하는 증상을 입력받는 컨트롤러
     public String searchSym(@RequestParam(value="searchText") String searchText, Model model, Model model2)
     {
         //증상 Hash_Map 에서 입력받은 증상과 연관이 있는 질병 찾는 알고리즘
@@ -130,7 +140,7 @@ public class MorbusController {
         return "selectSymptom";
     }
 
-    @GetMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
+    @PostMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
     public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
     {
         model.addAttribute("diseaseName",diseaseName);

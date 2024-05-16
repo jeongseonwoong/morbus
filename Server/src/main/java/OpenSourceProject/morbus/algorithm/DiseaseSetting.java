@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.*;
@@ -15,8 +16,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class DiseaseSetting implements Setting {
 
+    @Override
     public Object JsonSetting() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         ClassPathResource resource = new ClassPathResource("static/data/DiseaseList.json");
@@ -31,6 +34,7 @@ public class DiseaseSetting implements Setting {
         return parser.parse(sb.toString());
     }
 
+    @Override
     public ArrayList<String> toArr(JSONArray jsonArray) {
         ArrayList<String> list= new ArrayList<>();
         if(jsonArray!=null)
