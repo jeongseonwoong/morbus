@@ -12,6 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import OpenSourceProject.morbus.algorithm.SymptomRecord;
+import OpenSourceProject.morbus.algorithm.SymptomRecordService;
+import org.json.simple.parser.ParseException;
+
 import java.io.IOException;
 import java.util.*;
 
