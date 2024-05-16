@@ -23,13 +23,18 @@ header .HTCon {
 }
 
 .loginButton{
-    margin: 5px 0;
+    margin: 7px 7px 0 0;
     text-align: right;
 }
 
 .loginButton a{
     display: inline-block;
     font-size: 15px;
+}
+
+.loginButton a:hover{
+    text-decoration: underline;
+    color: #05558d;
 }
 
 .loginButton div{
