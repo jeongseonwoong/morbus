@@ -156,6 +156,15 @@ public class MorbusController {
         return "diseaseInfo";
     }
 
+    @Autowired
+    private SymptomRecordService symptomRecordService;
 
+    @PostMapping("/Symptom_record")
+    public String recordSymptom(@RequestParam("message") String message) {
+        if (!message.trim().isEmpty()) {
+            symptomRecordService.saveSymptom(message.trim());
+        }
+        return "Symptom_record"; // 채팅 기록 후 페이지 리다이렉션
+    }
 }
 
