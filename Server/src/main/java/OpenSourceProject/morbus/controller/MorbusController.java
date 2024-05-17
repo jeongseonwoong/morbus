@@ -43,6 +43,7 @@ public class MorbusController {
         }
     }
 
+
     @GetMapping("/")
     public String mainPage(Model model) {
         return "../static/morbus";
@@ -53,6 +54,8 @@ public class MorbusController {
     {
         return "morbus";
     }
+
+
 
     @GetMapping("Symptom") // 메인 홈페이지에서 질병자가진단 페이지로 넘어가는 컨트롤러
     public String Symptom(Model model2){
