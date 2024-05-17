@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Symptom Records</title>
 </head>
 <body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Timestamp</th>
+        <th>Symptom</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="record : ${records}">
+        <td th:text="${record.timestamp}"></td>
+        <td th:text="${record.symptom}"></td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
