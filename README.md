@@ -3,12 +3,30 @@
 <p><br></p>
 
 # 설치 방법
-<ol>
-  <li><b>Download Zip</b> 클릭</li>
-  <li>폴더로 프로젝트 열기 선택</li>
-  <li>Server폴더를 최상위 폴더로 프로젝트 Open(External library가 이래야 포함이 됨)</li>
-</ol>
-<p><br></p>
+```sh
+1. java 설치
+~$ sudo apt update //시작하기에 앞서 아래의 코드로 패키지를 최신화한다.
+~$ java --version //현재 java가 깔려있는지 확인한다.
+~$ sudo apt install openjdk-21-jdk openjdk-21-jre -y // java가 깔려있지 않다면 21 버전으로 jdk와 jre를 모두 설치해준다.
+~$ vi ~/.bashrc //환경변수 파일 실행
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64" //맨 아래 줄에 추
+~$ source ~/.bashrc // 적용 및 확인
+
+2.h2 DB 설치
+https://www.h2database.com 에서 모든 os용 h2 다운로드
+~$ chmod 755 h2.sh //권한 주기(windwow는 x)
+~$./h2.sh //실행 (window는 h2.bat)
+JDBC URL:jdbc:h2:~/test (최초 한번)
+~$ls -al
+~/test.mv.db 파일 생성 확인
+이후부터는 jdbc:h2:tcp://localhost/~/test 이렇게 접속
+스프링 부트 2.x를 사용하면 1.4.200 버전을 다운로드 받으면 된다.
+스프링 부트 3.x를 사용하면 2.1.214 버전 이상 사용해야 한다.
+
+
+
+
+```
 
 # 의존성
 <h4>OS</h4>
