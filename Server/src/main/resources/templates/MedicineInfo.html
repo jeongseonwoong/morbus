@@ -18,11 +18,15 @@
             text-decoration: none;
             color: inherit;
         }
-        img {
+        header img {
             width: 300px;
             height: 70px;
             display: block;
             margin: 0 auto;
+        }
+        img {
+            width: 400px;
+            height: 300px;
         }
         header {
              width: 100%;
@@ -86,6 +90,10 @@
             position: relative;
             height: auto;
             background-color: white;
+        }
+        /*이거 적용 안댐;;*/
+        .square .SQCon div {
+            animation: reveal 1s;
         }
         .side-bar{
             background-color: #e4e4e4;
@@ -207,21 +215,23 @@
         </ul>
     </nav>
 </div>
+<!--사진추가-->
 <div class="square">
     <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
     <button type="submit" value="Send" onclick="getValueText();">검색</button>
     <hr>
     <div class="SQCon">
         <h2 id="print_Name"></h2>
+        <div id="print_image"></div>
         <div id="print_entp"></div>
         <div id="print_FName"></div>
         <div id="print_effect"></div>
         <div id="print_use"></div>
-        <div id="print_warn"></div>
         <div id="print_storage"></div>
 <!--detail click하면 id 호출-->
         <details>
             <summary>TMI</summary>
+            <div id="print_warn"></div>
             <div id="print_atpn"></div>
             <div id="print_intrc"></div>
             <div id="print_se"></div>
@@ -232,6 +242,8 @@
     function getValueText(){
         var inputData = document.getElementById("MedicineName").value;
         document.getElementById("print_Name").innerHTML = inputData;
+
+        display_image(inputData);
         display_medicine(inputData);
     }
     function display_medicine(inputData) {
@@ -270,6 +282,8 @@
                 var intrcQesitm = item.querySelector("intrcQesitm").textContent;
                 var seQesitm = item.querySelector("seQesitm").textContent;
 
+
+
                 warn = list_up(warn);
                 atpnWarn = list_up(atpnWarn);
                 intrcQesitm = list_up(intrcQesitm);
@@ -279,14 +293,36 @@
                 document.getElementById("print_FName").innerHTML += "<BText>약명</BText><br>· " + name;
                 document.getElementById("print_effect").innerHTML += "<BText>효능</BText><br>· " + efcy;
                 document.getElementById("print_use").innerHTML += "<BText>사용법</BText><br>· " + useMethod;
-                document.getElementById("print_warn").innerHTML += "<BText>필수 내용</BText><br>" + warn;
                 document.getElementById("print_storage").innerHTML += "<BText>보관법</BText><br>· " + storage;
 
+                document.getElementById("print_warn").innerHTML += "<BText>필수 내용</BText><br>" + warn;
                 document.getElementById("print_atpn").innerHTML += "<BText>복용 주의 사항</BText><br>" + atpnWarn;
                 document.getElementById("print_intrc").innerHTML += "<BText>복용 간 금지 복용 물품</BText><br>" + intrcQesitm;
                 document.getElementById("print_se").innerHTML += "<BText>복용 부작용</BText><br>" + seQesitm;
                 // 만약 내용이 없다면 없다고 알리는 함수 추가해야 할 듯
                 showElement();
+            }
+        });
+    }
+    function display_image(item_Name){
+        document.getElementById("print_image").innerHTML = "";
+        var url = 'https://apis.data.go.kr/1471000/MdcinGrnIdntfcInfoService01/getMdcinGrnIdntfcInfoList01?serviceKey=';
+        var encode = 'It4VW1I%2FeYFyY90hWAukf0jEmkiYrWvpH3cgrsOPV2MhVoEgo94AV0FdBnockVJXuuIoDNiCz6RjOECoMjE8sQ%3D%3D';
+        var itemName = item_Name;
+        var pageNo = "1", numOfRows = "1", type = 'xml';
+        url = url + encode + "&item_name=" + itemName + "&pageNo=" + pageNo + "&numOfRows=" + numOfRows +  "&type=" + type;
+
+        // parsing
+        fetch(url).then(response => {
+            return response.text();
+        }).then(xmlString => {
+            const xmlDocument = new DOMParser().parseFromString(xmlString, "text/xml");
+            const items = xmlDocument.querySelectorAll("item");
+
+            for (const item of items) {
+                const item_image = item.querySelector("ITEM_IMAGE").textContent;
+
+                document.getElementById("print_image").innerHTML += `<img src=${item_image}>`;
             }
         });
     }
