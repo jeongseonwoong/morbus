@@ -166,5 +166,11 @@ public class MorbusController {
         }
         return "Symptom_record"; // 채팅 기록 후 페이지 리다이렉션
     }
+    @GetMapping("/recordList")
+    public String showRecords(Model model) {
+        List<SymptomRecord> records = symptomRecordService.getAllRecords();
+        model.addAttribute("records", records);
+        return "recordList"; // recordList.html로 렌더링
+    }
 }
 
