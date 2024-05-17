@@ -30,19 +30,13 @@ JDBC URL:jdbc:h2:~/test (최초 한번)
 
 # 의존성
 <h4>OS</h4>
-windows
+windows Mac Linux
 
 <h4>Library</h4>
-<ol>
-  <li>Spring Boot 3.2.5</li>
-  <ul>
-    <li>Spring Web</li>
-    <li>thymeleaf</li>
-  </ul>
-  <li>java 21.0.2</li>
-  <li>Node.js</li>
-</ol>
-<p><br></p>
+Spring Boot 3.2.5 (Spring Web thymeleaf) / java 21.0.2 / Node.js
+
+<h4>DB</h4>
+h2/ MySql
 
 # 실행 방법
 <ol>
