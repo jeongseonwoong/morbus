@@ -300,7 +300,7 @@
                 document.getElementById("print_intrc").innerHTML += "<BText>복용 간 금지 복용 물품</BText><br>" + intrcQesitm;
                 document.getElementById("print_se").innerHTML += "<BText>복용 부작용</BText><br>" + seQesitm;
                 // 만약 내용이 없다면 없다고 알리는 함수 추가해야 할 듯
-                showElement();
+                showDetails();
             }
         });
     }
@@ -336,7 +336,7 @@
     }
 
     // 요소를 보이게 하는 함수
-    function showElement() {
+    function showDetails() {
         var square = document.querySelector('.square');
         var SQCon = square.querySelector('.SQCon');
         var details = SQCon.querySelector('details');
