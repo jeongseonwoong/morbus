@@ -1,6 +1,6 @@
 package OpenSourceProject.morbus.repository;
 
-import OpenSourceProject.VOclass.Member;
+import OpenSourceProject.morbus.VOclass.Member;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

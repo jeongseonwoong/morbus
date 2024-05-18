@@ -1,10 +1,7 @@
 package OpenSourceProject.morbus.algorithm;
 
-import OpenSourceProject.VOclass.Member;
+import OpenSourceProject.morbus.VOclass.Member;
 import OpenSourceProject.morbus.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +36,7 @@ public class MemberSetting {
     }
 
 
-    public Optional<Member> findOne(Long id) {
-        return memberRepository.findById(id);
+    public Optional<Member> findName(String password) {
+        return memberRepository.findByName(password);
     }
 }
