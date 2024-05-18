@@ -1,4 +1,4 @@
-package OpenSourceProject.VOclass;
+package OpenSourceProject.morbus.VOclass;
 
 public class Disease {
 

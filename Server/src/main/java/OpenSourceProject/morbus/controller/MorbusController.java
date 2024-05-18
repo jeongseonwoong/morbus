@@ -1,8 +1,8 @@
 package OpenSourceProject.morbus.controller;
 
-import OpenSourceProject.VOclass.Disease;
-import OpenSourceProject.VOclass.Symptom;
-import OpenSourceProject.VOclass.SymptomDiseasePair;
+import OpenSourceProject.morbus.VOclass.Disease;
+import OpenSourceProject.morbus.VOclass.Symptom;
+import OpenSourceProject.morbus.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.DiseaseSetting;
 import OpenSourceProject.morbus.repository.IntersectionDiseaseRepository;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
