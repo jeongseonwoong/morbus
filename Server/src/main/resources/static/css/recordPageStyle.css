@@ -37,6 +37,10 @@ img {
     padding: 7px 15px;
     border-radius: 5px;
     background-color: darkgrey;
+    cursor: pointer;
+}
+.chat-input button:hover {
+    background-color: dimgray;
 }
 .square2 {
     width: 950px;
