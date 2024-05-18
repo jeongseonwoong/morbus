@@ -164,7 +164,7 @@ public class MorbusController {
         if (!message.trim().isEmpty()) {
             symptomRecordService.saveSymptom(message.trim());
         }
-        return "Symptom_record"; // 채팅 기록 후 페이지 리다이렉션
+        return "redirect:/recordList"; // 채팅 기록 후 페이지 리다이렉션
     }
     @GetMapping("/recordList")
     public String showRecords(Model model) {
