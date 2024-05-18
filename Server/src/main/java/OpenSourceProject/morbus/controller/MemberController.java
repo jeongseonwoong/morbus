@@ -31,10 +31,11 @@ public class MemberController {
     }
 
     @PostMapping("login")
-    public String Login(@RequestParam (value = "password")String password){
+    public String Login(@RequestParam (value = "password")String password, Model model){
         if(memberSetting.findName(password).isPresent())
         {
             System.out.println(memberSetting.findName(password).get().getName());
+            model.addAttribute("member", memberSetting.findName(password).get().getName());
         }
         return "../static/morbus";
     }

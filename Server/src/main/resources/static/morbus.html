@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>MORBUS</title>
@@ -11,15 +11,15 @@
 <body>
 <header>
     <div class="HTCon">
-        <div class="loginButton">
-            <a href="/login">
-                로그인
-            </a>
+        <div class="loginButton" th:if="${member}==null">
+            <a href="/login">로그인</a>
             <div>|</div>
-            <a href="/signUp">
-                회원가입
-            </a>
+            <a href="/signUp">회원가입</a>
         </div>
+        <div class="loginButton" th:unless="${member}==null">
+            <span th:text="${member}"></span><span>님 안녕하세요!</span>
+        </div>
+
     </div>
     <div class="HCon"></div>
     <div id="Hmain"><a href="morbus.html"><img src="사진\MORBUS.png"></a></div>
