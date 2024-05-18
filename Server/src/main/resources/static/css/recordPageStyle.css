@@ -33,6 +33,11 @@ img {
     flex: 1;
     padding: 10px; /* 적절한 패딩 추가 */
 }
+.chat-input button {
+    padding: 7px 15px;
+    border-radius: 5px;
+    background-color: darkgrey;
+}
 .square2 {
     width: 950px;
     height: 550px;
