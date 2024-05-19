@@ -5,6 +5,9 @@
     <title>Symptom Records</title>
 </head>
 <body>
+<form name ="symptom_record_logo">
+    <div><a href ="/morbus.html"><img src="사진\MORBUS.png"></a></div>
+</form>
 <table border="1">
     <thead>
     <tr>
@@ -17,8 +20,7 @@
         <td th:text="${record.timestamp}"></td>
         <td th:text="${record.symptom}"></td>
     </tr>
-    </tbody>
 </table>
-
+<button type="button" onclick="location.href='Symptom_record' ">증상 입력</button>
 </body>
 </html>

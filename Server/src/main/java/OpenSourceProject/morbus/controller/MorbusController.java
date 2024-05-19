@@ -19,7 +19,6 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.*;
 
-
 @Controller
 public class MorbusController {
 
