@@ -32,19 +32,10 @@
 <form name ="symptom_record_logo">
     <div><a href ="/morbus.html"><img src="사진\MORBUS.png"></a></div>
 </form>
-<table border="1">
-    <thead>
-    <tr>
-        <th>Timestamp</th>
-        <th>Symptom</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="record : ${records}">
-        <td th:text="${record.timestamp}"></td>
-        <td th:text="${record.symptom}"></td>
-    </tr>
-</table>
+<div class="square" th:each="record : ${records}">
+    <div class="square2" id="square2">
+    </div>
+</div>
 <button type="button" onclick="location.href='Symptom_record' ">증상 입력</button>
 </body>
 </html>
