@@ -19,7 +19,7 @@
             border-radius: 10px;
         }
         .square2 {
-            width: 950px;
+            width: 980px;
             height: 590px;
             display: block;
             margin: 0 auto;
@@ -28,12 +28,16 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color: #e4e4e4">
 <form name ="symptom_record_logo">
     <div><a href ="/morbus.html"><img src="사진\MORBUS.png"></a></div>
 </form>
-<div class="square" th:each="record : ${records}">
-    <div class="square2" id="square2">
+<div class="square">
+    <div class="square2">
+        <div th:each="record : ${records}">
+            <span th:text="${record.timestamp}"></span>
+            <span th:text="${record.symptom}"></span>
+        </div>
     </div>
 </div>
 <button type="button" onclick="location.href='Symptom_record' ">증상 입력</button>
