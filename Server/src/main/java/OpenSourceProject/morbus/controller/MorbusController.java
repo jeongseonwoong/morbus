@@ -1,11 +1,13 @@
 package OpenSourceProject.morbus.controller;
 
 import OpenSourceProject.morbus.VOclass.Disease;
+import OpenSourceProject.morbus.VOclass.MyState;
 import OpenSourceProject.morbus.VOclass.Symptom;
 import OpenSourceProject.morbus.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.DiseaseSetting;
 import OpenSourceProject.morbus.repository.IntersectionDiseaseRepository;
 import OpenSourceProject.morbus.algorithm.SymptomSetting;
+import jakarta.servlet.http.HttpSession;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,11 +25,11 @@ public class MorbusController {
     private final HashMap<String, Symptom> findSym;//증상 Hash Map(검색 시 사용)
     private final ArrayList<Disease>diseaseArrayList;
     private final HashMap<String, Disease> findDise;
+    private final MyState mystate;
 
     //생성자 내에서 증상 배열 초기화
     @Autowired
-    MorbusController(SymptomSetting symptomSetting,DiseaseSetting diseaseSetting) throws Exception {
-
+    MorbusController(SymptomSetting symptomSetting, DiseaseSetting diseaseSetting, MemberController memberController, MyState mystate) throws Exception {
         findSym = new HashMap<>();
         findDise=new HashMap<>();
         symptomArrayList = symptomSetting.setSymptom();
@@ -41,17 +43,20 @@ public class MorbusController {
         {
             findDise.put(disease.getName(),disease);
         }
+        this.mystate = mystate;
     }
 
 
     @GetMapping("/")
-    public String mainPage(Model model) {
+    public String mainPage() {
+
         return "../static/morbus";
     }
 
     @GetMapping("morbus") //홈페이지 로고 클릭시 메인 홈페이지로 이동하는 컨트롤러
-    public String toMainPage()
+    public String toMainPage(Model model, HttpSession session)
     {
+        model.addAttribute("member", session.getAttribute("member"));
         return "morbus";
     }
 

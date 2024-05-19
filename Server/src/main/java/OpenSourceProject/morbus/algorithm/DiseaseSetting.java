@@ -14,32 +14,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 @Service
-public class DiseaseSetting implements Setting {
-
-    @Override
-    public Object JsonSetting() throws IOException, ParseException {
-        JSONParser parser = new JSONParser();
-        ClassPathResource resource = new ClassPathResource("static/data/DiseaseList.json");
-        BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream()));
-        String s = "";
-        StringBuilder sb = new StringBuilder();
-        while((s = br.readLine()) != null){
-            sb.append(s);
-        }
-        ObjectMapper om = new ObjectMapper();
-        JsonNode jsonNode = om.readTree(sb.toString());
-        return parser.parse(sb.toString());
-    }
-
-    @Override
-    public ArrayList<String> toArr(JSONArray jsonArray) {
-        ArrayList<String> list= new ArrayList<>();
-        if(jsonArray!=null)
-        {
-            jsonArray.stream().forEach(o -> list.add((String) o));
-        }
-        return list;
-    }
+public class DiseaseSetting extends Setting {
 
     public @ResponseBody ArrayList<Disease> strToDisease(ArrayList<String> relatedCondition ) throws Exception {
         ArrayList<Disease> diseaseArrayList = new ArrayList<>();

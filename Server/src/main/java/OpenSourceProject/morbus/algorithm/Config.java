@@ -1,5 +1,6 @@
 package OpenSourceProject.morbus.algorithm;
 
+import OpenSourceProject.morbus.VOclass.MyState;
 import OpenSourceProject.morbus.repository.JdbcTemplateMemberRepository;
 import OpenSourceProject.morbus.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,11 @@ public class Config {
     @Bean
     public MemberRepository memberRepository() {
         return new JdbcTemplateMemberRepository(dataSource);
+    }
+
+    @Bean
+    public MyState mystate()
+    {
+        return new MyState();
     }
 }
