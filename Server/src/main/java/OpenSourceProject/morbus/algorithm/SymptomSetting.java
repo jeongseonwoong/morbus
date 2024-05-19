@@ -1,6 +1,6 @@
 package OpenSourceProject.morbus.algorithm;
-import OpenSourceProject.VOclass.Disease;
-import OpenSourceProject.VOclass.Symptom;
+import OpenSourceProject.morbus.VOclass.Disease;
+import OpenSourceProject.morbus.VOclass.Symptom;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;

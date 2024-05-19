@@ -1,6 +1,6 @@
 package OpenSourceProject.morbus.algorithm;
 
-import OpenSourceProject.VOclass.Disease;
+import OpenSourceProject.morbus.VOclass.Disease;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

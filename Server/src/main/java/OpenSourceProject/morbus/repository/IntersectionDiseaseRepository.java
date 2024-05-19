@@ -1,6 +1,6 @@
 package OpenSourceProject.morbus.repository;
 
-import OpenSourceProject.VOclass.Disease;
+import OpenSourceProject.morbus.VOclass.Disease;
 
 import java.util.*;
 

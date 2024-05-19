@@ -1,6 +1,5 @@
 package OpenSourceProject.morbus.algorithm;
-import OpenSourceProject.VOclass.Disease;
-import OpenSourceProject.VOclass.Symptom;
+import OpenSourceProject.morbus.VOclass.Disease;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 public class DiseaseSetting implements Setting {
