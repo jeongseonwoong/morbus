@@ -1,6 +1,7 @@
 package OpenSourceProject.morbus.algorithm;
 import OpenSourceProject.morbus.VOclass.Disease;
 import OpenSourceProject.morbus.VOclass.Symptom;
+import OpenSourceProject.morbus.repository.DiseaseRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -17,8 +18,15 @@ import java.util.*;
 @Service
 public class SymptomSetting extends Setting {
 
+    private final DiseaseSetting diseaseSetting;
+
+    public SymptomSetting(DiseaseSetting diseaseSetting) {
+        this.diseaseSetting = diseaseSetting;
+    }
+
+
     public @ResponseBody ArrayList<Symptom> setSymptom() throws Exception {
-        Object obj = JsonSetting();
+        Object obj = JsonSetting("static/data/SymptomList.json");
         JSONArray dateArray = (JSONArray) obj ;
         ArrayList<Symptom> symptomArrayList = new ArrayList<>();
         for (Object o : dateArray) {
@@ -33,12 +41,12 @@ public class SymptomSetting extends Setting {
             ArrayList<String> keyWordsArr = toArr(keyWords);
             ArrayList<String> list = toArr(relatedConditions);
 
+
             //제이슨 파일로부터 질병 값 가져오기
-            DiseaseSetting diseaseSetting =new DiseaseSetting();
             ArrayList<Disease> diseaseArrayList = diseaseSetting.strToDisease(list);
-
+            diseaseArrayList.stream().forEach(disease -> {
+            });
             //가져온 값을 코드에 맞게 변환
-
 
             //증상에 값 추가하고 배열에 증상 추가
             Symptom symptom = new Symptom();
