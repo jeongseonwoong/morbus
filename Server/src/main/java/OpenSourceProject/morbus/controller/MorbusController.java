@@ -1,7 +1,6 @@
 package OpenSourceProject.morbus.controller;
 
 import OpenSourceProject.morbus.VOclass.Disease;
-import OpenSourceProject.morbus.VOclass.MyState;
 import OpenSourceProject.morbus.VOclass.Symptom;
 import OpenSourceProject.morbus.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.DiseaseSetting;
@@ -25,11 +24,12 @@ public class MorbusController {
     private final HashMap<String, Symptom> findSym;//증상 Hash Map(검색 시 사용)
     private final ArrayList<Disease>diseaseArrayList;
     private final HashMap<String, Disease> findDise;
-    private final MyState mystate;
+    private final HttpSession session;
 
     //생성자 내에서 증상 배열 초기화
     @Autowired
-    MorbusController(SymptomSetting symptomSetting, DiseaseSetting diseaseSetting, MemberController memberController, MyState mystate) throws Exception {
+    MorbusController(SymptomSetting symptomSetting, DiseaseSetting diseaseSetting, HttpSession session) throws Exception {
+        this.session = session;
         findSym = new HashMap<>();
         findDise=new HashMap<>();
         symptomArrayList = symptomSetting.setSymptom();
@@ -43,7 +43,6 @@ public class MorbusController {
         {
             findDise.put(disease.getName(),disease);
         }
-        this.mystate = mystate;
     }
 
 
@@ -53,11 +52,13 @@ public class MorbusController {
         return "../static/morbus";
     }
 
-    @GetMapping("morbus") //홈페이지 로고 클릭시 메인 홈페이지로 이동하는 컨트롤러
-    public String toMainPage(Model model, HttpSession session)
+    @GetMapping("morbus.html") //홈페이지 로고 클릭시 메인 홈페이지로 이동하는 컨트롤러
+    public String toMainPage(Model model,HttpSession session)
     {
         model.addAttribute("member", session.getAttribute("member"));
-        return "morbus";
+        System.out.println(session.getAttribute("member"));
+        System.out.println("abc");
+        return "../static/morbus";
     }
 
 
