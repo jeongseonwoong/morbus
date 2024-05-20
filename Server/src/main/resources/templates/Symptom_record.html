@@ -14,10 +14,15 @@
         <div class="square">
             <div class="square2"></div>
             <div th:each="record : ${records}">
+                [
                 <span th:text ="${record.timestamp.getMonthValue()}+월"></span>
                 <span th:text ="${record.timestamp.getDayOfMonth()}+일"></span>
                 <span th:text="${record.timestamp.getHour()}"></span>
+                :
                 <span th:text="${record.timestamp.getMinute()}"></span>
+                :
+                <span th:text="${record.timestamp.getSecond()}"></span>
+                ]
                 <span th:text="${record.timestamp.getSecond()}"></span>
             </div>
             <div class="chat-input">
