@@ -12,18 +12,19 @@
     </form>
     <form action="/Symptom_record" method="post">
         <div class="square">
-            <div class="square2"></div>
-            <div th:each="record : ${records}">
-                [
-                <span th:text ="${record.timestamp.getMonthValue()}+월"></span>
-                <span th:text ="${record.timestamp.getDayOfMonth()}+일"></span>
-                <span th:text="${record.timestamp.getHour()}"></span>
-                :
-                <span th:text="${record.timestamp.getMinute()}"></span>
-                :
-                <span th:text="${record.timestamp.getSecond()}"></span>
-                ]
-                <span th:text="${record.timestamp.getSecond()}"></span>
+            <div class="square2">
+                <div th:each="record : ${records}">
+                    [
+                    <span th:text ="${record.timestamp.getMonthValue()}+월"></span>
+                    <span th:text ="${record.timestamp.getDayOfMonth()}+일"></span>
+                    <span th:text="${record.timestamp.getHour()}"></span>
+                    :
+                    <span th:text="${record.timestamp.getMinute()}"></span>
+                    :
+                    <span th:text="${record.timestamp.getSecond()}"></span>
+                    ]
+                    <span th:text="${record.symptom}"></span>
+                </div>
             </div>
             <div class="chat-input">
                 <input type="text" name="message" placeholder="증상을 입력하세요...">
