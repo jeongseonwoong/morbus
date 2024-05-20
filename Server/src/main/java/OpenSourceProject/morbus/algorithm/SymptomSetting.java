@@ -15,35 +15,7 @@ import java.io.*;
 import java.util.*;
 
 @Service
-public class SymptomSetting implements Setting {
-
-    @Override
-    public Object JsonSetting() throws IOException, ParseException {
-        JSONParser parser = new JSONParser();
-        ClassPathResource resource = new ClassPathResource("static/data/SymptomList.json");
-        BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream()));
-        String s = "";
-        StringBuilder sb = new StringBuilder();
-        while((s = br.readLine()) != null){
-            sb.append(s);
-        }
-        ObjectMapper om = new ObjectMapper();
-        JsonNode jsonNode = om.readTree(sb.toString());
-        return parser.parse(sb.toString());
-    }
-
-    @Override
-    public ArrayList<String> toArr(JSONArray jsonArray) {
-        ArrayList<String> list= new ArrayList<>();
-        if(jsonArray!=null)
-        {
-            for (Object o : jsonArray) {
-                list.add((String) o);
-            }
-        }
-        return list;
-    }
-
+public class SymptomSetting extends Setting {
 
     public @ResponseBody ArrayList<Symptom> setSymptom() throws Exception {
         Object obj = JsonSetting();
