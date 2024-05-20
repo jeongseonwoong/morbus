@@ -10,40 +10,27 @@
     <form name ="symptom_record_logo">
         <div><a href ="/morbus.html"><img src="사진\MORBUS.png"></a></div>
     </form>
-
+    <form action="/Symptom_record" method="post">
         <div class="square">
-            <div class="square2" id="square2"></div>
-            <input type="text" class="chat-input" id="user-input" placeholder="증상을 입력하세요...">
+            <div class="square2">
+                <div th:each="record : ${records}">
+                    [
+                    <span th:text ="${record.timestamp.getMonthValue()}+월"></span>
+                    <span th:text ="${record.timestamp.getDayOfMonth()}+일"></span>
+                    <span th:text="${record.timestamp.getHour()}"></span>
+                    :
+                    <span th:text="${record.timestamp.getMinute()}"></span>
+                    :
+                    <span th:text="${record.timestamp.getSecond()}"></span>
+                    ]
+                    <span th:text="${record.symptom}"></span>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" name="message" placeholder="증상을 입력하세요...">
+                <button type="submit">전송</button>
+            </div>
         </div>
-    <script>
-        function sendMessage() {
-            var userInput = document.getElementById("user-input");
-            var message = userInput.value;
-
-            if (message.trim() !== "") {
-                var chatMessages = document.getElementById("square2");
-                var chatMessage = document.createElement("div");
-
-                var timeStamp = new Date().toLocaleTimeString('en-US',{
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                });
-
-                chatMessage.textContent = '[' + timeStamp + ']' + message;
-
-                chatMessages.appendChild(chatMessage);
-
-                userInput.value = "";
-
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-        }
-        document.getElementById("user-input").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                sendMessage();
-            }
-        });
-    </script>
+    </form>
     </body>
 </html>

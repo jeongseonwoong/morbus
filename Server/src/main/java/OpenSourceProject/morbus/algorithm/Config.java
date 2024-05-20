@@ -8,8 +8,11 @@ import OpenSourceProject.morbus.repository.MemoryDiseaseRepository;
 import jakarta.servlet.http.HttpSession;
 import org.json.simple.parser.ParseException;
 import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -31,6 +34,7 @@ public class Config {
         return new MemberSetting(memberRepository());
     }
 
+    @Primary
     @Bean
     public MemberRepository memberRepository() {
         return new JdbcTemplateMemberRepository(dataSource);
