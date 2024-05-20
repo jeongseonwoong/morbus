@@ -77,12 +77,6 @@ public class MorbusController {
         return "MedicineInfo";
     }
 
-    @GetMapping("Symptom_record")//메인 홈페이지에서 증상 기록지 페이지로 넘어가는 컨트롤러
-    public String symptom_record(Model model,Model model2) throws IOException, ParseException {
-        //data processing
-
-        return "Symptom_record";
-    }
 
 
     @PostMapping("RelateDisease")//관련된 질병들을 표시해주는 페이지로 넘어가는 컨트롤러
@@ -172,13 +166,13 @@ public class MorbusController {
         if (!message.trim().isEmpty()) {
             symptomRecordService.saveSymptom(message.trim());
         }
-        return "redirect:/recordList"; // 채팅 기록 후 페이지 리다이렉션
+        return "redirect:/Symptom_record"; // 채팅 기록 후 페이지 리다이렉션
     }
-    @GetMapping("/recordList")
+    @GetMapping("/Symptom_record")
     public String showRecords(Model model) {
         List<SymptomRecord> records = symptomRecordService.getAllRecords();
         model.addAttribute("records", records);
-        return "recordList"; // recordList.html로 렌더링
+        return "Symptom_record"; // recordList.html로 렌더링
     }
 }
 
