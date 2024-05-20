@@ -11,11 +11,11 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.*;
 import java.util.ArrayList;
 
-abstract class Setting {
-    Object JsonSetting() throws IOException, ParseException
+public abstract class Setting {
+    protected Object JsonSetting(String path) throws IOException, ParseException
     {
         JSONParser parser = new JSONParser();
-        ClassPathResource resource = new ClassPathResource("static/data/SymptomList.json");
+        ClassPathResource resource = new ClassPathResource(path);
         BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream()));
         String s = "";
         StringBuilder sb = new StringBuilder();

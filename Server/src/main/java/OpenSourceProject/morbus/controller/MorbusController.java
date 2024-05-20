@@ -25,26 +25,19 @@ public class MorbusController {
 
     private final ArrayList<Symptom>symptomArrayList;//증상 배열
     private final HashMap<String, Symptom> findSym;//증상 Hash Map(검색 시 사용)
-    private final ArrayList<Disease>diseaseArrayList;
-    private final HashMap<String, Disease> findDise;
-    private final HttpSession session;
+    private final DiseaseSetting diseaseSetting;
 
     //생성자 내에서 증상 배열 초기화
     @Autowired
-    MorbusController(SymptomSetting symptomSetting, DiseaseSetting diseaseSetting, HttpSession session) throws Exception {
-        this.session = session;
+    MorbusController(HttpSession session, DiseaseSetting diseaseSetting) throws Exception {
+        this.diseaseSetting = diseaseSetting;
+        SymptomSetting symptomSetting= new SymptomSetting(diseaseSetting);
         findSym = new HashMap<>();
-        findDise=new HashMap<>();
+
         symptomArrayList = symptomSetting.setSymptom();
         for(Symptom symptom:symptomArrayList)
         {
             findSym.put(symptom.getName(),symptom);
-        }
-
-        diseaseArrayList=diseaseSetting.setDisease();
-        for(Disease disease: diseaseArrayList)
-        {
-            findDise.put(disease.getName(),disease);
         }
     }
 
@@ -59,8 +52,6 @@ public class MorbusController {
     public String toMainPage(Model model,HttpSession session)
     {
         model.addAttribute("member", session.getAttribute("member"));
-        System.out.println(session.getAttribute("member"));
-        System.out.println("abc");
         return "../static/morbus";
     }
 
@@ -95,6 +86,9 @@ public class MorbusController {
             //증상과 관련된 질병 리스트를 가져온다.
             ArrayList<Disease> relateDisease= foundSymptom.getReDisease();
 
+            foundSymptom.getReDisease().stream().forEach(disease -> {
+            });
+
             //중복되는 질병들을 알기 위해서 중복 저장소에 넣어준다.
             for(Disease disease: relateDisease)
             {
@@ -113,7 +107,7 @@ public class MorbusController {
         Map<Disease, Integer> duplicatedDisease2= new HashMap<>();
         for(Map.Entry<String, Integer> map: duplicatedDisease)
         {
-            Disease disease = findDise.get(map.getKey());
+            Disease disease = diseaseSetting.findByName(map.getKey()).get();
             duplicatedDisease2.put(disease,map.getValue());
         }
         model.addAttribute("ReDisease",diseaseList);
@@ -150,9 +144,9 @@ public class MorbusController {
     public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
     {
         model.addAttribute("diseaseName",diseaseName);
-        if(findDise.containsKey(diseaseName))
+        if(diseaseSetting.findByName(diseaseName).isPresent())
         {
-            Disease disease = findDise.get(diseaseName);
+            Disease disease = diseaseSetting.findByName(diseaseName).get();
             model2.addAttribute("disease",disease);
         }
         return "diseaseInfo";

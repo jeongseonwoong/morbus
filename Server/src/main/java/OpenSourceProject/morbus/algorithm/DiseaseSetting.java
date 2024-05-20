@@ -1,5 +1,7 @@
 package OpenSourceProject.morbus.algorithm;
 import OpenSourceProject.morbus.VOclass.Disease;
+import OpenSourceProject.morbus.VOclass.Member;
+import OpenSourceProject.morbus.repository.DiseaseRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -12,54 +14,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-@Service
 public class DiseaseSetting extends Setting {
 
-    public @ResponseBody ArrayList<Disease> strToDisease(ArrayList<String> relatedCondition ) throws Exception {
+    private final DiseaseRepository diseaseRepository;
+
+    public DiseaseSetting(DiseaseRepository diseaseRepository) {
+        this.diseaseRepository = diseaseRepository;
+    }
+
+    public @ResponseBody ArrayList<Disease> strToDisease(ArrayList<String> relatedDisease ) throws Exception {
         ArrayList<Disease> diseaseArrayList = new ArrayList<>();
-        Object obj = JsonSetting();
 
-        JSONArray dateArray = (JSONArray) obj;
-        dateArray.stream().forEach(a -> {
-            JSONObject ele = (JSONObject) a;
-
-            //제이슨 파일로부터 값 가져오기
-            String DiseaseName= (String) ele.get("name");
-            relatedCondition.forEach(str->{
-                if(DiseaseName.equals(str))
-                {
-                    String hospital= (String) ele.get("hospital");
-                    String selfTreatment= (String) ele.get("self_treatment");
-                    String briefInfo= (String) ele.get("brief-explanation");
-                    String detailInfo= (String) ele.get("detail-explanation");
-                    Disease disease = new Disease(DiseaseName,hospital,selfTreatment,briefInfo,detailInfo);
-                    diseaseArrayList.add(disease);
-                }
-            });
-        });
+        for(String disease : relatedDisease) {
+            if(diseaseRepository.findByName(disease).isPresent()) {
+                diseaseArrayList.add(diseaseRepository.findByName(disease).get());
+            }
+        }
         return diseaseArrayList;
     }
 
-    public ArrayList<Disease> setDisease() throws IOException, ParseException {
-        ArrayList<Disease> diseaseArrayList = new ArrayList<>();
-        Object obj = JsonSetting();
-        JSONArray dateArray = (JSONArray) obj ;
-        dateArray.stream().forEach(o -> {
-            JSONObject ele = (JSONObject) o;
 
-            //제이슨 파일로부터 값 가져오기
-            String DiseaseName= (String) ele.get("name");
-            String hospital=(String) ele.get("hospital");
-            String selfTreatment=(String) ele.get("self_treatment");
-            String briefInfo= (String) ele.get("brief-explanation");
-            String detailInfo= (String) ele.get("detail-explanation");
-            Disease disease =new Disease(DiseaseName,hospital,selfTreatment,briefInfo,detailInfo);
-            diseaseArrayList.add(disease);
-        });
-        return diseaseArrayList;
+    public List<Disease> findDisease()
+    {
+        return diseaseRepository.findAll();
     }
 
+    public Optional<Disease> findByName(String disease){return diseaseRepository.findByName(disease);}
 
 
 }
