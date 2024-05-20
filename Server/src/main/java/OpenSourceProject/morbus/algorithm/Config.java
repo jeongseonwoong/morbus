@@ -2,9 +2,11 @@ package OpenSourceProject.morbus.algorithm;
 
 import OpenSourceProject.morbus.repository.JdbcTemplateMemberRepository;
 import OpenSourceProject.morbus.repository.MemberRepository;
+import jakarta.persistence.SecondaryTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 
@@ -25,6 +27,7 @@ public class Config {
         return new MemberSetting(memberRepository());
     }
 
+    @Primary
     @Bean
     public MemberRepository memberRepository() {
         return new JdbcTemplateMemberRepository(dataSource);
