@@ -13,9 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import OpenSourceProject.morbus.algorithm.SymptomRecord;
+import OpenSourceProject.morbus.algorithm.SymptomRecordService;
+import org.json.simple.parser.ParseException;
+
 import java.io.IOException;
 import java.util.*;
-
 
 @Controller
 public class MorbusController {
@@ -161,6 +164,21 @@ public class MorbusController {
         return "diseaseInfo";
     }
 
+    @Autowired
+    private SymptomRecordService symptomRecordService;
 
+    @PostMapping("/Symptom_record")
+    public String recordSymptom(@RequestParam("message") String message) {
+        if (!message.trim().isEmpty()) {
+            symptomRecordService.saveSymptom(message.trim());
+        }
+        return "redirect:/recordList"; // 채팅 기록 후 페이지 리다이렉션
+    }
+    @GetMapping("/recordList")
+    public String showRecords(Model model) {
+        List<SymptomRecord> records = symptomRecordService.getAllRecords();
+        model.addAttribute("records", records);
+        return "recordList"; // recordList.html로 렌더링
+    }
 }
 
