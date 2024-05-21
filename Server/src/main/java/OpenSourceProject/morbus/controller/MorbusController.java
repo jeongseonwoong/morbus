@@ -162,6 +162,7 @@ public class MorbusController {
         }
         return "redirect:/Symptom_record"; // 채팅 기록 후 페이지 리다이렉션
     }
+
     @GetMapping("/Symptom_record")
     public String showRecords(Model model) {
         List<SymptomRecord> records = symptomRecordService.getAllRecords();
