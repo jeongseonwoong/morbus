@@ -12,6 +12,7 @@
     </form>
     <form action="/Symptom_record" method="post">
         <div class="square">
+            <div class="square_line"></div>
             <div class="square2">
                 <div th:each="record : ${records}">
                     [
@@ -24,6 +25,7 @@
                     <span th:text="${record.timestamp.getSecond()}"></span>
                     ]
                     <span th:text="${record.symptom}"></span>
+                    <hr />
                 </div>
             </div>
             <div class="chat-input">

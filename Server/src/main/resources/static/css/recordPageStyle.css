@@ -5,7 +5,7 @@ img {
     margin: 0 auto;
 }
 .square {
-    background-color: #ffffff;
+    background-color: #FEF4AC;
     width: 1000px;
     height: 600px;
     display: block;
@@ -13,6 +13,7 @@ img {
     border-radius: 10px;
 }
 .chat-input {
+    background-color: #ffffff;
     width: 950px;
     height: 30px;
     padding: 5px;
@@ -43,10 +44,11 @@ img {
     background-color: dimgray;
 }
 .square2 {
-    width: 950px;
+    width: 970px;
     height: 550px;
     display: block;
     margin: 0 auto;
     word-break:break-all;
     overflow-y: auto;
+    z-index: 2;
 }
