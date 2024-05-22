@@ -23,22 +23,14 @@ import java.util.*;
 @Controller
 public class MorbusController {
 
-    private final ArrayList<Symptom>symptomArrayList;//증상 배열
-    private final HashMap<String, Symptom> findSym;//증상 Hash Map(검색 시 사용)
     private final DiseaseSetting diseaseSetting;
+    private final SymptomSetting symptomsetting;
 
     //생성자 내에서 증상 배열 초기화
     @Autowired
-    MorbusController(HttpSession session, DiseaseSetting diseaseSetting) throws Exception {
+    MorbusController(HttpSession session, DiseaseSetting diseaseSetting, SymptomSetting symptomsetting) throws Exception {
         this.diseaseSetting = diseaseSetting;
-        SymptomSetting symptomSetting= new SymptomSetting(diseaseSetting);
-        findSym = new HashMap<>();
-
-        symptomArrayList = symptomSetting.setSymptom();
-        for(Symptom symptom:symptomArrayList)
-        {
-            findSym.put(symptom.getName(),symptom);
-        }
+        this.symptomsetting = symptomsetting;
     }
 
 
@@ -59,7 +51,7 @@ public class MorbusController {
 
     @GetMapping("Symptom") // 메인 홈페이지에서 질병자가진단 페이지로 넘어가는 컨트롤러
     public String Symptom(Model model2){
-        model2.addAttribute("SymList",symptomArrayList);
+        model2.addAttribute("SymList",symptomsetting.findAllSymptom());
         return "selectSymptom";
     }
 
@@ -82,18 +74,14 @@ public class MorbusController {
         for(String str : symName)
         {
             //증상
-            Symptom foundSymptom = findSym.get(str);
-            //증상과 관련된 질병 리스트를 가져온다.
-            ArrayList<Disease> relateDisease= foundSymptom.getReDisease();
-
-            foundSymptom.getReDisease().stream().forEach(disease -> {
-            });
+            ArrayList<Disease> relateDisease = new ArrayList<>();
+            if(symptomsetting.findSymptomByName(str).isPresent())
+            {
+                 relateDisease.addAll(symptomsetting.findSymptomByName(str).get().getReDisease());
+            }
 
             //중복되는 질병들을 알기 위해서 중복 저장소에 넣어준다.
-            for(Disease disease: relateDisease)
-            {
-                intersectionDisease.addDisease(disease);
-            }
+            relateDisease.forEach(intersectionDisease::addDisease);
 
             //증상의 이름과 증상과 관련된 질병 리스트를 묶어준다.
             SymptomDiseasePair symptomDiseasePair= new SymptomDiseasePair(str,relateDisease);
@@ -119,15 +107,15 @@ public class MorbusController {
     public String searchSym(@RequestParam(value="searchText") String searchText, Model model, Model model2)
     {
         //증상 Hash_Map 에서 입력받은 증상과 연관이 있는 질병 찾는 알고리즘
-        model2.addAttribute("SymList",symptomArrayList);
-        if(findSym.containsKey(searchText))
+        model2.addAttribute("SymList",symptomsetting.findAllSymptom());
+        if(symptomsetting.findSymptomByName(searchText).isPresent())
         {
             model.addAttribute("searchText",searchText);
             return "selectSymptom";
         }
         else
         {
-            for (Symptom symptom : symptomArrayList)
+            for (Symptom symptom : symptomsetting.findAllSymptom())
             {
                 if (symptom.keywords.contains(searchText))
                 {

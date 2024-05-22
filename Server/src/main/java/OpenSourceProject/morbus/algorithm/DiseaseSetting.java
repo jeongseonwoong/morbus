@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DiseaseSetting extends Setting {
+public class DiseaseSetting{
 
     private final DiseaseRepository diseaseRepository;
 
@@ -37,10 +37,7 @@ public class DiseaseSetting extends Setting {
     }
 
 
-    public List<Disease> findDisease()
-    {
-        return diseaseRepository.findAll();
-    }
+    public List<Disease> findDisease() {return diseaseRepository.findAll();}
 
     public Optional<Disease> findByName(String disease){return diseaseRepository.findByName(disease);}
 
