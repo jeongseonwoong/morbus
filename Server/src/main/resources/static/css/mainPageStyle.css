@@ -151,15 +151,16 @@ line {
 }
 connec {
     width: 100%;
-    height: 22.5%;
+    height: 21.5%;
     float: left;
-    background: #e4e4e4;
+    background: none;
 }
 footer {
     width: 100%;
     height: 20%;
     clear: both;
     background: #e4e4e4;
+    z-index: 1000;
 }
 footer .FCon {
     width: 100%;
