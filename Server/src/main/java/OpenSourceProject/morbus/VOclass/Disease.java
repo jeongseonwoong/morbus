@@ -9,9 +9,7 @@ public class Disease {
     private final String briefInfo;
     private final String description;
 
-
-
-    public Disease(String name, String hospital,String selfTreatment, String briefInfo, String description)
+    public Disease(String name, String hospital, String selfTreatment, String briefInfo, String description)
     {
        this.name = name;
        this.hospital = hospital;

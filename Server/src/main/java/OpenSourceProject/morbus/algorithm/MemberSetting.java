@@ -9,8 +9,6 @@ import java.util.Optional;
 public class MemberSetting {
     private final MemberRepository memberRepository;
 
-
-
     MemberSetting(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

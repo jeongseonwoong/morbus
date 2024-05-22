@@ -23,29 +23,14 @@ import java.util.*;
 @Controller
 public class MorbusController {
 
-    private final ArrayList<Symptom>symptomArrayList;//증상 배열
-    private final HashMap<String, Symptom> findSym;//증상 Hash Map(검색 시 사용)
-    private final ArrayList<Disease>diseaseArrayList;
-    private final HashMap<String, Disease> findDise;
-    private final HttpSession session;
+    private final DiseaseSetting diseaseSetting;
+    private final SymptomSetting symptomsetting;
 
     //생성자 내에서 증상 배열 초기화
     @Autowired
-    MorbusController(SymptomSetting symptomSetting, DiseaseSetting diseaseSetting, HttpSession session) throws Exception {
-        this.session = session;
-        findSym = new HashMap<>();
-        findDise=new HashMap<>();
-        symptomArrayList = symptomSetting.setSymptom();
-        for(Symptom symptom:symptomArrayList)
-        {
-            findSym.put(symptom.getName(),symptom);
-        }
-
-        diseaseArrayList=diseaseSetting.setDisease();
-        for(Disease disease: diseaseArrayList)
-        {
-            findDise.put(disease.getName(),disease);
-        }
+    MorbusController(HttpSession session, DiseaseSetting diseaseSetting, SymptomSetting symptomsetting) throws Exception {
+        this.diseaseSetting = diseaseSetting;
+        this.symptomsetting = symptomsetting;
     }
 
 
@@ -59,8 +44,6 @@ public class MorbusController {
     public String toMainPage(Model model,HttpSession session)
     {
         model.addAttribute("member", session.getAttribute("member"));
-        System.out.println(session.getAttribute("member"));
-        System.out.println("abc");
         return "../static/morbus";
     }
 
@@ -68,7 +51,7 @@ public class MorbusController {
 
     @GetMapping("Symptom") // 메인 홈페이지에서 질병자가진단 페이지로 넘어가는 컨트롤러
     public String Symptom(Model model2){
-        model2.addAttribute("SymList",symptomArrayList);
+        model2.addAttribute("SymList",symptomsetting.findAllSymptom());
         return "selectSymptom";
     }
 
@@ -77,12 +60,6 @@ public class MorbusController {
         return "MedicineInfo";
     }
 
-    @GetMapping("Symptom_record")//메인 홈페이지에서 증상 기록지 페이지로 넘어가는 컨트롤러
-    public String symptom_record(Model model,Model model2) throws IOException, ParseException {
-        //data processing
-
-        return "Symptom_record";
-    }
 
 
     @PostMapping("RelateDisease")//관련된 질병들을 표시해주는 페이지로 넘어가는 컨트롤러
@@ -97,15 +74,14 @@ public class MorbusController {
         for(String str : symName)
         {
             //증상
-            Symptom foundSymptom = findSym.get(str);
-            //증상과 관련된 질병 리스트를 가져온다.
-            ArrayList<Disease> relateDisease= foundSymptom.getReDisease();
+            ArrayList<Disease> relateDisease = new ArrayList<>();
+            if(symptomsetting.findSymptomByName(str).isPresent())
+            {
+                 relateDisease.addAll(symptomsetting.findSymptomByName(str).get().getReDisease());
+            }
 
             //중복되는 질병들을 알기 위해서 중복 저장소에 넣어준다.
-            for(Disease disease: relateDisease)
-            {
-                intersectionDisease.addDisease(disease);
-            }
+            relateDisease.forEach(intersectionDisease::addDisease);
 
             //증상의 이름과 증상과 관련된 질병 리스트를 묶어준다.
             SymptomDiseasePair symptomDiseasePair= new SymptomDiseasePair(str,relateDisease);
@@ -119,7 +95,7 @@ public class MorbusController {
         Map<Disease, Integer> duplicatedDisease2= new HashMap<>();
         for(Map.Entry<String, Integer> map: duplicatedDisease)
         {
-            Disease disease = findDise.get(map.getKey());
+            Disease disease = diseaseSetting.findByName(map.getKey()).get();
             duplicatedDisease2.put(disease,map.getValue());
         }
         model.addAttribute("ReDisease",diseaseList);
@@ -131,15 +107,15 @@ public class MorbusController {
     public String searchSym(@RequestParam(value="searchText") String searchText, Model model, Model model2)
     {
         //증상 Hash_Map 에서 입력받은 증상과 연관이 있는 질병 찾는 알고리즘
-        model2.addAttribute("SymList",symptomArrayList);
-        if(findSym.containsKey(searchText))
+        model2.addAttribute("SymList",symptomsetting.findAllSymptom());
+        if(symptomsetting.findSymptomByName(searchText).isPresent())
         {
             model.addAttribute("searchText",searchText);
             return "selectSymptom";
         }
         else
         {
-            for (Symptom symptom : symptomArrayList)
+            for (Symptom symptom : symptomsetting.findAllSymptom())
             {
                 if (symptom.keywords.contains(searchText))
                 {
@@ -156,9 +132,9 @@ public class MorbusController {
     public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
     {
         model.addAttribute("diseaseName",diseaseName);
-        if(findDise.containsKey(diseaseName))
+        if(diseaseSetting.findByName(diseaseName).isPresent())
         {
-            Disease disease = findDise.get(diseaseName);
+            Disease disease = diseaseSetting.findByName(diseaseName).get();
             model2.addAttribute("disease",disease);
         }
         return "diseaseInfo";
@@ -172,13 +148,14 @@ public class MorbusController {
         if (!message.trim().isEmpty()) {
             symptomRecordService.saveSymptom(message.trim());
         }
-        return "redirect:/recordList"; // 채팅 기록 후 페이지 리다이렉션
+        return "redirect:/Symptom_record"; // 채팅 기록 후 페이지 리다이렉션
     }
-    @GetMapping("/recordList")
+
+    @GetMapping("/Symptom_record")
     public String showRecords(Model model) {
         List<SymptomRecord> records = symptomRecordService.getAllRecords();
         model.addAttribute("records", records);
-        return "recordList"; // recordList.html로 렌더링
+        return "Symptom_record"; // recordList.html로 렌더링
     }
 }
 

@@ -1,4 +1,4 @@
-package OpenSourceProject.morbus.algorithm;
+package OpenSourceProject.morbus.repository;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -11,11 +11,11 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.*;
 import java.util.ArrayList;
 
-abstract class Setting {
-    Object JsonSetting() throws IOException, ParseException
+public abstract class RepositorySetting {
+    protected Object JsonSetting(String path) throws IOException, ParseException
     {
         JSONParser parser = new JSONParser();
-        ClassPathResource resource = new ClassPathResource("static/data/SymptomList.json");
+        ClassPathResource resource = new ClassPathResource(path);
         BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream()));
         String s = "";
         StringBuilder sb = new StringBuilder();
@@ -29,7 +29,7 @@ abstract class Setting {
 
 
 
-    ArrayList<String> toArr(JSONArray jsonArray)
+    protected ArrayList<String> toArr(JSONArray jsonArray)
     {
         ArrayList<String> list= new ArrayList<>();
         if(jsonArray!=null)
