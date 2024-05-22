@@ -1,3 +1,4 @@
+<!-- 홈페이지 참고 https://www.genexa.com/#maincontent-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,25 +11,23 @@
 </head>
 <body>
 <header>
-    <div class="HTCon">
-        <div class="loginButton" th:if="${member}==null">
-            <a href="/login">로그인</a>
-            <div>|</div>
-            <a href="/signUp">회원가입</a>
-        </div>
-        <div class="loginButton" th:if="${member}!=null">
-            <span th:text="${member}"></span><span>님 안녕하세요!</span>
-        </div>
-
-    </div>
     <div class="HCon"></div>
-    <div id="Hmain"><a href="morbus.html"><img src="사진\MORBUS.png"></a></div>
+    <div class="HTCon">
+        <a href="morbus.html"><img src="사진\MORBUS.png"></a>
+    </div>
+    <div class="navbar">
+        <div>
+            <a href="/Symptom">질병 자가 진단</a>
+            <a href="/Symptom_record">증상 기록지</a>
+            <a href="/MedicineInfo">약 정보 찾기</a>
+        </div>
+    </div>
     <div class="HCon"></div>
 </header>
 <div class="side-bar">
     <div class="icon">
         <div>▼</div>
-        <div>▶</div>
+        <div>◀</div>
     </div>
     <nav class="menu">
         <ul>
@@ -39,17 +38,20 @@
     </nav>
 </div>
 <section>
-    <div class="SCon"></div>
-    <div class="SMCon"><a href="/Symptom">질병 자가 진단</a></div>
-    <div class="Sline"></div>
-    <div class="SMCon"><a href="/Symptom_record">증상 기록지</a></div>
-    <div class="SCon"></div>
-    <div class="HFCon"></div>
+    <div class="SLCon">
+        <p>"당신의 건강을 위하여"<br>MORBUS가 함께 하겠습니다<br><button>
+            <a href="login" th:if="${member}==null">로그인</a><a href="signUp" th:if="${member}==null">|회원가입</a>
+            <div th:if="${member}!=null">
+                <span th:text="${member}"></span><span>님 안녕하세요!</span>
+            </div>
+        </button></p>
+    </div>
+    <div class="SRCon">
+        <div class="PCon"><img src="사진\메인사진4.jpg" width="400" height="280"></div>
+        <div class="PCon"><img src="사진\메인사진6.jpg" width="400" height="810"></div>
+        <div class="PCon"><img src="사진\메인사진5.jpg" width="400" height="500"></div>
+    </div>
 </section>
-<connec></connec>
-<footer>
-    <div class="FCon"><pre>정선웅<br><a href="https://github.com/jeongseonwoong">GitHub 프로필</a><br>조진우<br><a href="https://github.com/JJW1223">GitHub 프로필</a><br>양희창<br>@YangHeeChang<br><a href="/morbus.html">MORBUS</a></pre></div>
-</footer>
 </body>
 </html>
 
