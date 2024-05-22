@@ -24,7 +24,7 @@ class SymptomSettingTest {
         String symptomName="가래";
         Assertions.assertThat(symptomRepository.findByName(symptomName).get().getName()).isEqualTo(symptomName);
         Assertions.assertThat(symptomRepository.findByName(symptomName).get().getReDisease()).isNotNull();
-        
+
         symptomName="기침";
         Assertions.assertThat(symptomRepository.findByName(symptomName).get().getName()).isEqualTo(symptomName);
         Assertions.assertThat(symptomRepository.findByName(symptomName).get().getReDisease()).isNotNull();
