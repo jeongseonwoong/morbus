@@ -18,12 +18,12 @@
                     [
                     <span th:text ="${record.timestamp.getMonthValue()}+월"></span>
                     <span th:text ="${record.timestamp.getDayOfMonth()}+일"></span>
-                    <span th:text="${record.timestamp.getHour()}"></span>
+                    <span th:text="${#numbers.formatInteger(record.timestamp.getHour(), 2)}"></span>
                     :
-                    <span th:text="${record.timestamp.getMinute()}"></span>
+                    <span th:text="${#numbers.formatInteger(record.timestamp.getMinute(), 2)}"></span>
                     :
-                    <span th:text="${record.timestamp.getSecond()}"></span>
-                    ]
+                    <span th:text="${#numbers.formatInteger(record.timestamp.getSecond(), 2)}"></span>
+                    ]&nbsp;&nbsp;
                     <span th:text="${record.symptom}"></span>
                     <hr />
                 </div>

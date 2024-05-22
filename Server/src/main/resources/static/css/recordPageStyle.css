@@ -54,7 +54,7 @@ img {
 }
 .square_line{
     position: absolute;
-    margin-left: 190px;
+    margin-left: 195px;
     border: thin solid #D03E2C;
     height : 550px;
     z-index: 1;
