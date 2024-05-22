@@ -1,10 +1,7 @@
 package OpenSourceProject.morbus.algorithm;
 
-import OpenSourceProject.morbus.repository.DiseaseRepository;
-import OpenSourceProject.morbus.repository.JdbcTemplateMemberRepository;
-import OpenSourceProject.morbus.repository.MemberRepository;
+import OpenSourceProject.morbus.repository.*;
 
-import OpenSourceProject.morbus.repository.MemoryDiseaseRepository;
 import jakarta.servlet.http.HttpSession;
 import org.json.simple.parser.ParseException;
 import org.springframework.boot.web.servlet.server.Session;
@@ -46,4 +43,9 @@ public class Config {
     @Bean
     public DiseaseRepository diseaseRepository() throws IOException, ParseException {return new MemoryDiseaseRepository();}
 
+    @Bean
+    public SymptomSetting symptomSetting() throws Exception {return new SymptomSetting(symptomRepository());}
+
+    @Bean
+    public SymptomRepository symptomRepository() throws Exception {return new MemorySymptomRepository(diseaseSetting());}
 }

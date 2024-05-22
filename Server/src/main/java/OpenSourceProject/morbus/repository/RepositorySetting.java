@@ -1,4 +1,4 @@
-package OpenSourceProject.morbus.algorithm;
+package OpenSourceProject.morbus.repository;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -11,7 +11,7 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.*;
 import java.util.ArrayList;
 
-public abstract class Setting {
+public abstract class RepositorySetting {
     protected Object JsonSetting(String path) throws IOException, ParseException
     {
         JSONParser parser = new JSONParser();
@@ -29,7 +29,7 @@ public abstract class Setting {
 
 
 
-    ArrayList<String> toArr(JSONArray jsonArray)
+    protected ArrayList<String> toArr(JSONArray jsonArray)
     {
         ArrayList<String> list= new ArrayList<>();
         if(jsonArray!=null)
