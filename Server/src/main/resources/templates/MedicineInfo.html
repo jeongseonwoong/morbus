@@ -225,7 +225,6 @@
 </head>
 <body>
 <header>
-<!--    <div class="HTCon"></div>-->
     <div class="HCon"></div>
     <div id="Hmain"><a href="/morbus.html"><img src="사진\MORBUS.png" ></a></div>
     <div class="HCon">
@@ -279,9 +278,14 @@
     function getValueText(){
         var inputData = document.getElementById("MedicineName").value;
         document.getElementById("print_Name").innerHTML = inputData;
-
-        display_image(inputData);
-        display_medicine(inputData);
+        console.log = inputData;
+        if(inputData!=""){
+            display_image(inputData);
+            display_medicine(inputData);
+        }
+        else{
+            alert("약을 입력해주세요");
+        }
     }
     function display_medicine(inputData) {
         // 이전 출력 비우기
