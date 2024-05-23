@@ -182,21 +182,21 @@ footer .FCon {
     height: 100%;
     transition: right 1s, background-color 2s;
 }
-.side-bar:hover{
-    right:0;
-    background-color:#2E2E2E;
-    transition: right 2s, background-color 2s;
+.side-bar.active {
+    right: 0;
+    text-decoration-color: black;
+    transition: right 2s, text-decoration-color 2s;
 }
 .side-bar>.icon>div{
     text-align:left;
     padding: 10px;
     color: black;
 }
-.side-bar:hover>.icon>div:last-child{
+.side-bar:active>.icon>div:last-child{
     display:block;
-    color: white;
+    color: black;
 }
-.side-bar:hover>.icon>div:first-child{
+.side-bar:active>.icon>div:first-child{
     display:none;
 }
 .side-bar>.icon>div:last-child{
@@ -212,9 +212,6 @@ footer .FCon {
     padding:10px;
     white-space:nowrap;
     text-decoration: none;
-    color: inherit;
-}
-.side-bar>.menu ul>li:hover>a{
     background-color:white;
     color:black;
     text-decoration: none;
