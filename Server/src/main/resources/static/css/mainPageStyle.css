@@ -202,9 +202,24 @@ footer .FCon {
 .side-bar>.icon>div:last-child{
     display:none;
 }
+.side-bar>.menu ul {
+    border-top: 4px solid black; /* 각 항목 아래에 선 추가 */
+}
+.side-bar>.menu ul::after {
+    content: '';
+    display: block;
+    width: 80%; /* 선의 길이를 조절합니다 */
+    border-bottom: 4px solid black; /* 선의 속성을 정의합니다 */
+    position: absolute;
+    bottom: 0;
+    left: 0%; /* 선을 가운데 정렬합니다 */
+}
+
 .side-bar>.menu ul>li{
     position:relative;
-    color: white;
+    color: black;
+    list-style-type: none; /* 점 제거 */
+    border-bottom: 1px solid #ddd; /* 선의 속성을 정의합니다 */
 }
 .side-bar>.menu ul>li>a{
     display:block;
