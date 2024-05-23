@@ -278,8 +278,7 @@
     function getValueText(){
         var inputData = document.getElementById("MedicineName").value;
         document.getElementById("print_Name").innerHTML = inputData;
-        console.log = inputData;
-        if(inputData!=""){
+        if(inputData!==""){
             display_image(inputData);
             display_medicine(inputData);
         }
@@ -313,12 +312,12 @@
             const xmlDocument = new DOMParser().parseFromString(xmlString, "text/xml");
             const items = xmlDocument.querySelectorAll("item");
             for (const item of items) {
-                const entp_name = item.querySelector("entpName").textContent;
-                const name = item.querySelector("itemName").textContent;
-                const efcy = item.querySelector("efcyQesitm").textContent;
-                const useMethod = item.querySelector("useMethodQesitm").textContent;
+                var entp_name = item.querySelector("entpName").textContent;
+                var name = item.querySelector("itemName").textContent;
+                var efcy = item.querySelector("efcyQesitm").textContent;
+                var useMethod = item.querySelector("useMethodQesitm").textContent;
                 var warn = item.querySelector("atpnQesitm").textContent;
-                const storage = item.querySelector("depositMethodQesitm").textContent;
+                var storage = item.querySelector("depositMethodQesitm").textContent;
                 var atpnWarn = item.querySelector("atpnWarnQesitm").textContent;
                 var intrcQesitm = item.querySelector("intrcQesitm").textContent;
                 var seQesitm = item.querySelector("seQesitm").textContent;
@@ -329,6 +328,16 @@
                 atpnWarn = list_up(atpnWarn);
                 intrcQesitm = list_up(intrcQesitm);
                 seQesitm = list_up(seQesitm);
+
+                entp_name = no_Contents(entp_name);
+                name = no_Contents(name);
+                efcy = no_Contents(efcy);
+                useMethod = no_Contents(useMethod);
+                warn = no_Contents(warn);
+                storage = no_Contents(storage);
+                atpnWarn = no_Contents(atpnWarn);
+                intrcQesitm = no_Contents(intrcQesitm);
+                seQesitm = no_Contents(seQesitm);
 
                 document.getElementById("print_entp").innerHTML += "<BText>회사명</BText><br>· " + entp_name;
                 document.getElementById("print_FName").innerHTML += "<BText>약명</BText><br>· " + name;
@@ -382,6 +391,14 @@
         var SQCon = square.querySelector('.SQCon');
         var details = SQCon.querySelector('details');
         details.style.display = "block";
+    }
+
+    function no_Contents(contents){
+        if(contents=="") {
+            return "정보가 없습니다.";
+        } else {
+            return contents;
+        }
     }
 
 </script>
