@@ -64,3 +64,9 @@ img {
     height : 503px;
     z-index: 2;
 }
+.square3 {
+    width: 1000px;
+    height: 25px;
+    background-color: #05558d;
+    z-index: 1;
+}
