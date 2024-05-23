@@ -1,5 +1,5 @@
 html, body {margin: 0; padding: 0; height: 100%; }
-body {background: white;}
+body {font-family: "Noto Sans KR", sans-serif;background: white;}
 pre {
     font-family: "Noto Sans KR", sans-serif;
 }
@@ -121,7 +121,6 @@ section {
     font-weight: 1200;
     font-size: 30px;
     margin-top: 80px;
-
 }
 section .SLCon {
     float: left;
@@ -146,11 +145,6 @@ section .SRCon .PCon {
     float: left;
     height: 50%;
     width: 50%;
-}
-line {
-    width: 100%;
-    height: 1%;
-    background: red;
 }
 connec {
     width: 100%;
