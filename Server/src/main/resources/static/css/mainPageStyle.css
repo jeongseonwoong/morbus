@@ -229,7 +229,13 @@ footer .FCon {
     text-decoration: none;
     background-color:white;
     color:black;
+    transition: color 0.5s, background-color 0.5s;
+}
+/*마우스 올려다 놓으면 배경색이랑 글자 색 바뀌게*/
+.side-bar>.menu ul>li:hover>a{
+    color:#FF4B2B;
     text-decoration: none;
+    transition: color 0.2s;
 }
 .side-bar>.menu ul>li:hover>ul{
     display:block;
