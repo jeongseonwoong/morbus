@@ -1,4 +1,3 @@
-<!-- 홈페이지 참고 https://www.genexa.com/#maincontent-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,6 +7,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/mainPageStyle.css">
+
+    <script>
+        // JavaScript
+        function toggleSidebar() {
+            var sidebar = document.querySelector('.side-bar');
+            sidebar.classList.toggle('active');
+            if (sidebar.style.right === '0px') {
+                sidebar.style.right = '-340px';
+            } else {
+                sidebar.style.right = '0px';
+            }
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -22,14 +34,15 @@
             <a href="/MedicineInfo">약 정보 찾기</a>
         </div>
     </div>
-    <div class="HCon"></div>
+    <div class="HCon">
+        <div class="icon">
+            <img onclick="toggleSidebar()" src="사진/icon_menu.png" width="50" height="50">
+        </div>
+    </div>
 </header>
 <div class="side-bar">
-    <div class="icon">
-        <div>▼</div>
-        <div>◀</div>
-    </div>
     <nav class="menu">
+        <img onclick="toggleSidebar()" src="사진/icon-cross.png" width="50" height="50">
         <ul>
             <li><a href="/Symptom">질병 자가 진단</a></li>
             <li><a href="/Symptom_record">질병 기록지</a></li>
@@ -40,7 +53,10 @@
 <section>
     <div class="SLCon">
         <p>"당신의 건강을 위하여"<br>MORBUS가 함께 하겠습니다<br><button>
-            <a href="login" th:if="${member}==null">로그인</a><a href="signUp" th:if="${member}==null">|회원가입</a>
+            <div th:if="${member}==null">
+                <a href="login" >로그인</a>
+                <a href="signUp">/회원가입</a>
+            </div>
             <div th:if="${member}!=null">
                 <span th:text="${member}"></span><span>님 안녕하세요!</span>
             </div>
