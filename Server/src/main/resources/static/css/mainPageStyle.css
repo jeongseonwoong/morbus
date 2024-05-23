@@ -202,6 +202,15 @@ footer .FCon {
 .side-bar>.icon>div:last-child{
     display:none;
 }
+.side-bar>.menu {
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+}
+.side-bar>.menu img {
+    align-self: flex-end; /* 이미지 오른쪽 정렬 */
+    margin-right: 20px;
+    margin-top: 10px;
+}
 .side-bar>.menu ul {
     border-top: 4px solid black; /* 각 항목 아래에 선 추가 */
 }
