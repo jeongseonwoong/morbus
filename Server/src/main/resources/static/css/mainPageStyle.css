@@ -29,6 +29,12 @@ header .HTCon {
     float: left;
     background: white;
 }
+header .HTCon img{
+    float: left;
+    padding: 14px 16px;
+    height: 70px;
+    width: 220px;
+}
 header #Hmain {
     width: 70%;
     height: 100%;
@@ -43,11 +49,8 @@ header .HCon {
     float: left;
     background: white;
 }
-header img {
-    float: left;
-    padding: 14px 16px;
-    height: 70px;
-    width: 220px;
+header .HCon img{
+    padding: 16px 16px;
 }
 header .navbar {
     width: 70%;
@@ -174,7 +177,7 @@ footer .FCon {
     position: fixed;
     top:0;
     z-index:11;
-    right: -260px; /* Move to the left when hovered */
+    right: -340px; /* Move to the left when hovered */
     width: 300px;
     height: 100%;
     transition: right 1s, background-color 2s;
