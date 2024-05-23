@@ -103,30 +103,29 @@ public class MorbusController {
         return "RelateDisease";
     }
 
-    @PostMapping("selectSymptom")//찾고자 하는 증상을 입력받는 컨트롤러
-    public String searchSym(@RequestParam(value="searchText") String searchText, Model model, Model model2)
-    {
-        //증상 Hash_Map 에서 입력받은 증상과 연관이 있는 질병 찾는 알고리즘
-        model2.addAttribute("SymList",symptomsetting.findAllSymptom());
-        if(symptomsetting.findSymptomByName(searchText).isPresent())
-        {
-            model.addAttribute("searchText",searchText);
-            return "selectSymptom";
-        }
-        else
-        {
-            for (Symptom symptom : symptomsetting.findAllSymptom())
-            {
-                if (symptom.keywords.contains(searchText))
-                {
-                    model.addAttribute("searchText", symptom.getName());
-                    return "selectSymptom";
-                }
-            }
-        }
-        model.addAttribute("searchText",null);
-        return "selectSymptom";
-    }
+//    @PostMapping("selectSymptom")//찾고자 하는 증상을 입력받는 컨트롤러
+//    public String searchSym(@RequestParam(value="searchText") String searchText, Model model, Model model2)
+//    {
+//        model2.addAttribute("SymList",symptomsetting.findAllSymptom());
+//        if(symptomsetting.findSymptomByName(searchText).isPresent())
+//        {
+//            model.addAttribute("searchText",searchText);
+//            return "selectSymptom";
+//        }
+//        else
+//        {
+//            for (Symptom symptom : symptomsetting.findAllSymptom())
+//            {
+//                if (symptom.keywords.contains(searchText))
+//                {
+//                    model.addAttribute("searchText", symptom.getName());
+//                    return "selectSymptom";
+//                }
+//            }
+//        }
+//        model.addAttribute("searchText",null);
+//        return "selectSymptom";
+//    }
 
     @PostMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
     public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
