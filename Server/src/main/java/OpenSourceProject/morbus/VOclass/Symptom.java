@@ -40,4 +40,6 @@ public class Symptom {
   public ArrayList<Disease> getReDisease() {
     return ReDisease;
   }
+
+  public ArrayList<String> getKeywords() {return new ArrayList<>(keywords);}
 }
