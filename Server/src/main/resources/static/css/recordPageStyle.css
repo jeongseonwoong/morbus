@@ -1,24 +1,28 @@
 img {
-    width: 300px;
+    width: 250px;
     height: 70px;
     display: block;
     margin: 0 auto;
 }
 .square {
-    background-color: #ffffff;
+    background-color: #FEF4AC;
     width: 1000px;
-    height: 600px;
+    height: 588px;
     display: block;
     margin: 0 auto;
     border-radius: 10px;
 }
 .chat-input {
-    width: 950px;
+    position: absolute;
+    background-color: #ffffff;
+    width: 960px;
     height: 30px;
     padding: 5px;
     border: 1px solid #000000;
     border-radius: 5px;
-    margin-left: 20px;
+    margin-left: 15px;
+    margin-top: 515px;
+    z-index: 4;
 }
 .chat-input input[type="text"], .chat-input button {
     border: none; /* 테두리 제거 */
@@ -43,10 +47,26 @@ img {
     background-color: dimgray;
 }
 .square2 {
-    width: 950px;
-    height: 550px;
+    position: absolute;
+    width: 970px;
+    height: 505px;
     display: block;
-    margin: 0 auto;
+    margin-left: 15px;
     word-break:break-all;
     overflow-y: auto;
+    margin-top: 5px;
+    z-index: 3;
+}
+.square_line{
+    position: absolute;
+    margin-left: 195px;
+    border: thin solid #D03E2C;
+    height : 503px;
+    z-index: 2;
+}
+.square3 {
+    width: 1000px;
+    height: 25px;
+    background-color: #05558d;
+    z-index: 1;
 }
