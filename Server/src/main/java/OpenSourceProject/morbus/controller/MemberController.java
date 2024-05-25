@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.Optional;
 
 @Controller
 public class MemberController {
@@ -39,11 +40,14 @@ public class MemberController {
         if(memberSetting.findName(password).isPresent())
         {
             session.setAttribute("member", memberSetting.findName(password).get().getName());
+            Optional<Member> memberOpt = memberSetting.findName(password);
+            Member member = memberOpt.get();
+            session.setAttribute("memberId", (Long) member.getId());
+            model.addAttribute("memberId", (Long) member.getId());
         }
         model.addAttribute("member", session.getAttribute("member"));
         return "../static/morbus";
     }
-
     @PostMapping("signUp")
     public String SignUp(@RequestParam("password") String password ) {
         System.out.println(password);

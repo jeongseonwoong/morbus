@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import OpenSourceProject.morbus.algorithm.SymptomRecord;
 import OpenSourceProject.morbus.algorithm.SymptomRecordService;
+import OpenSourceProject.morbus.controller.MemberController;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -152,16 +153,17 @@ public class MorbusController {
     private SymptomRecordService symptomRecordService;
 
     @PostMapping("/Symptom_record")
-    public String recordSymptom(@RequestParam("message") String message) {
+    public String recordSymptom(@RequestParam("message") String message, HttpSession session) {
         if (!message.trim().isEmpty()) {
-            symptomRecordService.saveSymptom(message.trim());
+            symptomRecordService.saveSymptom(message.trim(), session);
         }
         return "redirect:/Symptom_record"; // 채팅 기록 후 페이지 리다이렉션
     }
 
     @GetMapping("/Symptom_record")
-    public String showRecords(Model model) {
-        List<SymptomRecord> records = symptomRecordService.getAllRecords();
+    public String showRecords(Model model, HttpSession session) {
+        Long memberId = (Long) session.getAttribute("memberId");
+        List<SymptomRecord> records = symptomRecordService.getAllRecords(memberId);
         model.addAttribute("records", records);
         return "Symptom_record"; // recordList.html로 렌더링
     }
