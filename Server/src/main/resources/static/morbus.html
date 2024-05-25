@@ -7,19 +7,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/mainPageStyle.css">
-
-    <script>
-        // JavaScript
-        function toggleSidebar() {
-            var sidebar = document.querySelector('.side-bar');
-            sidebar.classList.toggle('active');
-            if (sidebar.style.right === '0px') {
-                sidebar.style.right = '-340px';
-            } else {
-                sidebar.style.right = '0px';
-            }
-        }
-    </script>
 </head>
 <body>
 <header>
@@ -72,6 +59,18 @@
 <footer>
     <div class="FCon"><pre>정선웅<br><a href="https://github.com/jeongseonwoong">GitHub 프로필</a><br>조진우<br><a href="https://github.com/JJW1223">GitHub 프로필</a><br>양희창<br>@YangHeeChang<br><a href="/morbus.html">MORBUS</a></pre></div>
 </footer>
+<script>
+    // JavaScript
+    function toggleSidebar() {
+        var sidebar = document.querySelector('.side-bar');
+        sidebar.classList.toggle('active');
+        if (sidebar.style.right === '0px') {
+            sidebar.style.right = '-340px';
+        } else {
+            sidebar.style.right = '0px';
+        }
+    }
+</script>
 </body>
 </html>
 

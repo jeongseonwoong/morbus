@@ -1,8 +1,6 @@
 package OpenSourceProject.morbus.VOclass;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Symptom {
 
@@ -25,6 +23,9 @@ public class Symptom {
       keywords.addAll(array);
   }
 
+  private ArrayList<String> getKeywords() {return new ArrayList<>(keywords);}
+
+
   public void set(String inSym, ArrayList<Disease> relateDisease, ArrayList<String> keyword)
   {
     setName(inSym);
@@ -41,5 +42,10 @@ public class Symptom {
     return ReDisease;
   }
 
-  public ArrayList<String> getKeywords() {return new ArrayList<>(keywords);}
+
+  public Map<String,List<String>> getKeywordMap() {
+        Map<String,List<String>>map=new HashMap<>();
+        map.put(getName(),getKeywords());
+        return map;
+    }
 }
