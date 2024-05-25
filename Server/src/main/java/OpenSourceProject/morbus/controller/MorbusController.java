@@ -1,6 +1,7 @@
 package OpenSourceProject.morbus.controller;
 
 import OpenSourceProject.morbus.VOclass.Disease;
+import OpenSourceProject.morbus.VOclass.SearchText;
 import OpenSourceProject.morbus.VOclass.Symptom;
 import OpenSourceProject.morbus.VOclass.SymptomDiseasePair;
 import OpenSourceProject.morbus.algorithm.DiseaseSetting;
@@ -9,6 +10,7 @@ import OpenSourceProject.morbus.algorithm.SymptomSetting;
 import jakarta.servlet.http.HttpSession;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,8 +53,9 @@ public class MorbusController {
 
 
     @GetMapping("Symptom") // 메인 홈페이지에서 질병자가진단 페이지로 넘어가는 컨트롤러
-    public String Symptom(Model model2){
+    public String Symptom(Model model, Model model2){
         model2.addAttribute("SymList",symptomsetting.findAllSymptom());
+
         return "selectSymptom";
     }
 
@@ -61,7 +64,15 @@ public class MorbusController {
         return "MedicineInfo";
     }
 
-
+    @GetMapping("getSymptomList")
+    public ResponseEntity<List<String>> getSymptomList(){
+        System.out.println("avc");
+        List<String> list = new ArrayList<>();
+        symptomsetting.findAllSymptom().forEach(s -> {
+            list.add(s.getName());
+        });
+        return ResponseEntity.ok(list);
+    }
 
     @PostMapping("RelateDisease")//관련된 질병들을 표시해주는 페이지로 넘어가는 컨트롤러
     public String relateDisease(@RequestParam(value = "Symptom") String[] symName, Model model, Model model2)
@@ -105,28 +116,25 @@ public class MorbusController {
     }
 
     @PostMapping("selectSymptom")//찾고자 하는 증상을 입력받는 컨트롤러
-    public String searchSym(@RequestParam(value="searchText") String searchText, Model model, Model model2)
+    public ResponseEntity<SearchText> searchSym(@RequestBody SearchText searchText)
     {
-        //증상 Hash_Map 에서 입력받은 증상과 연관이 있는 질병 찾는 알고리즘
-        model2.addAttribute("SymList",symptomsetting.findAllSymptom());
-        if(symptomsetting.findSymptomByName(searchText).isPresent())
+        System.out.println(searchText.toString());
+        if(symptomsetting.findSymptomByName(searchText.toString()).isPresent())
         {
-            model.addAttribute("searchText",searchText);
-            return "selectSymptom";
+            return ResponseEntity.ok(searchText);
         }
         else
         {
             for (Symptom symptom : symptomsetting.findAllSymptom())
             {
-                if (symptom.keywords.contains(searchText))
+                if (symptom.keywords.contains(searchText.toString()))
                 {
-                    model.addAttribute("searchText", symptom.getName());
-                    return "selectSymptom";
+                    searchText.setSearchText(symptom.getName());
+                    return ResponseEntity.ok(searchText);
                 }
             }
         }
-        model.addAttribute("searchText",null);
-        return "selectSymptom";
+        return ResponseEntity.ok(null);
     }
 
     @PostMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러

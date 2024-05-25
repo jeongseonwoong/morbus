@@ -128,7 +128,7 @@ section .SLCon {
     width: 50%;
     background: white;
     text-align: center;
-    display:flex;
+    display:grid;
     justify-content: center;
     align-items: center;
 }
@@ -145,6 +145,7 @@ section .SRCon .PCon {
     float: left;
     height: 50%;
     width: 50%;
+    display: grid;
 }
 connec {
     width: 100%;

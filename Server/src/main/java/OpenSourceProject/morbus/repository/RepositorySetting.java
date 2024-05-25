@@ -11,8 +11,10 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.*;
 import java.util.ArrayList;
 
-public abstract class RepositorySetting {
-    protected Object JsonSetting(String path) throws IOException, ParseException
+public abstract class RepositorySetting implements DiseaseAndSymptomRepository{
+
+    @Override
+    public Object JsonSetting(String path) throws IOException, ParseException
     {
         JSONParser parser = new JSONParser();
         ClassPathResource resource = new ClassPathResource(path);
@@ -27,9 +29,8 @@ public abstract class RepositorySetting {
         return parser.parse(sb.toString());
     }
 
-
-
-    protected ArrayList<String> toArr(JSONArray jsonArray)
+    @Override
+    public ArrayList<String> toArr(JSONArray jsonArray)
     {
         ArrayList<String> list= new ArrayList<>();
         if(jsonArray!=null)
