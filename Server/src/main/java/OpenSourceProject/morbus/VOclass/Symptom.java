@@ -23,7 +23,7 @@ public class Symptom {
       keywords.addAll(array);
   }
 
-  private ArrayList<String> getKeywords() {return new ArrayList<>(keywords);}
+  public ArrayList<String> getKeywords() {return new ArrayList<>(keywords);}
 
 
   public void set(String inSym, ArrayList<Disease> relateDisease, ArrayList<String> keyword)
