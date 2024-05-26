@@ -5,6 +5,8 @@
     <title>RelatedDisease</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/relateDiseasePageStyle.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/buttonStyle.css}">
+    <script src="/js/moreDiseaseList.js" type="text/javascript"></script>
+
 </head>
 <body style="background-color: #e4e4e4">
 <a href="/morbus.html"><img src="사진/MORBUS.png"></a>
@@ -12,10 +14,10 @@
 <form action ="http://localhost:8080/diseaseInfo" name="diseaseInfo" method="post">
 
     <!--가능성 높은 질병들 먼저 출력-->
-    <div id="duplicateDisease">
+    <div id="duplicateDisease" class="content">
         <h3 style="color: red">유력한 원인</h3>
         <ul th:each="DuplicatedDisease  : ${DuplicateDisease}">
-            <button class="button" type="submit" name="diseaseName" th:value="${DuplicatedDisease.getKey().getName()}">
+            <button type="submit" name="diseaseName" th:value="${DuplicatedDisease.getKey().getName()}">
                 <li style="font-weight: bold" th:text="${DuplicatedDisease.getKey().getName()}">중복되는 질병 없음</li>
             </button>
             <p th:text="${DuplicatedDisease.getKey().getBriefInfo()}"></p><hr>
@@ -23,21 +25,21 @@
     </div>
 
 
-    <div th:each ="ReDiseases : ${ReDisease}" id="square">
-        <!--증상출력-->
-        <h3 style="font-weight: bolder" th:text="${ReDiseases.first()}"></h3>
-        <!--증상과 관련된 질병들 출력-->
-        <ul th:each="ReDiseasesList : ${ReDiseases.second()}">
-            <button class="button" type="submit" name="diseaseName" th:value="${ReDiseasesList.getName()}">
-                <li style="font-weight: bold" th:text ="${ReDiseasesList.getName()}"></li>
-            </button>
-            <p th:text ="${ReDiseasesList.getBriefInfo()}"></p><hr>
-        </ul>
-        <!--증상과 관련된 질병들 출력-->
+    <div id="square" class="content">
+        <div th:each ="ReDiseases : ${ReDisease}">
+            <!--증상출력-->
+            <h3 style="font-weight: bolder" th:text="${ReDiseases.first()}"></h3>
+            <!--증상과 관련된 질병들 출력-->
+            <ul th:each="ReDiseasesList : ${ReDiseases.second()}">
+                <button type="submit" name="diseaseName" th:value="${ReDiseasesList.getName()}">
+                    <li style="font-weight: bold" th:text ="${ReDiseasesList.getName()}"></li>
+                </button>
+                <p th:text ="${ReDiseasesList.getBriefInfo()}"></p><hr>
+            </ul>
+            <!--증상과 관련된 질병들 출력-->
+        </div>
     </div>
 </form>
-
-
 
 </body>
 </html>
