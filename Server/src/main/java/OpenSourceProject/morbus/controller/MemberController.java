@@ -3,6 +3,8 @@ package OpenSourceProject.morbus.controller;
 import OpenSourceProject.morbus.VOclass.Member;
 import OpenSourceProject.morbus.VOclass.Url;
 import OpenSourceProject.morbus.algorithm.MemberSetting;
+import OpenSourceProject.morbus.repository.MemberRepository;
+import OpenSourceProject.morbus.repository.MemoryMemberRepository;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -13,9 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class MemberController {
@@ -36,6 +36,15 @@ public class MemberController {
     @GetMapping("login")
     public String LogIn() {
         return "login";
+    }
+
+    @GetMapping("getMemberRepository")
+    public ResponseEntity<List<String>> getMemberRepository() {
+        List<String>memberList = new ArrayList<>();
+        memberSetting.findMember().stream().forEach(member -> {
+            memberList.add(member.getName());
+        });
+        return ResponseEntity.ok(memberList);
     }
 
 
