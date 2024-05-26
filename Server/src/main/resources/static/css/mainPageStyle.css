@@ -1,4 +1,4 @@
-html, body {margin: 0; padding: 0; height: 100%; }
+html, body {margin: 0; padding: 0; height: 100%; width:100% }
 body {font-family: "Noto Sans KR", sans-serif;background: white;}
 pre {
     font-family: "Noto Sans KR", sans-serif;
@@ -114,9 +114,9 @@ header .logCon {
     display: inline-block;
 }
 section {
+    height: 90%;
     width: 100%;
-    height: 70%;
-    background: gray;
+    background: white;
     font-family: "Noto Sans KR", sans-serif;
     font-weight: 1200;
     font-size: 30px;
@@ -138,13 +138,26 @@ section .SRCon {
     width: 50%;
     background: white;
 }
-
-section .SRCon .PCon {
-    margin:0;
-    padding:0;
+section .SRCon img {
+    max-height: 100%;
+    width: 100%;
+    display: block;
+    object-fit: contain; /* 이미지를 잘림 없이 조정 */
+}
+section .SRCon .PLCon {
     float: left;
     height: 50%;
-    width: 50%;
+    width: 30%;
+}
+section .SRCon .PRCon {
+    height: 100%;
+    width: 53%;
+    float: right;
+}
+section .SRCon .PLCon img, section .SRCon .PRCon img {
+    max-height: 100%;
+    width: auto;
+    display: block;
 }
 connec {
     width: 100%;
