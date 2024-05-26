@@ -136,11 +136,13 @@
         }
         .side-bar>.menu ul {
             border-top: 4px solid black; /* 각 항목 아래에 선 추가 */
+            width: 80%;
+            margin-left: 20px; /*선만 옮겨지게*/
         }
         .side-bar>.menu ul::after {
             content: '';
             display: block;
-            width: 80%; /* 선의 길이를 조절합니다 */
+            width: 0%; /* 선의 길이를 조절합니다 */
             border-bottom: 4px solid black; /* 선의 속성을 정의합니다 */
             position: absolute;
             bottom: 0;
@@ -368,11 +370,16 @@
         }).then(xmlString => {
             const xmlDocument = new DOMParser().parseFromString(xmlString, "text/xml");
             const items = xmlDocument.querySelectorAll("item");
-
-            for (const item of items) {
-                const item_image = item.querySelector("ITEM_IMAGE").textContent;
-
-                document.getElementById("print_image").innerHTML += `<img src=${item_image}>`;
+            const count = xmlDocument.querySelector("totalCount");
+            // 사진없을때 no_image 출력하기
+            if(count.textContent === "0") {
+                document.getElementById("print_image").innerHTML += '<img src="사진/no_image.jpg">';
+            }
+            else{
+                for (const item of items) {
+                    const item_image = item.querySelector("ITEM_IMAGE").textContent;
+                    document.getElementById("print_image").innerHTML += `<img src=${item_image}>`;
+                }
             }
         });
     }
