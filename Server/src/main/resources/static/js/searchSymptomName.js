@@ -12,7 +12,7 @@ function removeExisting(response)
     xhr.open("GET","getSymptomList",true);
     xhr.setRequestHeader("Content-Type","application/json");
     xhr.send();
-    xhr.onload = () =>{
+    xhr.onload = function() {
         if(xhr.status ===200)
         {
             arrayList = JSON.parse(xhr.responseText);

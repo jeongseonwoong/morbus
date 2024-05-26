@@ -1,12 +1,4 @@
-#square {
-    background-color: #ffffff;
-    width: 1000px;
-    height: fit-content;
-    display: block;
-    margin: 0 auto;
-    border-radius: 10px;
-}
-#duplicateDisease {
+.content {
     background-color: #ffffff;
     width: 1000px;
     height: fit-content;
