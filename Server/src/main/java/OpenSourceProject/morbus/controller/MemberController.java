@@ -1,16 +1,20 @@
 package OpenSourceProject.morbus.controller;
 
 import OpenSourceProject.morbus.VOclass.Member;
+import OpenSourceProject.morbus.VOclass.Url;
 import OpenSourceProject.morbus.algorithm.MemberSetting;
 import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -34,8 +38,9 @@ public class MemberController {
         return "login";
     }
 
+
     @PostMapping("login")
-    public String Login(@RequestParam (value = "password")String password, Model model, HttpSession session){
+    public String Login(@RequestParam (value = "password")String password, Model model, HttpSession session, HttpServletResponse response) throws IOException {
 
         if(memberSetting.findName(password).isPresent())
         {
@@ -48,6 +53,7 @@ public class MemberController {
         model.addAttribute("member", session.getAttribute("member"));
         return "../static/morbus";
     }
+
     @PostMapping("signUp")
     public String SignUp(@RequestParam("password") String password ) {
         System.out.println(password);
@@ -58,4 +64,21 @@ public class MemberController {
 
         return "../static/morbus";
     }
+
+
+    @PostMapping("logout")
+    public ResponseEntity<Url> LogOut(HttpSession session, HttpServletResponse response) throws Exception {
+        // 캐시 무효화
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+        response.setDateHeader("Expires", 0); // Proxies
+
+        session.removeAttribute("member");
+        session.invalidate();
+
+        Url url=new Url();
+        url.setUrl("morbus.html");
+        return ResponseEntity.ok(url);
+    }
 }
+

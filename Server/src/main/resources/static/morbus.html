@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/mainPageStyle.css">
+    <script src="js/Login.js" type="text/javascript"></script>
 </head>
 <body>
 <header>
@@ -28,8 +29,9 @@
     </div>
 </header>
 <div class="side-bar">
+
     <nav class="menu">
-        <img onclick="toggleSidebar()" src="사진/icon-cross.png" width="50" height="50">
+        <img style="display: inline-block" onclick="toggleSidebar()" src="사진/icon-cross.png" width="50" height="50">
         <ul>
             <li><a href="/Symptom">질병 자가 진단</a></li>
             <li><a href="/Symptom_record">질병 기록지</a></li>
@@ -45,7 +47,7 @@
                 <a href="signUp">/회원가입</a>
             </div>
             <div th:if="${member}!=null">
-                <span th:text="${member}"></span><span>님 안녕하세요!</span>
+                <span th:text="${member}"></span><span>님 안녕하세요!</span> <button id="logout">로그아웃</button>
             </div>
         </button></p>
     </div>
