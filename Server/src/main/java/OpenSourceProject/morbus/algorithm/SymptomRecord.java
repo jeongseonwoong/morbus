@@ -10,6 +10,14 @@ public class SymptomRecord {
     private Long id;
     private String symptom;
     private LocalDateTime timestamp;
+    private Long recordKey;
+    public Long getRecordKey() {
+        return recordKey;
+    }
+
+    public void setRecordKey(Long recordKey) {
+        this.recordKey = recordKey;
+    }
     public SymptomRecord() {}
     public Long getId() {
         return id;

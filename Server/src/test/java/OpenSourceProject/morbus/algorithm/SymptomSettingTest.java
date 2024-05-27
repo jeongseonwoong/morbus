@@ -1,11 +1,14 @@
 package OpenSourceProject.morbus.algorithm;
 
+import OpenSourceProject.morbus.VOclass.Symptom;
 import OpenSourceProject.morbus.repository.DiseaseRepository;
 import OpenSourceProject.morbus.repository.MemoryDiseaseRepository;
 import OpenSourceProject.morbus.repository.MemorySymptomRepository;
 import OpenSourceProject.morbus.repository.SymptomRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,6 +36,15 @@ class SymptomSettingTest {
         Assertions.assertThat(symptomRepository.findByName(symptomName).get().getName()).isEqualTo(symptomName);
         Assertions.assertThat(symptomRepository.findByName(symptomName).get().getReDisease()).isNotNull();
 
+    }
+
+
+    @Test
+    void isList(){
+        List<Symptom> symptomList=symptomRepository.findAll();
+        symptomList.forEach( symptom -> {
+            System.out.println(symptom.getKeywords());
+        });
     }
 
 

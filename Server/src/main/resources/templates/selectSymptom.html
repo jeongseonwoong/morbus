@@ -15,21 +15,19 @@
     <fieldset th:id="square" style="width: 850px">
         <legend><b>현재 증상들을 선택하시오</b></legend>
 
-        <form action="http://localhost:8080/selectSymptom" method ="post" name="searching" onsubmit="searchVal()">
+        <form id="searchForm">
             <button type ="submit" style="float :right">입력</button>
-            <input type ="text" id ="search" name ="searchText" style ="float : right" placeholder="증상 입력">
+            <input type ="text" id ="search" style ="float : right" placeholder="증상 입력">
         </form>
 
         <form action ="http://localhost:8080/RelateDisease"  method ="post" name ="symList">
             <div th:each ="SymLists : ${SymList}" style="display: inline-block">
-                <input type ="checkbox" name ="Symptom"  th:id ="${SymLists.getName()}" th:value ="${SymLists.getName()} ">
-                <label th:for ="${SymLists.getName()}" th:if="${SymLists.getName()}==${searchText}" th:text ="${SymLists.getName()}" style="color: crimson" class="highLight" ></label>
-                <label th:for ="${SymLists.getName()}" th:if="${SymLists.getName()}!=${searchText}" th:text ="${SymLists.getName()}" class ="text"></label>
+                <input type ="checkbox" name="Symptom" th:id ="${SymLists.getName()}" th:value ="${SymLists.getName()} ">
+                <label th:for ="${SymLists.getName()}" th:id ="${SymLists.getName()}+label" th:text ="${SymLists.getName()}" class ="text"></label>
                 <br><br>
             </div>
             <button type="submit">제출</button>
         </form>
-
     </fieldset>
 </div>
 

@@ -91,6 +91,11 @@ button {
     text-transform: uppercase;
     transition: transform 80ms ease-in;
 }
+
+button:hover{
+    background-color: #FF1B2B;
+}
+
 header .logCon {
     float: right;
 }
@@ -128,7 +133,7 @@ section .SLCon {
     width: 50%;
     background: white;
     text-align: center;
-    display:flex;
+    display:grid;
     justify-content: center;
     align-items: center;
 }
@@ -148,6 +153,8 @@ section .SRCon .PLCon {
     float: left;
     height: 50%;
     width: 30%;
+    width: 50%;
+    display: grid;
 }
 section .SRCon .PRCon {
     height: 100%;

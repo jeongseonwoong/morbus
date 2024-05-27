@@ -5,28 +5,34 @@
         <title>Symptom Record</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/recordPageStyle.css}"/>
     </head>
-    <body style="background-color: #e4e4e4">
+    <body style="background-color: #ffffff">
 
     <form name ="symptom_record_logo">
-        <div><a href ="/morbus.html"><img src="사진\MORBUS.png"></a></div>
+        <div><a href ="/morbus.html"><img src="사진\morbus2.png"></a></div>
     </form>
     <form action="/Symptom_record" method="post">
         <div class="square">
+            <div class="square3"></div>
+            <div class="square_line"></div>
             <div class="square2">
                 <div th:each="record : ${records}">
                     [
                     <span th:text ="${record.timestamp.getMonthValue()}+월"></span>
                     <span th:text ="${record.timestamp.getDayOfMonth()}+일"></span>
-                    <span th:text="${record.timestamp.getHour()}"></span>
+                    <span th:text="${#numbers.formatInteger(record.timestamp.getHour(), 2)}"></span>
                     :
-                    <span th:text="${record.timestamp.getMinute()}"></span>
+                    <span th:text="${#numbers.formatInteger(record.timestamp.getMinute(), 2)}"></span>
                     :
-                    <span th:text="${record.timestamp.getSecond()}"></span>
-                    ]
+                    <span th:text="${#numbers.formatInteger(record.timestamp.getSecond(), 2)}"></span>
+                    ]&nbsp;&nbsp;
                     <span th:text="${record.symptom}"></span>
+                    <hr />
                 </div>
             </div>
-            <div class="chat-input">
+            <div class="chat-input" th:if="${session.member}==null">
+                <span style="font-size:14px">&nbsp;&nbsp;&nbsp;로그인 시 이용가능합니다.</span>
+            </div>
+            <div class="chat-input" th:if="${session.member}!=null">
                 <input type="text" name="message" placeholder="증상을 입력하세요...">
                 <button type="submit">전송</button>
             </div>
