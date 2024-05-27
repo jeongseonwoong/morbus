@@ -25,7 +25,7 @@ public class DiseaseSettingTest {
 
     @Test
     void findByName() {
-        diseaseRepository.findByName("감기");
+///        diseaseRepository.findByName("감기");
         Assertions.assertThat(diseaseRepository.findByName("감기").get().getName()).isEqualTo("감기");
     }
 }

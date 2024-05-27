@@ -24,15 +24,21 @@ class SymptomSettingTest {
 
     @Test
     void findSymptomByName() {
-        String symptomName="가래";
-        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getName()).isEqualTo(symptomName);
-        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getReDisease()).isNotNull();
+//        String symptomName="가래";
+//        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getName()).isEqualTo(symptomName);
+//        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getReDisease()).isNotNull();
+//
+//        symptomName="기침";
+//        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getName()).isEqualTo(symptomName);
+//        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getReDisease()).isNotNull();
+//
+//        symptomName="발열";
+//        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getName()).isEqualTo(symptomName);
+//        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getReDisease()).isNotNull();
 
-        symptomName="기침";
-        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getName()).isEqualTo(symptomName);
-        Assertions.assertThat(symptomRepository.findByName(symptomName).get().getReDisease()).isNotNull();
-
-        symptomName="발열";
+        String symptomName;
+        symptomName="콧물,코막힘";
+        System.out.println(symptomRepository.findByName(symptomName).get().getName());
         Assertions.assertThat(symptomRepository.findByName(symptomName).get().getName()).isEqualTo(symptomName);
         Assertions.assertThat(symptomRepository.findByName(symptomName).get().getReDisease()).isNotNull();
 

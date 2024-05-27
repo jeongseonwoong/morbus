@@ -141,6 +141,8 @@ public class MorbusController {
     @PostMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
     public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
     {
+        System.out.println(diseaseName);
+
         model.addAttribute("diseaseName",diseaseName);
         if(diseaseSetting.findByName(diseaseName).isPresent())
         {
