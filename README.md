@@ -38,7 +38,7 @@ windows Mac Linux
 Spring Boot 3.2.5 (Spring Web thymeleaf) / java 21.0.2 / Node.js
 
 <h4>DB</h4>
-h2/ MySql
+h2
 
 # 실행 방법
 최초 1회
@@ -108,7 +108,9 @@ SOFTWARE.
   <a href="https://github.com/jeongseonwoong">GitHub 주소</a>
   <br>01027993550
   <li>조진우</li>
+  <a href="https://github.com/JJW1223">GitHub 주소</a>
   <p> @JJW1223 <br>01087713302 </p>
   <li>양희창</li>
+  <a href="https://github.com/YangHeeChang">GitHub 주소</a>
   <p>@YangHeeChang <br>01024733055 </p>
 </ul>
