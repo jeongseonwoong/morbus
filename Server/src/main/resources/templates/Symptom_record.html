@@ -29,7 +29,10 @@
                     <hr />
                 </div>
             </div>
-            <div class="chat-input">
+            <div class="chat-input" th:if="${session.member}==null">
+                <span style="font-size:14px">&nbsp;&nbsp;&nbsp;로그인 시 이용가능합니다.</span>
+            </div>
+            <div class="chat-input" th:if="${session.member}!=null">
                 <input type="text" name="message" placeholder="증상을 입력하세요...">
                 <button type="submit">전송</button>
             </div>
