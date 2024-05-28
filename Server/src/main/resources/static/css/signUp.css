@@ -1,5 +1,5 @@
 
-.signup {
+.login {
     border: 1px solid #DDD;
     width: fit-content;
     height: fit-content;
@@ -40,14 +40,11 @@
 }
 
 #imageBox{
-    border-bottom: 3px solid #dddddd;
-    background-color: #e4e4e4;
+    border-bottom: 3px solid #000000;
 }
 
 #head {
     height: 80px;
-    background-color: #e4e4e4;
-
 }
 
 #head  div{
