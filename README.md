@@ -71,7 +71,7 @@ record_key long
 ~$ sudo chmod 755 gradlew
 ~$ ./gradlew build	
 ~$ ./gradlew bootRun
-~$ ./gradlew bootRun
+(wsl2에서는 실행이 안될수도 있음)
 ~$ cd morbus/Server/src/main/java/OpenSourceProject/morbus
 ~$ javac MorbusApplication.java
 안되면 IDEA에서 실행!
