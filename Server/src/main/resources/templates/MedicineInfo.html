@@ -95,6 +95,8 @@
         .square .SQCon div {
             animation: reveal 1s;
         }
+        /*사이드바 active하면 화면 어두워지는 기능 추가, 사이드바 하단에 정보 추가, 로그인 페이지 목록 추가*/
+
         .side-bar{
             background-color: white;
             position: fixed;
@@ -178,8 +180,8 @@
         details {
             margin-bottom: 1rem;
             margin-top: 10px;
+            display: none;
         }
-
         details > summary {
             background: lightgray;
             padding: 1rem;
@@ -220,13 +222,11 @@
                 transform: translate3d(0, 0, 0);
             }
         }
-        details {
-            display: none;
-        }
     </style>
 </head>
 <body>
 <header>
+    <div class="background" onclick="toggleSidebar()"></div>
     <div class="HCon"></div>
     <div id="Hmain"><a href="/morbus.html"><img src="사진\MORBUS.png" ></a></div>
     <div class="HCon">
@@ -247,6 +247,7 @@
 </div>
 <div class="square">
     <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
+<!--    엔터쳐도 값이 제출되게 변경-->
     <button type="submit" value="Send" onclick="getValueText();">검색</button>
     <hr>
     <div class="SQCon">
@@ -257,7 +258,7 @@
         <div id="print_effect"></div>
         <div id="print_use"></div>
         <div id="print_storage"></div>
-<!--detail click하면 id 호출-->
+
         <details>
             <summary>추가 정보나 세부 내용</summary>
             <div id="print_warn"></div>
@@ -270,11 +271,17 @@
 <script>
     function toggleSidebar() {
         var sidebar = document.querySelector('.side-bar');
+        var back_ground = document.querySelector('.background');
         sidebar.classList.toggle('active');
+        back_ground.classList.toggle('active');
         if (sidebar.style.right === '0px') {
             sidebar.style.right = '-340px';
+            back_ground.style.visibility = 'hidden';
+            back_ground.style.opacity = '0';
         } else {
             sidebar.style.right = '0px';
+            back_ground.style.visibility = 'visible';
+            back_ground.style.opacity = '1';
         }
     }
     function getValueText(){
