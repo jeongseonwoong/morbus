@@ -11,6 +11,7 @@
 </head>
 <body>
 <header>
+    <div class="background" onclick="toggleSidebar()"></div>
     <div class="HCon"></div>
     <div class="HTCon">
         <a href="morbus.html"><img src="사진\MORBUS.png"></a>
@@ -57,14 +58,19 @@
     <div class="FCon"><pre>정선웅<br><a href="https://github.com/jeongseonwoong">GitHub 프로필</a><br>조진우<br><a href="https://github.com/JJW1223">GitHub 프로필</a><br>양희창<br>@YangHeeChang<br><a href="/morbus.html">MORBUS</a></pre></div>
 </footer>
 <script>
-    // JavaScript
     function toggleSidebar() {
         var sidebar = document.querySelector('.side-bar');
+        var back_ground = document.querySelector('.background');
         sidebar.classList.toggle('active');
+        back_ground.classList.toggle('active');
         if (sidebar.style.right === '0px') {
             sidebar.style.right = '-340px';
+            back_ground.style.visibility = 'hidden';
+            back_ground.style.opacity = '0';
         } else {
             sidebar.style.right = '0px';
+            back_ground.style.visibility = 'visible';
+            back_ground.style.opacity = '1';
         }
     }
 </script>
