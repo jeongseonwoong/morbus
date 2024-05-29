@@ -17,7 +17,26 @@
 #imageBox
 {
     border-bottom: 1px solid #f0f0f0;
+    display: inline-block;
 }
+
+.lists{
+    float: right;
+    display: inline-block;
+    text-align: right;
+    transform: translateY(130%);
+}
+
+.lists a{
+    margin-left: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.lists a:hover{
+    text-decoration: underline;
+    color: #05558d;
+ }
 
 img {
     width: 200px;
