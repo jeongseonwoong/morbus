@@ -96,7 +96,22 @@
             animation: reveal 1s;
         }
         /*사이드바 active하면 화면 어두워지는 기능 추가, 사이드바 하단에 정보 추가, 로그인 페이지 목록 추가*/
-
+        .background {
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background: rgba(0,0,0,.5);
+            transition: all .35s;
+            opacity: 0;
+            visibility: hidden;
+            z-index:1;
+        }
+        .background.active {
+            visibility: visible;
+            opacity: 1;
+        }
         .side-bar{
             background-color: white;
             position: fixed;
