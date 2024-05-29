@@ -4,13 +4,48 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <script src="/js/Login.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
-    <form action="login" method="post" onsubmit="login()">
+<header style="border-bottom: #f0f0f0 solid 1px">
+    <div style="border-bottom: #f0f0f0 solid 1px">
+        <a href="morbus.html"><img src="/사진/morbus2.png" alt=""></a>
+        <span class="lists">
+            <a href="MedicineInfo.html">약 정보 찾기</a>
+            <a href="recordList.html">증상 기록지</a>
+            <a href="selectSymptom.html">질병 자가진단</a>
+        </span>
+    </div>
+
+    <div id="head">
+        <div>로그인</div>
+    </div>
+</header>
+<div class="content container">
+    <div class="row">
         <div class="login">
-            <label for="password"> 비밀번호 </label>
-            <input type="password" name="password" id="password">
+            <div class="reg-page">
+                <div style="border-bottom: black solid 1px">
+                    <h3 style="text-align: center">로그인</h3>
+                </div>
+                <div id="explain">
+                    <p>계정이 아직 없는 경우에는 <a href="/signUp">회원가입</a> 해주세요<br>
+                        가입을 하면 증상 기록지 등 추가 기능을 사용하실 수 있습니다.
+                    </p>
+                </div>
+                <form action="login" method="post" id="login_form" onsubmit="login()">
+                    <div id="idBox">
+                        <label for="password">로그인</label>
+                        <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+                    </div>
+                    <button style="float: right">로그인</button>
+                </form>
+            </div>
         </div>
-    </form>
+    </div>
+</div>
+
+
+
 </body>
 </html>
