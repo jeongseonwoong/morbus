@@ -30,6 +30,14 @@ PATH=$PATH:/home/[username]/.local/bin         맨 아래 줄에 코드 2줄 추
 스프링 부트 2.x를 사용하면 1.4.200 버전을 다운로드 받으면 된다.
 스프링 부트 3.x를 사용하면 2.1.214 버전 이상 사용해야 한다.
 
+3.gradle 설치
+```sh
+$ sudo add-apt-repository ppa:cwchien/gradle
+$ sudo apt update
+$ sudo apt install gradle
+$ gradle -version
+```
+
 # 의존성
 <h4>OS</h4>
 windows Mac Linux
