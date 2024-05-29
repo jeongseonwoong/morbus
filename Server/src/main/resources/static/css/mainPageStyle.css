@@ -272,3 +272,32 @@ footer .FCon {
 .side-bar>.menu ul>li:hover>ul{
     display:block;
 }
+.sign-up {
+    border-radius: 20px;
+    background: #FF5959;
+    border: 1px solid #FF5959;
+    color: #FFF;
+    font-family: 'Abel', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    height: 40px;
+    letter-spacing: 1px;
+    line-height: 40px;
+    margin: 2px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    bottom: -500px;
+}
+.sign-up:hover {
+    background-color: #FF1B2B;
+}
+
+.sign-up a {
+    display: block;
+}
+
+.sign-up span {
+    margin: 0 auto 0 8px;
+}
