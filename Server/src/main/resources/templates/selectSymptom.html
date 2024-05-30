@@ -8,25 +8,40 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/symptomPageStyle.css}"/>
     <script src='/js/searchSymptomName.js'></script>
 </head>
-<body style ="background-color: #e4e4e4">
-
-<h1><a href ="/morbus.html"><img src="사진/MORBUS.png"></a></h1>
+<body>
+<header>
+    <section id="sub">
+        <ul>
+            <li><a href="signUp">회원가입</a></li>
+            <li><a href="login">로그인</a></li>
+        </ul>
+    </section>
+    <div style="border-bottom: #f0f0f0 solid 1px">
+        <a href="morbus.html"><img src="/사진/morbus2.png" alt=""></a>
+        <span class="lists">
+            <a href="MedicineInfo.html">약 정보 찾기</a>
+            <a href="recordList.html">증상 기록지</a>
+            <a href="selectSymptom.html">질병 자가진단</a>
+        </span>
+    </div>
+</header>
 <div>
-    <fieldset th:id="square" style="width: 850px">
+    <br>
+    <fieldset th:id="square" style= "width: 850px">
         <legend><b>현재 증상들을 선택하시오</b></legend>
 
-        <form id="searchForm">
-            <button type ="submit" style="float :right">입력</button>
-            <input type ="text" id ="search" style ="float : right" placeholder="증상 입력">
+        <form id="searchForm" style="text-align: right">
+            <input type ="text" id ="search" placeholder="증상 입력">
+            <button type ="submit">입력</button>
         </form>
+        <br>
 
         <form action ="http://localhost:8080/RelateDisease"  method ="post" name ="symList">
             <div th:each ="SymLists : ${SymList}" style="display: inline-block">
-                <input type ="checkbox" name="Symptom" th:id ="${SymLists.getName()}" th:value ="${SymLists.getName()} ">
+                <input type ="checkbox" name="Symptom" th:id ="${SymLists.getName()}" th:value ="${SymLists.getName()}">
                 <label th:for ="${SymLists.getName()}" th:id ="${SymLists.getName()}+label" th:text ="${SymLists.getName()}" class ="text"></label>
-                <br><br>
             </div>
-            <button type="submit">제출</button>
+            <button type="submit" class="button">제출</button>
         </form>
     </fieldset>
 </div>
