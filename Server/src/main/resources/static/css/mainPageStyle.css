@@ -1,4 +1,4 @@
-html, body {margin: 0; padding: 0; height: 100%; }
+html, body {margin: 0; padding: 0; height: 100%; width:100% }
 body {font-family: "Noto Sans KR", sans-serif;background: white;}
 pre {
     font-family: "Noto Sans KR", sans-serif;
@@ -14,7 +14,6 @@ a {
 footer a {
     color: white;
 }
-
 header {
     width: 100%;
     height: 80px;
@@ -119,9 +118,9 @@ header .logCon {
     display: inline-block;
 }
 section {
+    height: 90%;
     width: 100%;
-    height: 70%;
-    background: gray;
+    background: white;
     font-family: "Noto Sans KR", sans-serif;
     font-weight: 1200;
     font-size: 30px;
@@ -143,20 +142,28 @@ section .SRCon {
     width: 50%;
     background: white;
 }
-
-section .SRCon .PCon {
-    margin:0;
-    padding:0;
+section .SRCon img {
+    max-height: 100%;
+    width: 100%;
+    display: block;
+    object-fit: contain; /* 이미지를 잘림 없이 조정 */
+}
+section .SRCon .PLCon {
     float: left;
     height: 50%;
+    width: 30%;
     width: 50%;
     display: grid;
 }
-connec {
-    width: 100%;
-    height: 21.5%;
-    float: left;
-    background: none;
+section .SRCon .PRCon {
+    height: 100%;
+    width: 53%;
+    float: right;
+}
+section .SRCon .PLCon img, section .SRCon .PRCon img {
+    max-height: 100%;
+    width: auto;
+    display: block;
 }
 footer {
     width: 100%;
@@ -171,6 +178,22 @@ footer .FCon {
     text-align: left;
     background: #2E2E2E;
     color: #ffffff;
+}
+.background {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,.5);
+    transition: all .35s;
+    opacity: 0;
+    visibility: hidden;
+    z-index:1;
+}
+.background.active {
+    visibility: visible;
+    opacity: 1;
 }
 .side-bar{
     background-color: white;
@@ -248,4 +271,31 @@ footer .FCon {
 }
 .side-bar>.menu ul>li:hover>ul{
     display:block;
+}
+.sign-up {
+    border-radius: 20px;
+    background: #FF5959;
+    border: 1px solid #FF5959;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    height: 40px;
+    letter-spacing: 1px;
+    line-height: 40px;
+    margin: 2px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+.sign-up:hover {
+    background-color: #FF1B2B;
+}
+
+.sign-up a {
+    display: block;
+}
+
+.sign-up span {
+    margin: 0 auto 0 8px;
 }
