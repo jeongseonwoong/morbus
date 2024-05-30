@@ -47,7 +47,7 @@
         </div>
     </div>
     <div th:if="${member}!=null" style="margin-top:500px"><span th:text="${member}" style="margin-left:30%;"></span><span style="font-weight: bolder;">님 안녕하세요!</span>
-        <div class="sign-up">
+        <div class="sign-up" name="logout">
             <a>로그아웃<span class="ion-arrow-right-c"></span></a>
         </div>
     </div>
@@ -60,7 +60,7 @@
                 <a href="signUp">/회원가입</a>
             </div>
             <div th:if="${member}!=null">
-                <span th:text="${member}"></span><span>님 안녕하세요!</span> <button style="cursor: pointer" id="logout">로그아웃</button>
+                <span th:text="${member}"></span><span>님 안녕하세요!</span> <button style="cursor: pointer" name="logout">로그아웃</button>
             </div>
         </button></p>
     </div>
