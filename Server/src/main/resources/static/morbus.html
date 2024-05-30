@@ -11,6 +11,7 @@
 </head>
 <body>
 <header>
+    <div class="background" onclick="toggleSidebar()"></div>
     <div class="HCon"></div>
     <div class="HTCon">
         <a href="morbus.html"><img src="사진\MORBUS.png"></a>
@@ -29,7 +30,6 @@
     </div>
 </header>
 <div class="side-bar">
-
     <nav class="menu">
         <img style="display: inline-block" onclick="toggleSidebar()" src="사진/icon-cross.png" width="50" height="50">
         <ul>
@@ -38,6 +38,19 @@
             <li><a href="/MedicineInfo">약 정보 찾기</a></li>
         </ul>
     </nav>
+    <div th:if="${member}==null" style="margin-top:500px">
+        <div class="sign-up">
+            <a href="login">로그인<span class="ion-arrow-right-c"></span></a>
+        </div>
+        <div class="sign-up">
+            <a href="signUp">회원가입<span class="ion-arrow-right-c"></span></a>
+        </div>
+    </div>
+    <div th:if="${member}!=null" style="margin-top:500px"><span th:text="${member}" style="margin-left:30%;"></span><span style="font-weight: bolder;">님 안녕하세요!</span>
+        <div class="sign-up" name="logout">
+            <a>로그아웃<span class="ion-arrow-right-c"></span></a>
+        </div>
+    </div>
 </div>
 <section>
     <div class="SLCon">
@@ -47,29 +60,30 @@
                 <a href="signUp">/회원가입</a>
             </div>
             <div th:if="${member}!=null">
-                <span th:text="${member}"></span><span>님 안녕하세요!</span> <button style="cursor: pointer" id="logout">로그아웃</button>
+                <span th:text="${member}"></span><span>님 안녕하세요!</span> <button style="cursor: pointer" name="logout">로그아웃</button>
             </div>
         </button></p>
     </div>
-    <div class="SRCon">
-        <div class="PCon"><img src="사진\메인사진4.jpg" width="400" height="270"></div>
-        <div class="PCon"><img src="사진\메인사진6.jpg" width="400" height="812.5"></div>
-        <div class="PCon"><img src="사진\메인사진5.jpg" width="400" height="500"></div>
+    <div class="SRCon"><img src="사진\합1.png">
     </div>
 </section>
-<connec></connec>
 <footer>
     <div class="FCon"><pre>정선웅<br><a href="https://github.com/jeongseonwoong">GitHub 프로필</a><br>조진우<br><a href="https://github.com/JJW1223">GitHub 프로필</a><br>양희창<br>@YangHeeChang<br><a href="/morbus.html">MORBUS</a></pre></div>
 </footer>
 <script>
-    // JavaScript
     function toggleSidebar() {
         var sidebar = document.querySelector('.side-bar');
+        var back_ground = document.querySelector('.background');
         sidebar.classList.toggle('active');
+        back_ground.classList.toggle('active');
         if (sidebar.style.right === '0px') {
             sidebar.style.right = '-340px';
+            back_ground.style.visibility = 'hidden';
+            back_ground.style.opacity = '0';
         } else {
             sidebar.style.right = '0px';
+            back_ground.style.visibility = 'visible';
+            back_ground.style.opacity = '1';
         }
     }
 </script>

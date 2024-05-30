@@ -95,6 +95,23 @@
         .square .SQCon div {
             animation: reveal 1s;
         }
+        /*사이드바 active하면 화면 어두워지는 기능 추가, 사이드바 하단에 정보 추가, 로그인 페이지 목록 추가*/
+        .background {
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background: rgba(0,0,0,.5);
+            transition: all .35s;
+            opacity: 0;
+            visibility: hidden;
+            z-index:1;
+        }
+        .background.active {
+            visibility: visible;
+            opacity: 1;
+        }
         .side-bar{
             background-color: white;
             position: fixed;
@@ -136,11 +153,13 @@
         }
         .side-bar>.menu ul {
             border-top: 4px solid black; /* 각 항목 아래에 선 추가 */
+            width: 80%;
+            margin-left: 20px; /*선만 옮겨지게*/
         }
         .side-bar>.menu ul::after {
             content: '';
             display: block;
-            width: 80%; /* 선의 길이를 조절합니다 */
+            width: 0%; /* 선의 길이를 조절합니다 */
             border-bottom: 4px solid black; /* 선의 속성을 정의합니다 */
             position: absolute;
             bottom: 0;
@@ -176,8 +195,8 @@
         details {
             margin-bottom: 1rem;
             margin-top: 10px;
+            display: none;
         }
-
         details > summary {
             background: lightgray;
             padding: 1rem;
@@ -218,14 +237,11 @@
                 transform: translate3d(0, 0, 0);
             }
         }
-        details {
-            display: none;
-        }
     </style>
 </head>
 <body>
 <header>
-<!--    <div class="HTCon"></div>-->
+    <div class="background" onclick="toggleSidebar()"></div>
     <div class="HCon"></div>
     <div id="Hmain"><a href="/morbus.html"><img src="사진\MORBUS.png" ></a></div>
     <div class="HCon">
@@ -246,6 +262,7 @@
 </div>
 <div class="square">
     <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
+<!--    엔터쳐도 값이 제출되게 변경-->
     <button type="submit" value="Send" onclick="getValueText();">검색</button>
     <hr>
     <div class="SQCon">
@@ -256,9 +273,9 @@
         <div id="print_effect"></div>
         <div id="print_use"></div>
         <div id="print_storage"></div>
-<!--detail click하면 id 호출-->
+
         <details>
-            <summary>TMI</summary>
+            <summary>추가 정보나 세부 내용</summary>
             <div id="print_warn"></div>
             <div id="print_atpn"></div>
             <div id="print_intrc"></div>
@@ -269,19 +286,29 @@
 <script>
     function toggleSidebar() {
         var sidebar = document.querySelector('.side-bar');
+        var back_ground = document.querySelector('.background');
         sidebar.classList.toggle('active');
+        back_ground.classList.toggle('active');
         if (sidebar.style.right === '0px') {
             sidebar.style.right = '-340px';
+            back_ground.style.visibility = 'hidden';
+            back_ground.style.opacity = '0';
         } else {
             sidebar.style.right = '0px';
+            back_ground.style.visibility = 'visible';
+            back_ground.style.opacity = '1';
         }
     }
     function getValueText(){
         var inputData = document.getElementById("MedicineName").value;
         document.getElementById("print_Name").innerHTML = inputData;
-
-        display_image(inputData);
-        display_medicine(inputData);
+        if(inputData!==""){
+            display_image(inputData);
+            display_medicine(inputData);
+        }
+        else{
+            alert("약을 입력해주세요");
+        }
     }
     function display_medicine(inputData) {
         // 이전 출력 비우기
@@ -309,12 +336,12 @@
             const xmlDocument = new DOMParser().parseFromString(xmlString, "text/xml");
             const items = xmlDocument.querySelectorAll("item");
             for (const item of items) {
-                const entp_name = item.querySelector("entpName").textContent;
-                const name = item.querySelector("itemName").textContent;
-                const efcy = item.querySelector("efcyQesitm").textContent;
-                const useMethod = item.querySelector("useMethodQesitm").textContent;
+                var entp_name = item.querySelector("entpName").textContent;
+                var name = item.querySelector("itemName").textContent;
+                var efcy = item.querySelector("efcyQesitm").textContent;
+                var useMethod = item.querySelector("useMethodQesitm").textContent;
                 var warn = item.querySelector("atpnQesitm").textContent;
-                const storage = item.querySelector("depositMethodQesitm").textContent;
+                var storage = item.querySelector("depositMethodQesitm").textContent;
                 var atpnWarn = item.querySelector("atpnWarnQesitm").textContent;
                 var intrcQesitm = item.querySelector("intrcQesitm").textContent;
                 var seQesitm = item.querySelector("seQesitm").textContent;
@@ -325,6 +352,16 @@
                 atpnWarn = list_up(atpnWarn);
                 intrcQesitm = list_up(intrcQesitm);
                 seQesitm = list_up(seQesitm);
+
+                entp_name = no_Contents(entp_name);
+                name = no_Contents(name);
+                efcy = no_Contents(efcy);
+                useMethod = no_Contents(useMethod);
+                warn = no_Contents(warn);
+                storage = no_Contents(storage);
+                atpnWarn = no_Contents(atpnWarn);
+                intrcQesitm = no_Contents(intrcQesitm);
+                seQesitm = no_Contents(seQesitm);
 
                 document.getElementById("print_entp").innerHTML += "<BText>회사명</BText><br>· " + entp_name;
                 document.getElementById("print_FName").innerHTML += "<BText>약명</BText><br>· " + name;
@@ -355,11 +392,16 @@
         }).then(xmlString => {
             const xmlDocument = new DOMParser().parseFromString(xmlString, "text/xml");
             const items = xmlDocument.querySelectorAll("item");
-
-            for (const item of items) {
-                const item_image = item.querySelector("ITEM_IMAGE").textContent;
-
-                document.getElementById("print_image").innerHTML += `<img src=${item_image}>`;
+            const count = xmlDocument.querySelector("totalCount");
+            // 사진없을때 no_image 출력하기
+            if(count.textContent === "0") {
+                document.getElementById("print_image").innerHTML += '<img src="사진/no_image.jpg">';
+            }
+            else{
+                for (const item of items) {
+                    const item_image = item.querySelector("ITEM_IMAGE").textContent;
+                    document.getElementById("print_image").innerHTML += `<img src=${item_image}>`;
+                }
             }
         });
     }
@@ -378,6 +420,14 @@
         var SQCon = square.querySelector('.SQCon');
         var details = SQCon.querySelector('details');
         details.style.display = "block";
+    }
+
+    function no_Contents(contents){
+        if(contents=="") {
+            return "정보가 없습니다.";
+        } else {
+            return contents;
+        }
     }
 
 </script>
