@@ -189,7 +189,7 @@ footer .FCon {
     transition: all .35s;
     opacity: 0;
     visibility: hidden;
-    z-index:1;
+    z-index:5;
 }
 .background.active {
     visibility: visible;

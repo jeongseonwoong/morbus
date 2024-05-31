@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <style>
         html, body {margin: 0; padding: 0; height: 100%; }
-        body {font-family: "Noto Sans KR", sans-serif; background-color: #e4e4e4;}
+        body {font-family: "Noto Sans KR", sans-serif; background-color: white;}
         pre {
             font-family: "Noto Sans KR", sans-serif;
         }
@@ -28,19 +28,19 @@
         header {
              width: 100%;
              height: 10%;
-             background: #e4e4e4;
+             background: white;
          }
         header .HTCon {
             width: 100%;
             height: 50%;
             float: left;
-            background: #e4e4e4;
+            background: white;
         }
         header #Hmain {
             width: 90%;
             height: 100%;
             float: left;
-            background: #e4e4e4;
+            background: white;
             font-size: 25px;
             text-align: center;
         }
@@ -48,7 +48,7 @@
             width: 5%;
             height: 100%;
             float: left;
-            background: #e4e4e4;
+            background: white;
         }
         .square {
             background-color: #ffffff;
@@ -58,16 +58,32 @@
             margin: 0 auto;
             border-radius: 10px;
             overflow: auto;
+            border: 3px solid black;
         /*overflow 이거 css로 꾸미면 예쁠듯 https://inpa.tistory.com/entry/CSS-%F0%9F%8C%9F-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EB%B0%94Scrollbar-%EA%BE%B8%EB%AF%B8%EA%B8%B0-%EC%86%8D%EC%84%B1-%EC%B4%9D%EC%A0%95%EB%A6%AC*/
+        }
+        .square .input_box {
+            height: 30px;
+            width: 255px;
+            margin-top: 20px;
+            margin-left: 20px;
+            border: 1px solid #1b5ac2;
+            background: white;
         }
         input {
             width: 200px;
-            height: 30px;
-            margin-top: 20px;
-            margin-left: 20px;
+            height: 90%;
+            border: 0;
+            outline: none;
+            float: left;
         }
         button {
-            height: 30px;
+            height: 100%;
+            width: 50px;
+            border: 0px;
+            background: #1b5ac2;
+            outline:none;
+            float: right;
+            color: white;
         }
         /*나중에 더 꾸미기 https://amango.tistory.com/110*/
         hr {
@@ -261,9 +277,11 @@
     </nav>
 </div>
 <div class="square">
-    <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
-<!--    엔터쳐도 값이 제출되게 변경-->
-    <button type="submit" value="Send" onclick="getValueText();">검색</button>
+    <div class="input_box">
+        <input type="text" class="chat-input" id="MedicineName" placeholder="약 이름 또는 성분을 검색하세요.">
+    <!--    엔터쳐도 값이 제출되게 변경-->
+        <button type="submit" value="Send" onclick="getValueText();">검색</button>
+    </div>
     <hr>
     <div class="SQCon">
         <h2 id="print_Name"></h2>
