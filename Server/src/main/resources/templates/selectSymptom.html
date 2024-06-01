@@ -27,22 +27,21 @@
 </header>
 <div>
     <br>
-    <img src="/사진/광고배너%201.png" style="float: left; height: 500px; width: 200px; position: fixed">
-    <img src="/사진/침착맨%201.png" style="float: right; height: 500px; width: 200px; position: fixed; transform: translateX(1150px)">
+    <img src="/사진/광고배너%201.png" style="float: left; height: 500px; width: 200px; position: fixed; transform: translateX(-30px)">
+    <img src="/사진/침착맨%202.gif" style="float: right; height: 500px; width: 200px; position: fixed; transform: translateX(1150px)">
     <fieldset th:id="square" style= "width: 850px">
         <legend><b>현재 증상들을 선택하시오</b></legend>
 
-        <div class="input_box">
+        <div class="input_box" style="transform:translateX(320%)">
             <form id="searchForm">
-                <button type ="submit" style="float :right">입력</button>
-                <input type ="text" id ="search" style ="float : right" placeholder="증상 입력">
+                <input type ="text" id ="search" placeholder="증상 입력">
+                <button type ="submit">입력</button>
             </form>
         </div>
         <form action ="http://localhost:8080/RelateDisease"  method ="post" name ="symList">
             <div th:each ="SymLists : ${SymList}" style="display: inline-block">
                 <input type ="checkbox" name="Symptom" th:id ="${SymLists.getName()}" th:value ="${SymLists.getName()}">
                 <label th:for ="${SymLists.getName()}" th:id ="${SymLists.getName()}+label" th:text ="${SymLists.getName()}" class ="text"></label>
-                <br><br>
             </div>
             <button type="submit" class="button">제출</button>
         </form>
