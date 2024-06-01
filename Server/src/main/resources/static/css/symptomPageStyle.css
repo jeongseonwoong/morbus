@@ -60,6 +60,7 @@ header #sub ul li a {
 
 
 #square {
+    background-color: #ffffff;
     width: 1000px;
     height: fit-content;
     display: block;
@@ -79,48 +80,85 @@ img {
     font-weight: bold;
 }
 
-#square input[type="checkbox"]{
-    display: none;
-}
 
-#square input[type="checkbox"]+label{
-    cursor: pointer;
-    width: 370px;
-    height:30px;
-    border:1px solid black;
-    position: relative;
-    border-radius: 5px;
-    text-align: center;
-    vertical-align: center;
-    display: block;
-    margin: 15px;
-}
+    .highLight {
+        width: 200px;
+        height: 200px;
+        font-weight: bold;
+        text-emphasis-color: crimson;
+    }
 
-#square input[type="checkbox"]:checked +label::after{
-    content: '✔ ';
-    width: 370px;
-    height: 30px;
-    position: absolute;
-    border-radius:5px;
-    left: 0;
-    top:0;
-    background-color: rgba(255,0,0,0.2);
-}
+    .input_box {
+        height: 22px;
+        width: 200px;
+        border: 1px solid #1b5ac2;
+        background: white;
+        float: right;
+        border-radius: 5px;
+    }
 
-.button {
-    color: black;
-    background-color: rgba(0,0,200,0.5);
-    font-size: large;
-    font-weight: bold;
-    border-radius: 5px;
-    width: 372px;
-    height: 30px;
-    transform: translateX(5%) translateY(25%);
+    input {
+        width: 70%;
+        height: 100%;
+        border: 0;
+        outline: none;
+        font-size: 15px;
+    }
 
-}
+    button {
+        height: 100%;
+        width: 50px;
+        border: 0;
+        background: #1b5ac2;
+        outline: none;
+        color: white;
+        font-size: 15px;
+        border-radius: 5px;
+    }
 
-.button:hover {
-    transform: translateX(5%);
-    background-color: rgba(255,0,0,0.2);
-    transition: 0.4s;
-}
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    #square input[type="checkbox"] + label {
+        cursor: pointer;
+        width: 370px;
+        height: 30px;
+        border: 1px solid black;
+        position: relative;
+        border-radius: 5px;
+        text-align: center;
+        vertical-align: center;
+        display: block;
+        margin: 15px;
+    }
+
+    #square input[type="checkbox"]:checked + label::after {
+        content: '✔ ';
+        width: 370px;
+        height: 30px;
+        position: absolute;
+        border-radius: 5px;
+        left: 0;
+        top: 0;
+        background-color: rgba(255, 0, 0, 0.2);
+    }
+
+    .button {
+        color: black;
+        background-color: rgba(0, 0, 200, 0.5);
+        font-size: large;
+        font-weight: bold;
+        border-radius: 5px;
+        width: 372px;
+        height: 30px;
+        transform: translateX(5%) translateY(25%);
+
+    }
+
+    .button:hover {
+        transform: translateX(5%);
+        background-color: rgba(255, 0, 0, 0.2);
+        transition: 0.4s
+    }
+

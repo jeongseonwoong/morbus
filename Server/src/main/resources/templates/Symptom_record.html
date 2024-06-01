@@ -4,11 +4,40 @@
         <meta charset="UTF-8">
         <title>Symptom Record</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/recordPageStyle.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/mainPageStyle.css}"/>
+        <script src="js/Logout.js" type="text/javascript"></script>
     </head>
     <body style="background-color: #ffffff">
-
     <form name ="symptom_record_logo">
-        <div><a href ="/morbus.html"><img src="사진\morbus2.png"></a></div>
+        <div style="background: white; width: 50px; height: 50px; float: right; margin-right: 20px;">
+            <div class="icon">
+                <img onclick="toggleSidebar()" src="사진/icon_menu.png" style="width:70px; height:70px; right: 20px;">
+            </div>
+            <div class="side-bar">
+                <nav class="menu">
+                    <img style="display: inline-block; width:50px; height:50px;" onclick="toggleSidebar()" src="사진/icon-cross.png">
+                    <ul>
+                        <li><a href="/Symptom">질병 자가 진단</a></li>
+                        <li><a href="/Symptom_record">질병 기록지</a></li>
+                        <li><a href="/MedicineInfo">약 정보 찾기</a></li>
+                    </ul>
+                </nav>
+                <div th:if="${session.member}==null" style="margin-top:500px">
+                    <div class="sign-up">
+                        <a href="login">로그인<span class="ion-arrow-right-c"></span></a>
+                    </div>
+                    <div class="sign-up">
+                        <a href="signUp">회원가입<span class="ion-arrow-right-c"></span></a>
+                    </div>
+                </div>
+                <div th:if="${session.member}!=null" style="margin-top:500px"><span th:text="${session.member}" style="margin-left:30%;"></span><span style="font-weight: bolder;">님 안녕하세요!</span>
+                    <div class="sign-up" name="logout">
+                        <a>로그아웃<span class="ion-arrow-right-c"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header_img"><a href ="/morbus.html"><img src="사진\morbus2.png"></a></div>
     </form>
     <form action="/Symptom_record" method="post">
         <div class="square">
@@ -37,6 +66,24 @@
                 <button type="submit">전송</button>
             </div>
         </div>
+        <div class="background" onclick="toggleSidebar()"></div>
     </form>
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.querySelector('.side-bar');
+            var back_ground = document.querySelector('.background');
+            sidebar.classList.toggle('active');
+            back_ground.classList.toggle('active');
+            if (sidebar.style.right === '0px') {
+                sidebar.style.right = '-340px';
+                back_ground.style.visibility = 'hidden';
+                back_ground.style.opacity = '0';
+            } else {
+                sidebar.style.right = '0px';
+                back_ground.style.visibility = 'visible';
+                back_ground.style.opacity = '1';
+            }
+        }
+    </script>
     </body>
 </html>

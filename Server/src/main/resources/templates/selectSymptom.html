@@ -32,21 +32,21 @@
     <fieldset th:id="square" style= "width: 850px">
         <legend><b>현재 증상들을 선택하시오</b></legend>
 
-        <form id="searchForm" style="text-align: right">
-            <input type ="text" id ="search" placeholder="증상 입력">
-            <button type ="submit">입력</button>
-        </form>
-        <br>
-
+        <div class="input_box">
+            <form id="searchForm">
+                <button type ="submit" style="float :right">입력</button>
+                <input type ="text" id ="search" style ="float : right" placeholder="증상 입력">
+            </form>
+        </div>
         <form action ="http://localhost:8080/RelateDisease"  method ="post" name ="symList">
             <div th:each ="SymLists : ${SymList}" style="display: inline-block">
                 <input type ="checkbox" name="Symptom" th:id ="${SymLists.getName()}" th:value ="${SymLists.getName()}">
                 <label th:for ="${SymLists.getName()}" th:id ="${SymLists.getName()}+label" th:text ="${SymLists.getName()}" class ="text"></label>
+                <br><br>
             </div>
             <button type="submit" class="button">제출</button>
         </form>
     </fieldset>
-
 </div>
 
 </body>
