@@ -67,23 +67,20 @@ timestamp datetime not null,
 record_key long
 ); 
 5.JDBC URL: jdbc:h2:tcp://localhost/~/morbus_user로 변경 후 접속
-6. morbusApplication.java 파일 실행
+~$cd morbus/Server
+~$ sudo chmod 755 gradlew
+~$ gradlew build
+~$ gradlew bootRun
 ```
 최초 1회 이후
 ```sh
 1.h2.bat or h2.sh 실행
-2.jdbc:h2:tcp://localhost/~/test로 접속
-3.morbusApplication.java 파일 실행
-{
-~$ cd Server
-~$ sudo chmod 755 gradlew
+2.jdbc:h2:tcp://localhost/~/morbus_user로 접속
+~$ cd morbus/Server
 ~$ ./gradlew build	
 ~$ ./gradlew bootRun
-(wsl2에서는 실행이 안될수도 있음)
-~$ cd morbus/Server/src/main/java/OpenSourceProject/morbus
-~$ javac MorbusApplication.java
 안되면 IDEA에서 실행!
-}
+
 ```
 
 # 라이선스
