@@ -30,4 +30,10 @@ class MemberSettingTest {
     void findName() {
         Assertions.assertThat(memberRepository.findByName(member.getName()).get().getName()).isEqualTo(member.getName());
     }
+
+    @Test
+    void findMember()
+    {
+        Assertions.assertThat(memberRepository.findAll()).isNotEmpty();
+    }
 }
