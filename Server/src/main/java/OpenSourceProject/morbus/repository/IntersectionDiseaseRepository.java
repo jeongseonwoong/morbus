@@ -34,7 +34,6 @@ public class IntersectionDiseaseRepository {
             }
             if(value==max)
                 intersectionDisease.put(key, value);
-            
         }
 
         List<Map.Entry<String,Integer>>duplicateDisease= new LinkedList<>(intersectionDisease.entrySet());
