@@ -169,13 +169,11 @@
         }
         .side-bar>.menu ul {
             border-top: 4px solid black; /* 각 항목 아래에 선 추가 */
-            width: 80%;
-            margin-left: 20px; /*선만 옮겨지게*/
         }
         .side-bar>.menu ul::after {
             content: '';
             display: block;
-            width: 0%; /* 선의 길이를 조절합니다 */
+            width: 80%; /* 선의 길이를 조절합니다 */
             border-bottom: 4px solid black; /* 선의 속성을 정의합니다 */
             position: absolute;
             bottom: 0;
@@ -207,6 +205,34 @@
         .side-bar>.menu ul>li:hover>ul{
             display:block;
         }
+        .sign-up {
+            border-radius: 20px;
+            background: #FF5959;
+            border: 1px solid #FF5959;
+            color: #FFF;
+            font-size: 16px;
+            font-weight: bold;
+            height: 40px;
+            letter-spacing: 1px;
+            line-height: 40px;
+            margin: 2px;
+            overflow: hidden;
+            padding: 0;
+            position: relative;
+            text-align: center;
+        }
+        .sign-up:hover {
+            background-color: #FF1B2B;
+        }
+
+        .sign-up a {
+            display: block;
+        }
+
+        .sign-up span {
+            margin: 0 auto 0 8px;
+        }
+
         /*Additional Infomation*/
         details {
             margin-bottom: 1rem;
@@ -275,6 +301,19 @@
             <li><a href="/MedicineInfo">약 정보 찾기</a></li>
         </ul>
     </nav>
+    <div th:if="${member}==null" style="margin-top:500px">
+        <div class="sign-up">
+            <a href="login">로그인<span class="ion-arrow-right-c"></span></a>
+        </div>
+        <div class="sign-up">
+            <a href="signUp">회원가입<span class="ion-arrow-right-c"></span></a>
+        </div>
+    </div>
+    <div th:if="${member}!=null" style="margin-top:500px"><span th:text="${member}" style="margin-left:30%;"></span><span style="font-weight: bolder;">님 안녕하세요!</span>
+        <div class="sign-up" name="logout">
+            <a>로그아웃<span class="ion-arrow-right-c"></span></a>
+        </div>
+    </div>
 </div>
 <div class="square">
     <div class="input_box">
