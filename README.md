@@ -75,7 +75,7 @@ record_key long
 최초 1회 이후
 ```sh
 1.h2.bat or h2.sh 실행
-2.jdbc:h2:tcp://localhost/~/test로 접속
+2.jdbc:h2:tcp://localhost/~/morbus_user로 접속
 ~$ cd morbus/Server
 ~$ ./gradlew build	
 ~$ ./gradlew bootRun
