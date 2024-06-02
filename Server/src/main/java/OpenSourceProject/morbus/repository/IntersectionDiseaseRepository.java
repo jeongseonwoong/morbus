@@ -4,7 +4,6 @@ import OpenSourceProject.morbus.VOclass.Disease;
 
 import java.util.*;
 
-
 public class IntersectionDiseaseRepository {
     private final Map<String,Integer> diseaseCount = new HashMap<String,Integer>();
     private final Map<String,Integer> intersectionDisease = new HashMap<String,Integer>();
