@@ -53,7 +53,7 @@ class JdbcTemplateMemberRepositoryTest {
         Number key = jdbcInsert.executeAndReturnKey(new
                 MapSqlParameterSource(parameters));
         member.setId(key.longValue());
-        List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(),member.getId());
+        List<Member> result = jdbcTemplate.query("select * from member where id = ?", memberRowMapper(),member.getId());
         Assertions.assertThat(result.stream().findFirst().get().getName()).isEqualTo(member.getName());
     }
 
