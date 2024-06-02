@@ -6,35 +6,47 @@
     <link rel="stylesheet" type="text/css" href="/css/signUp.css">
 </head>
 <body>
-<header>
-    <div id="imageBox">
+<header style="border-bottom: #f0f0f0 solid 1px">
+    <div style="border-bottom: #f0f0f0 solid 1px">
         <a href="morbus.html"><img src="/사진/morbus2.png" alt=""></a>
+        <span class="lists">
+            <a href="MedicineInfo">약 정보 찾기</a>
+            <a href="Symptom_record">증상 기록지</a>
+            <a href="Symptom">질병 자가진단</a>
+            &nbsp;
+        </span>
     </div>
+
     <div id="head">
         <div>회원가입</div>
     </div>
 </header>
-
-<div id="mainPage">
+<div class="content container">
+    <div class="row">
         <div style="text-align: center">
             <div class="login">
-                <div id="explain">
-                    <h3>회원가입</h3>
-                    <p>계정이 이미 있는 경우에는 <a href="/login">로그인</a> 해주세요<br>
-                        가입을 하면 증상 기록지 등 추가 기능을 사용하실 수 있습니다.
-                    </p>
+                <div class="reg-page">
+                    <div style="border-bottom: black solid 1px">
+                        <h3 style="text-align: center">회원가입</h3>
+                    </div>
+                    <div id="explain">
+                        <p>계정이 이미 있는 경우에는 <a href="/login">로그인</a> 해주세요<br>
+                            가입을 하면 증상 기록지 등 추가 기능을 사용하실 수 있습니다.
+                        </p>
+                    </div>
+                    <form action="signUp" method="post">
+                        <div id="idBox">
+                            <label for="password">비밀번호</label>
+                            <input type="password" id="password" name="password" placeholder="&nbsp;비밀번호를 입력하세요...">
+                        </div>
+                        <div style="float: right">
+                            <button type="submit">회원가입</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="signUp" method="post">
-                    <div id="idBox">
-                        <label for="password">비밀번호</label>
-                        <input type="password" id="password" name="password">
-                    </div>
-                    <div style="text-align: right">
-                        <button type="submit">회원가입</button>
-                    </div>
-                </form>
             </div>
         </div>
+    </div>
 </div>
 
 </body>
