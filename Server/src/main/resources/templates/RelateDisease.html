@@ -8,13 +8,28 @@
     <script src="/js/moreDiseaseList.js" type="text/javascript"></script>
 
 </head>
-<body style="background-color: #e4e4e4">
-<a href="/morbus.html"><img src="사진/MORBUS.png"></a>
+<body style="background-color: #ffffff">
+<header>
+    <section id="sub">
+        <ul>
+            <li><a href="signUp">회원가입</a></li>
+            <li><a href="login">로그인</a></li>
+        </ul>
+    </section>
+    <div style="border-bottom: #f0f0f0 solid 1px">
+        <a href="morbus.html"><img src="/사진/morbus2.png" alt=""></a>
+        <span class="lists">
+            <a href="MedicineInfo">약 정보 찾기</a>
+            <a href="Symptom_record">증상 기록지</a>
+            <a href="Symptom">질병 자가진단</a>
+        </span>
+    </div>
+</header>
 <form action ="http://localhost:8080/diseaseInfo" name="diseaseInfo" method="post">
 
     <!--가능성 높은 질병들 먼저 출력-->
     <div id="duplicateDisease" class="content">
-        <h3 style="color: red">유력한 원인</h3>
+        <h3 style="color: red">&nbsp&nbsp 유력한 원인</h3>
         <ul th:each="DuplicatedDisease  : ${DuplicateDisease}">
             <button type="submit" name="diseaseName" th:value="${DuplicatedDisease.getKey().getName()}">
                 <li style="font-weight: bold" th:text="${DuplicatedDisease.getKey().getName()}">중복되는 질병 없음</li>
