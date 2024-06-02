@@ -32,7 +32,7 @@ public class MorbusController {
 
     //생성자 내에서 증상 배열 초기화
     @Autowired
-    MorbusController(HttpSession session, DiseaseSetting diseaseSetting, SymptomSetting symptomsetting) throws Exception {
+    public MorbusController(HttpSession session, DiseaseSetting diseaseSetting, SymptomSetting symptomsetting) throws Exception {
         this.diseaseSetting = diseaseSetting;
         this.symptomsetting = symptomsetting;
     }
