@@ -1,5 +1,6 @@
 package OpenSourceProject.morbus.algorithm;
 
+import OpenSourceProject.morbus.controller.MorbusController;
 import OpenSourceProject.morbus.repository.*;
 
 import jakarta.servlet.http.HttpSession;
@@ -48,4 +49,5 @@ public class Config {
 
     @Bean
     public SymptomRepository symptomRepository() throws Exception {return new MemorySymptomRepository(diseaseSetting());}
+
 }
