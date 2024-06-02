@@ -11,7 +11,7 @@
         .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
         .map_wrap h3 {font-size: large; font-weight: bold}
         .map_wrap {position:relative;width:100%;height:500px;}
-        #menu_wrap {position:absolute;top:0;left:740px;bottom:0;width:240px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+        #menu_wrap {position:absolute;top:0;left:740px;bottom:0;width:235px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
         .bg_white {background:#fff;}
         #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
         #menu_wrap .option{text-align: center;}
@@ -48,29 +48,76 @@
         #square {
             background-color: #ffffff;
             width: 1000px;
-            height: 1300px;
+            height: fit-content;
             display: block;
             margin: 0 auto;
             border-radius: 10px;
         }
         img {
-            width: 300px;
-            height: 70px;
-            display: block;
-            margin: 0 auto;
+            width: 200px;
+            height: 50px;
+            margin: 5px 5px 5px 100px;
+        }
+        header #sub {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 100%;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        header #sub ul {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: end;
+            width: 1270px;
+            margin: auto;
+        }
+
+        header #sub ul li{
+            display: list-item;
+            text-align: -webkit-match-parent;
+            unicode-bidi: isolate;
+        }
+
+        header #sub ul li a {
+            display: flex;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #5F5F5F;
+        }
+        .lists{
+            float: right;
+            display: inline-block;
+            text-align: right;
+            transform: translateY(130%) translateX(-30%);
+        }
+
+        .lists a{
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .lists a:hover{
+            text-decoration: underline;
+            color: #05558d;
         }
         #detailInfo{
             border: solid black;
             background-color: white;
-            width:100%;
+            width: 995px;
             height:fit-content;
             border-radius: 10px;
         }
         .mapContain{
-            float: right;
             border: solid black;
             background-color: white;
-            width: 100%;
+            width: 995px;
             height:fit-content;
             border-radius: 10px;
         }
@@ -119,8 +166,23 @@
     </style>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=44eebf3750c6d8a33935af51087d1056&libraries=services,clusterer,drawing"></script>
 </head>
-<body style="background-color: #e4e4e4">
-<a href="/morbus.html"><img src="사진/MORBUS.png"></a>
+<body style="background-color: #ffffff">
+<header>
+    <section id="sub">
+        <ul>
+            <li><a href="signUp">회원가입</a></li>
+            <li><a href="login">로그인</a></li>
+        </ul>
+    </section>
+    <div style="border-bottom: #f0f0f0 solid 1px">
+        <a href="morbus.html"><img src="/사진/morbus2.png" alt=""></a>
+        <span class="lists">
+            <a href="MedicineInfo">약 정보 찾기</a>
+            <a href="Symptom_record">증상 기록지</a>
+            <a href="Symptom">질병 자가진단</a>
+        </span>
+    </div>
+</header>
 <div id="square">
     <h1 th:text="${diseaseName}"></h1>
     <hr>
@@ -133,7 +195,7 @@
 
     <div class="mapContain">
         <div class="map_wrap">
-            <h3>주변 병원 찾기</h3>
+            <h3>&nbsp 주변 병원 찾기</h3>
             <div id="map"></div>
             <div id="menu_wrap" class="bg_white">
                 <div class="option">
@@ -469,7 +531,7 @@
         </script>
 
     <div class="contain">
-        <h3>약 정보</h3>
+        <h3>&nbsp 약 정보</h3>
         <form onsubmit="display_medicine(event)">
             <input type="hidden" id="diseaseName" th:value="${diseaseName}">
         </form>
@@ -478,7 +540,7 @@
     </div>
 
     <div name="first-aid" class="contain" style="float: left">
-        <h3>응급처치 & 자가 치료</h3>
+        <h3>&nbsp  응급처치 & 자가 치료</h3>
         <hr>
         <p th:text="${disease.getSelfTreatment()}"></p>
     </div>

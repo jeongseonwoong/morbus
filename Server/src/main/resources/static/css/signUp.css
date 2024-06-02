@@ -1,4 +1,24 @@
+* {
+    border-radius: 0;
+    box-sizing: border-box;
+}
+.lists{
+    float: right;
+    display: inline-block;
+    text-align: right;
+    transform: translateY(130%);
+}
 
+.lists a{
+    margin-left: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.lists a:hover{
+    text-decoration: underline;
+    color: #05558d;
+}
 .login {
     border: 1px solid #DDD;
     width: fit-content;
@@ -32,6 +52,7 @@
 #idBox label{
     display: block;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 #idBox input{
@@ -44,23 +65,51 @@
 }
 
 #head {
-    height: 80px;
+    font-size: 20px;
+    margin: 5px 5px 5px 100px;
+    background-color:#fefefe;
 }
 
-#head  div{
-    font-size: 23px;
-    font-weight: lighter;
-    text-indent: 15px;
-    padding: 20px 0 20px 0;
+#head div{
+    box-sizing: border-box;
+    padding: 20px;
 }
+
 
 img {
-    width: 300px;
-    height: 70px;
-    display: block;
-    margin: 0 auto;
+    width: 200px;
+    height: 50px;
+    margin: 5px 5px 5px 100px;
+}
+.content {
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
-#mainPage {
-    margin-top: 30px;
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 750px;
+    background: #fefefe;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.reg-page {
+    color: #555;
+    padding: 30px;
+    background: #fefefe;
+    border: solid 1px #eee;
+    box-shadow: 0 0 3px #eee;
+}
+button{
+    background: #0076C0;
+    color: white;
+    width: 80px;
+    height:34px;
+    text-align: center;
+    transform: translateY(-40%);
 }
