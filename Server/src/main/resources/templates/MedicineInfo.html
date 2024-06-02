@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--약 이름을 입력한다 -> 출력해서 효능, 사용법, 알아야할 내용, 주의점, 보관법 // tmi part: 주의해야할 약, 음식, 이상반응 -->
-<!--이미지 추가 좀 더 확인이 쉽게 https://www.data.go.kr/tcs/puc/selectPublicUseCaseView.do?prcuseCaseSn=1038781-->
 <head>
     <meta charset="UTF-8">
     <title>MedicineInfo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="js/Logout.js" type="text/javascript"></script>
     <style>
         html, body {margin: 0; padding: 0; height: 100%; }
         body {font-family: "Noto Sans KR", sans-serif; background-color: white;}
@@ -301,7 +300,7 @@
             <li><a href="/MedicineInfo">약 정보 찾기</a></li>
         </ul>
     </nav>
-    <div th:if="${member}==null" style="margin-top:500px">
+    <div th:if="${session.member}==null" style="margin-top:500px">
         <div class="sign-up">
             <a href="login">로그인<span class="ion-arrow-right-c"></span></a>
         </div>
@@ -309,7 +308,7 @@
             <a href="signUp">회원가입<span class="ion-arrow-right-c"></span></a>
         </div>
     </div>
-    <div th:if="${member}!=null" style="margin-top:500px"><span th:text="${member}" style="margin-left:30%;"></span><span style="font-weight: bolder;">님 안녕하세요!</span>
+    <div th:if="${session.member}!=null" style="margin-top:500px"><span th:text="${session.member}" style="margin-left:30%;"></span><span style="font-weight: bolder;">님 안녕하세요!</span>
         <div class="sign-up" name="logout">
             <a>로그아웃<span class="ion-arrow-right-c"></span></a>
         </div>
