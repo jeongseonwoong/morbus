@@ -89,6 +89,7 @@ class JdbcTemplateMemberRepositoryTest {
         Assertions.assertThat(result.size()).isEqualTo(1);
     }
 
+
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {
             Member member = new Member();

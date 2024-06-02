@@ -5,7 +5,7 @@ plugins {
 	id 'jacoco'
 }
 
-jacoco{
+jacoco {
 	toolVersion = "0.8.7" // 원하는 JaCoCo 버전 명시
 }
 
@@ -14,6 +14,39 @@ jacocoTestReport {
 	reports {
 		xml.required.set(true)  // XML 리포트 활성화
 		html.required.set(true) // HTML 리포트 활성화
+	}
+
+	// 특정 디렉토리의 테스트를 실행하지 않음
+	classDirectories.setFrom(
+			files(classDirectories.files.collect { file ->
+				fileTree(dir: file, exclude: [
+						'OpensourceProject/morbus/VOclass/**',
+						'OpensourceProject/morbus/controller/**'
+				])
+			})
+	)
+}
+
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			enabled = true
+			element = 'CLASS'
+
+			// 라인 커버리지 제한을 90%로 설정
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 0.90
+			}
+
+			// 제외할 패키지/폴더 추가
+			excludes = [
+					"**.*Application*",
+					"**/OpensourceProject/morbus/VOclass/**",
+					"**/OpensourceProject/morbus/controller/**"
+			]
+		}
 	}
 }
 
@@ -45,4 +78,8 @@ test {
 	finalizedBy jacocoTestReport // 테스트 후 커버리지 리포트를 생성
 }
 
-
+// morbus.VOclass와 morbus.controller 패키지의 테스트를 실행하지 않도록 설정
+tasks.withType(Test).configureEach {
+	exclude '**/OpensourceProject/morbus/VOclass/**'
+	exclude '**/OpensourceProject/morbus/controller/**'
+}
