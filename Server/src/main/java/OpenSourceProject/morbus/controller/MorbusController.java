@@ -54,7 +54,8 @@ public class MorbusController {
 
 
     @GetMapping("Symptom") // 메인 홈페이지에서 질병자가진단 페이지로 넘어가는 컨트롤러
-    public String Symptom(Model model, Model model2){
+    public String Symptom(Model model, Model model2,HttpSession session){
+        model.addAttribute("member", session.getAttribute("member"));
         model2.addAttribute("SymList",symptomsetting.findAllSymptom());
 
         return "selectSymptom";
