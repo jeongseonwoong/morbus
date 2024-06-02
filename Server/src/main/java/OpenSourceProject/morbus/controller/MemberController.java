@@ -64,14 +64,19 @@ public class MemberController {
     }
 
     @PostMapping("signUp")
-    public String SignUp(@RequestParam("password") String password ) {
+    public String SignUp(@RequestParam("password") String password, Model model ) {
         System.out.println(password);
         Member member = new Member();
         member.setName(password);
+        try {
+            memberSetting.join(member);
+            return "../static/morbus";
+        }
+        catch (IllegalStateException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "signUp";
+        }
 
-        memberSetting.join(member);
-
-        return "../static/morbus";
     }
 
 
