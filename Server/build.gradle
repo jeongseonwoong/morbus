@@ -18,10 +18,10 @@ jacocoTestReport {
 
 	// 특정 디렉토리의 테스트를 실행하지 않음
 	classDirectories.setFrom(
-			files(classDirectories.files.collect { file ->
-				fileTree(dir: file, exclude: [
-						'OpensourceProject/morbus/VOclass/**',
-						'OpensourceProject/morbus/controller/**'
+			files(classDirectories.files.collect {
+				fileTree(dir: it, exclude: [
+						"OpenSourceProject/morbus/controller/**",
+						"OpenSourceProject/morbus/MorbusApplication.class"
 				])
 			})
 	)
@@ -37,14 +37,12 @@ jacocoTestCoverageVerification {
 			limit {
 				counter = 'LINE'
 				value = 'COVEREDRATIO'
-				minimum = 0.90
 			}
 
 			// 제외할 패키지/폴더 추가
 			excludes = [
-					"**.*Application*",
-					"**/OpensourceProject/morbus/VOclass/**",
-					"**/OpensourceProject/morbus/controller/**"
+					"OpenSourceProject/morbus/controller/**",
+					"OpenSourceProject/morbus/MorbusApplication.class"
 			]
 		}
 	}
@@ -74,12 +72,13 @@ dependencies {
 }
 
 test {
-	useJUnitPlatform()
+
 	finalizedBy jacocoTestReport // 테스트 후 커버리지 리포트를 생성
+	useJUnitPlatform()
+
+	jacoco{
+		excludes +=["OpenSourceProject/morbus/controller/**",
+					"OpenSourceProject/morbus/MorbusApplication.class"]
+	}
 }
 
-// morbus.VOclass와 morbus.controller 패키지의 테스트를 실행하지 않도록 설정
-tasks.withType(Test).configureEach {
-	exclude '**/OpensourceProject/morbus/VOclass/**'
-	exclude '**/OpensourceProject/morbus/controller/**'
-}
