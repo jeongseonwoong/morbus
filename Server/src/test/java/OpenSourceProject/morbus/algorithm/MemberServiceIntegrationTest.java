@@ -59,4 +59,17 @@ class MemberServiceIntegrationTest {
         memberService.findMember();
         Assertions.assertThat(memberService.findMember().stream().filter(member1 -> member1.getName().equals("hello")).findAny().get().getName()).isEqualTo("hello");
     }
+
+    @Test
+    public void 하나씩_찾아지나(){
+        Member member = new Member();
+        member.setName("hello");
+        Member member2 = new Member();
+        member2.setName("hello2");
+        memberService.join(member);
+        memberService.join(member2);
+
+        Assertions.assertThat(memberService.findName("hello").get().getName()).isEqualTo(member.getName());
+        Assertions.assertThat(memberService.findMemberById(member2.getId()).get().getId()).isEqualTo(member2.getId());
+    }
 }
