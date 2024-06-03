@@ -2,6 +2,7 @@ package OpenSourceProject.morbus.algorithm;
 
 import OpenSourceProject.morbus.repository.DiseaseRepository;
 import OpenSourceProject.morbus.repository.RepositorySetting;
+import OpenSourceProject.morbus.repository.SymptomRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class UseSymptomDiseaseSettingIntegrationTest {
 
     @Autowired
     DiseaseRepository diseaseRepository;
+
 
     @Test
     public void 증상서비스_작동확인(){
