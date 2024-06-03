@@ -12,8 +12,9 @@
 <header>
     <section id="sub">
         <ul>
-            <li><a href="signUp">회원가입</a></li>
-            <li><a href="login">로그인</a></li>
+            <li th:if="${member}!=null" th:text="${member}+'님 안녕하세요'"></li>
+            <li th:if="${member}==null"><a href="signUp">회원가입</a></li>
+            <li th:if="${member}==null"><a href="login">로그인</a></li>
         </ul>
     </section>
     <div style="border-bottom: #f0f0f0 solid 1px">

@@ -77,7 +77,7 @@ public class MorbusController {
     }
 
     @PostMapping("RelateDisease")//관련된 질병들을 표시해주는 페이지로 넘어가는 컨트롤러
-    public String relateDisease(@RequestParam(value = "Symptom") String[] symName, Model model, Model model2)
+    public String relateDisease(@RequestParam(value = "Symptom") String[] symName, Model model, Model model2, Model model3, HttpSession session)
     {
         //선택한 증상들과 관련된 질병을 찾는 알고리즘
         ArrayList<SymptomDiseasePair> diseaseList = new ArrayList<SymptomDiseasePair>();
@@ -114,6 +114,7 @@ public class MorbusController {
         }
         model.addAttribute("ReDisease",diseaseList);
         model2.addAttribute("DuplicateDisease",duplicatedDisease2);
+        model3.addAttribute("member", session.getAttribute("member"));
         return "RelateDisease";
     }
 
@@ -140,7 +141,7 @@ public class MorbusController {
     }
 
     @PostMapping("diseaseInfo")//질병 정보 페이지로 이동하는 컨트롤러
-    public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2)
+    public String diseaseInfo(@RequestParam(value="diseaseName")String diseaseName, Model model, Model model2, Model model3, HttpSession session)
     {
         System.out.println(diseaseName);
 
@@ -150,6 +151,7 @@ public class MorbusController {
             Disease disease = diseaseSetting.findByName(diseaseName).get();
             model2.addAttribute("disease",disease);
         }
+        model3.addAttribute("member", session.getAttribute("member"));
         return "diseaseInfo";
     }
 
