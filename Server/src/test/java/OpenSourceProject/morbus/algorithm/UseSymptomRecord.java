@@ -6,10 +6,12 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
 @SpringBootTest
+@Transactional
 public class UseSymptomRecord {
 
     @Autowired
@@ -20,8 +22,8 @@ public class UseSymptomRecord {
 
     @Test
     public void test() {
-        symptomRecordService.saveSymptom("abc",session);
-        Assertions.assertThat(symptomRecordService.getAllRecords(33L).size()).isEqualTo(0);
+        Long id = symptomRecordService.saveSymptom("qwe",session);
+        Assertions.assertThat(symptomRecordService.getAllRecords(id).size()).isEqualTo(1);
     }
 
     @Test
@@ -30,7 +32,8 @@ public class UseSymptomRecord {
         Symptom symptom = new Symptom();
 
         symptomRecord.setSymptom("ac");
-        Assertions.assertThat(symptomRecord.getSymptom()).isEqualTo("ac");
+        symptomRecord.setId(21L);
+        Assertions.assertThat(symptomRecord.getId()).isEqualTo(21L);
         symptomRecord.setId(12L);
         Assertions.assertThat(symptomRecord.getId()).isEqualTo(12L);
         symptomRecord.setRecordKey(13L);

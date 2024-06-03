@@ -10,10 +10,8 @@ import java.util.function.IntPredicate;
 @SpringBootApplication
 public class MorbusApplication {
 
-
-	public static IntPredicate main(String[] args) {
+	public static void main(String[] args) {
 		SpringApplication.run(MorbusApplication.class, args);
-		return null;
 	}
 
 }
