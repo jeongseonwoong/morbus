@@ -111,11 +111,10 @@ SOFTWARE.
 <ul>
   <li>정선웅</li>
   <a href="https://github.com/jeongseonwoong">GitHub 주소</a>
-  <br>01027993550
   <li>조진우</li>
   <a href="https://github.com/JJW1223">GitHub 주소</a>
-  <p> @JJW1223 <br>01087713302 </p>
+  <p> @JJW1223</p>
   <li>양희창</li>
   <a href="https://github.com/YangHeeChang">GitHub 주소</a>
-  <p>@YangHeeChang <br>01024733055 </p>
+  <p>@YangHeeChang</p>
 </ul>
