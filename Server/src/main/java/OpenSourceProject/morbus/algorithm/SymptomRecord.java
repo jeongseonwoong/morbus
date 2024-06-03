@@ -14,7 +14,6 @@ public class SymptomRecord {
     public Long getRecordKey() {
         return recordKey;
     }
-
     public void setRecordKey(Long recordKey) {
         this.recordKey = recordKey;
     }
