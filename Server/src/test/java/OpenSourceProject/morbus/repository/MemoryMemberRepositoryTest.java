@@ -35,16 +35,16 @@ class MemoryMemberRepositoryTest {
     void findByName() {
         Member member = new Member();
         member.setId(11L);
-        member.setName("test");
+        member.setName("메인");
         store.put(member.getId(),member);
-        Assertions.assertThat( store.values().stream().filter(member1 -> member1.getName().equals("test")).findAny().get().getName()).isEqualTo("test");
+        Assertions.assertThat( store.values().stream().filter(member1 -> member1.getName().equals("메인")).findAny().get().getName()).isEqualTo("메인");
     }
 
     @Test
     void findAll() {
         Member member = new Member();
         member.setId(11L);
-        member.setName("test");
+        member.setName("메인");
         store.put(member.getId(),member);
         Member member2 = new Member();
         member2.setId(12L);
