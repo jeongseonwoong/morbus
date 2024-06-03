@@ -111,6 +111,7 @@ SOFTWARE.
 <ul>
   <li>정선웅</li>
   <a href="https://github.com/jeongseonwoong">GitHub 주소</a>
+  <p>@jeongseonwoong</p>
   <li>조진우</li>
   <a href="https://github.com/JJW1223">GitHub 주소</a>
   <p> @JJW1223</p>
