@@ -11,16 +11,18 @@ public class SymptomRecordService {
     @Autowired
     private SymptomRecordRepository symptomRecordRepository;
 
-    public void saveSymptom(String symptom, HttpSession session) {
+    public Long saveSymptom(String symptom, HttpSession session) {
         Long memberId = (Long) session.getAttribute("memberId");
         SymptomRecord record = new SymptomRecord();
         record.setSymptom(symptom);
         record.setTimestamp(LocalDateTime.now());
         record.setRecordKey(memberId);
         symptomRecordRepository.save(record);
+        return memberId;
     }
 
     public List<SymptomRecord> getAllRecords(Long memberId) {
         return symptomRecordRepository.findByRecordKey(memberId);
     }
+
 }

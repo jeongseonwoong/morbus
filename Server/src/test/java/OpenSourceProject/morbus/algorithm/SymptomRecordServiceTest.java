@@ -17,10 +17,4 @@ class SymptomRecordServiceTest {
         this.symptomRecordService = symptomRecordService;
     }
 
-// 희창씨 나 이거 모르겠어
-//    @Test
-//    void getAllRecords(HttpSession session) {
-//
-//        symptomRecordService.getAllRecords(33L);
-//    }
 }
