@@ -22,6 +22,9 @@ public class UseSymptomRecord {
 
     @Test
     public void test() {
+        SymptomRecord record = new SymptomRecord();
+        record.setSymptom("답답함");
+        Assertions.assertThat(record.getSymptom()).isEqualTo("답답함");
         Long id = symptomRecordService.saveSymptom("qwe",session);
         Assertions.assertThat(symptomRecordService.getAllRecords(id).size()).isEqualTo(1);
     }
