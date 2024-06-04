@@ -300,7 +300,7 @@
             <li><a href="/MedicineInfo">약 정보 찾기</a></li>
         </ul>
     </nav>
-    <div th:if="${session.member}==null" style="margin-top:500px">
+    <div th:if="${session.member}==null" style="margin-top:50vh">
         <div class="sign-up">
             <a href="login">로그인<span class="ion-arrow-right-c"></span></a>
         </div>
@@ -308,7 +308,7 @@
             <a href="signUp">회원가입<span class="ion-arrow-right-c"></span></a>
         </div>
     </div>
-    <div th:if="${session.member}!=null" style="margin-top:500px"><span th:text="${session.member}" style="margin-left:30%;"></span><span style="font-weight: bolder;">님 안녕하세요!</span>
+    <div th:if="${session.member}!=null" style="margin-top:50vh"><span th:text="${session.member}" style="margin-left:30%;"></span><span style="font-weight: bolder;">님 안녕하세요!</span>
         <div class="sign-up" name="logout">
             <a>로그아웃<span class="ion-arrow-right-c"></span></a>
         </div>
