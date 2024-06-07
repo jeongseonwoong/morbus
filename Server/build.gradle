@@ -20,7 +20,6 @@ jacocoTestReport {
 	classDirectories.setFrom(
 			files(classDirectories.files.collect {
 				fileTree(dir: it, exclude: [
-						"OpenSourceProject/morbus/controller/**",
 						"OpenSourceProject/morbus/MorbusApplication.class"
 				])
 			})
@@ -41,7 +40,6 @@ jacocoTestCoverageVerification {
 
 			// 제외할 패키지/폴더 추가
 			excludes = [
-					"OpenSourceProject/morbus/controller/**",
 					"OpenSourceProject/morbus/MorbusApplication.class"
 			]
 		}
@@ -69,15 +67,17 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
 	implementation 'mysql:mysql-connector-java:8.0.33'
+
 }
 
 test {
 
+	jvmArgs = ["-XX:+EnableDynamicAgentLoading", "-Djdk.instrument.traceUsage"]
 	finalizedBy jacocoTestReport // 테스트 후 커버리지 리포트를 생성
 	useJUnitPlatform()
 
 	jacoco{
-		excludes +=["OpenSourceProject/morbus/controller/**",
+		excludes +=[
 					"OpenSourceProject/morbus/MorbusApplication.class"]
 	}
 }
