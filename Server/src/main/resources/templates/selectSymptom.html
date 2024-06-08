@@ -42,7 +42,7 @@
                 <button type ="submit">입력</button>
             </form>
         </div>
-        <form action ="http://localhost:8080/RelateDisease"  method ="post" name ="symList">
+        <form action ="RelateDisease"  method ="post" name ="symList">
             <div th:each ="SymLists : ${SymList}" style="display: inline-block">
                 <input type ="checkbox" name="Symptom" th:id ="${SymLists.getName()}" th:value ="${SymLists.getName()}">
                 <label th:for ="${SymLists.getName()}" th:id ="${SymLists.getName()}+label" th:text ="${SymLists.getName()}" class ="text"></label>
